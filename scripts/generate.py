@@ -143,7 +143,6 @@ def generate_index(posts_data, holdings_data):
 """
     
     html += """
-        <footer><p>Past performance does not guarantee future results.</p></footer>
     </div>
 </body>
 </html>
@@ -224,7 +223,6 @@ def generate_holdings(holdings_data):
     
     html += """
         </tbody></table>
-        <footer><p>Past performance does not guarantee future results.</p></footer>
     </div>
 </body>
 </html>
@@ -302,7 +300,6 @@ def generate_trades(trades_data):
     
     html += """
         </tbody></table>
-        <footer><p>Options trading involves substantial risk.</p></footer>
     </div>
 </body>
 </html>
