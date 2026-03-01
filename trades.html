@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trades | enhaq.capital</title>
+    <title>Trades – enhaq.capital</title>
+    <meta name="description" content="Options trade log. Volatility-based strategies with full transparency on structure, risk, and outcomes.">
+    <meta property="og:title" content="Trades – enhaq.capital">
+    <meta property="og:description" content="Options trade log. Volatility-based strategies with full transparency on structure, risk, and outcomes.">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         
@@ -57,24 +61,25 @@
             border-bottom: 1px solid #e5e5e5;
         }
 
-        .subtitle { font-family: 'Crimson Text', serif; font-size: 1.2rem; color: #666; font-style: italic; }
         .meta { font-size: 0.9rem; color: #999; margin-bottom: 3rem; }
         .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin: 2rem 0; }
         .metric { border: 1px solid #e5e5e5; padding: 1.5rem; }
         .metric-label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #666; margin-bottom: 0.5rem; }
         .metric-value { font-size: 2rem; font-weight: 500; }
-        table { width: 100%; border-collapse: collapse; margin: 2rem 0; border: 1px solid #e5e5e5; }
+        table { width: 100%; border-collapse: collapse; margin: 2rem 0; border: 1px solid #e5e5e5; font-size: 0.9rem; }
         thead { border-bottom: 2px solid #2c2c2c; }
-        th { text-align: left; padding: 1rem; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: #666; }
+        th { text-align: left; padding: 0.75rem; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: #666; }
         th.right { text-align: right; }
-        td { padding: 1rem; border-bottom: 1px solid #f0f0f0; }
+        td { padding: 0.75rem; border-bottom: 1px solid #f0f0f0; }
         td.right { text-align: right; }
         tbody tr { cursor: pointer; }
         tbody tr:hover { background: #f9f9f9; }
         .ticker { font-family: 'Courier New', monospace; font-weight: bold; }
-        .status { display: inline-block; padding: 0.25rem 0.5rem; border: 1px solid; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .status { display: inline-block; padding: 0.25rem 0.5rem; border: 1px solid; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; }
         .status.open { border-color: #2d5016; color: #2d5016; }
         .status.closed { border-color: #666; color: #666; }
+        .positive { color: #2d5016; }
+        .negative { color: #8b0000; }
         .detail-row { display: none; }
         .detail-row.show { display: table-row; }
         .detail-cell { padding: 2rem; background: #f9f9f9; border-bottom: 2px solid #e5e5e5; }
@@ -102,29 +107,38 @@
         </div>
 
         <p class="meta" style="margin-top: -2rem; margin-bottom: 2rem;">As of 2026-03-01</p>
+        
         <div class="metrics">
             <div class="metric"><div class="metric-label">Total Trades</div><div class="metric-value">1</div></div>
             <div class="metric"><div class="metric-label">Win Rate</div><div class="metric-value">0%</div></div>
             <div class="metric"><div class="metric-label">Avg Return</div><div class="metric-value">0.0%</div></div>
             <div class="metric"><div class="metric-label">Total P&L</div><div class="metric-value">$0</div></div>
         </div>
+        
         <h2>Trade Log</h2>
         <table><thead><tr>
-            <th>ID</th><th>Ticker</th><th>Type</th><th>Classification</th>
-            <th>Entry Date</th><th>Status</th><th class="right">Net Debit</th>
+            <th>ID</th>
+            <th>Ticker</th>
+            <th>Type</th>
+            <th>Entry</th>
+            <th>Status</th>
+            <th class="right">Max Loss</th>
+            <th class="right">Max Profit</th>
+            <th class="right">Actual P&L</th>
         </tr></thead><tbody>
 
             <tr onclick="toggleDetail('T001')">
                 <td>T001</td>
                 <td class="ticker">SPY</td>
                 <td>P1</td>
-                <td>Long Calendar</td>
                 <td>2026-02-01</td>
                 <td><span class="status open">open</span></td>
-                <td class="right">$250.00</td>
+                <td class="right negative">-$250</td>
+                <td class="right positive">+$150</td>
+                <td class="right "><strong>$0</strong></td>
             </tr>
             <tr class="detail-row" id="detail-T001">
-                <td colspan="7" class="detail-cell">
+                <td colspan="8" class="detail-cell">
                     <div class="detail-grid">
                         <div class="detail-section">
                             <div class="section-title">Entry Thesis</div>
@@ -141,20 +155,20 @@
                     </div>
                     <div class="detail-grid">
                         <div class="detail-section">
+                            <div class="section-title">Risk Profile</div>
+                            <div class="structure">
+                                Max Loss: $250<br>
+                                Max Profit: $150<br>
+                                R:R Ratio: 0.60:1
+                            </div>
+                        </div>
+                        <div class="detail-section">
                             <div class="section-title">Vol Metrics</div>
                             <div class="structure">
                                 IV%: 12<br>
                                 VRP: -2.5<br>
                                 RV%: 18<br>
                                 Term: flat
-                            </div>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Greeks at Entry</div>
-                            <div class="structure">
-                                Delta: 0.05<br>
-                                Theta: -15.0<br>
-                                Vega: 45.0
                             </div>
                         </div>
                     </div>
@@ -174,10 +188,10 @@
         </tbody></table>
     </div>
     <script>
-        function toggleDetail(tradeId) {{
+        function toggleDetail(tradeId) {
             const row = document.getElementById('detail-' + tradeId);
             row.classList.toggle('show');
-        }}
+        }
     </script>
 </body>
 </html>

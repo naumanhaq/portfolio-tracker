@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 """
-Complete 3-page generator:
-- index.html: Landing/blog
-- holdings.html: Portfolio tracker
-- trades.html: Options log
+Complete 3-page generator with SEO + risk columns
 """
 
 import json
@@ -32,6 +29,29 @@ def calculate_return(entry_price, current_price):
         return None
     return ((current_price - entry_price) / entry_price) * 100
 
+def seo_meta(page="home"):
+    meta = {
+        "home": {
+            "title": "enhaq.capital – Long what survives, short what doesn't",
+            "description": "Concentrated equity positions and volatility strategies. Portfolio commentary and trade transparency.",
+        },
+        "holdings": {
+            "title": "Holdings – enhaq.capital",
+            "description": "Long-term concentrated positions in enduring businesses. Performance metrics and portfolio composition.",
+        },
+        "trades": {
+            "title": "Trades – enhaq.capital",
+            "description": "Options trade log. Volatility-based strategies with full transparency on structure, risk, and outcomes.",
+        }
+    }
+    
+    m = meta.get(page, meta["home"])
+    
+    return f"""<meta name="description" content="{m['description']}">
+    <meta property="og:title" content="{m['title']}">
+    <meta property="og:description" content="{m['description']}">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">"""
+
 def nav_html(active="home"):
     pages = [
         ("home", "Home", "index.html"),
@@ -46,7 +66,6 @@ def nav_html(active="home"):
     return nav
 
 def page_header(page_type="home"):
-    """Generate consistent header + nav + tagline."""
     taglines = {
         "home": "Long what survives, short what doesn't.",
         "holdings": "Concentrated positions in enduring businesses.",
@@ -127,7 +146,8 @@ def generate_index(posts_data, holdings_data):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>enhaq.capital</title>
+    <title>enhaq.capital – Long what survives, short what doesn't</title>
+    {seo_meta("home")}
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         {base_styles()}
@@ -140,24 +160,38 @@ def generate_index(posts_data, holdings_data):
         .quick-stats {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2rem 0 3rem 0; padding: 2rem; border: 1px solid #e5e5e5; }}
         .stat-label {{ font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #666; }}
         .stat-value {{ font-size: 1.5rem; font-weight: 500; margin-top: 0.25rem; }}
+        .stat-note {{ font-size: 0.75rem; color: #999; margin-top: 0.25rem; }}
     </style>
 </head>
 <body>
     <div class="container">
         {page_header("home")}
         <div class="quick-stats">
-            <div><div class="stat-label">YTD Return</div><div class="stat-value">+{performance.get('ytd_return', 0):.1f}%</div></div>
-            <div><div class="stat-label">Since Inception</div><div class="stat-value">+{performance.get('since_inception_return', 0):.1f}%</div></div>
-            <div><div class="stat-label">Annualized IRR</div><div class="stat-value">{performance.get('annualized_irr', 0):.1f}%</div></div>
+            <div>
+                <div class="stat-label">YTD Return</div>
+                <div class="stat-value">+{performance.get('ytd_return', 0):.1f}%</div>
+                <div class="stat-note">Combined (equity + vol)</div>
+            </div>
+            <div>
+                <div class="stat-label">Since Inception</div>
+                <div class="stat-value">+{performance.get('since_inception_return', 0):.1f}%</div>
+                <div class="stat-note">Combined portfolio</div>
+            </div>
+            <div>
+                <div class="stat-label">Annualized IRR</div>
+                <div class="stat-value">{performance.get('annualized_irr', 0):.1f}%</div>
+                <div class="stat-note">Time-weighted</div>
+            </div>
         </div>
 """
     
     for post in posts:
         paragraphs = post["content"].split("\n\n")
         content_html = "\n".join(f"<p>{p}</p>" for p in paragraphs if p.strip())
+        date_html = f'<div class="post-date">{post["date"]}</div>' if post.get("date") else ''
         html += f"""
         <article class="post">
-            <div class="post-date">{post['date']}</div>
+            {date_html}
             <h2 class="post-title">{post['title']}</h2>
             <div class="post-content">{content_html}</div>
         </article>
@@ -181,11 +215,11 @@ def generate_holdings(holdings_data):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Holdings | enhaq.capital</title>
+    <title>Holdings – enhaq.capital</title>
+    {seo_meta("holdings")}
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         {base_styles()}
-        .subtitle {{ font-family: 'Crimson Text', serif; font-size: 1.2rem; color: #666; font-style: italic; }}
         .meta {{ font-size: 0.9rem; color: #999; margin-bottom: 3rem; }}
         .metrics {{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin: 2rem 0; }}
         .metric {{ border: 1px solid #e5e5e5; padding: 1.5rem; }}
@@ -256,28 +290,30 @@ def generate_trades(trades_data):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trades | enhaq.capital</title>
+    <title>Trades – enhaq.capital</title>
+    {seo_meta("trades")}
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         {base_styles()}
-        .subtitle {{ font-family: 'Crimson Text', serif; font-size: 1.2rem; color: #666; font-style: italic; }}
         .meta {{ font-size: 0.9rem; color: #999; margin-bottom: 3rem; }}
         .metrics {{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin: 2rem 0; }}
         .metric {{ border: 1px solid #e5e5e5; padding: 1.5rem; }}
         .metric-label {{ font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #666; margin-bottom: 0.5rem; }}
         .metric-value {{ font-size: 2rem; font-weight: 500; }}
-        table {{ width: 100%; border-collapse: collapse; margin: 2rem 0; border: 1px solid #e5e5e5; }}
+        table {{ width: 100%; border-collapse: collapse; margin: 2rem 0; border: 1px solid #e5e5e5; font-size: 0.9rem; }}
         thead {{ border-bottom: 2px solid #2c2c2c; }}
-        th {{ text-align: left; padding: 1rem; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: #666; }}
+        th {{ text-align: left; padding: 0.75rem; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: #666; }}
         th.right {{ text-align: right; }}
-        td {{ padding: 1rem; border-bottom: 1px solid #f0f0f0; }}
+        td {{ padding: 0.75rem; border-bottom: 1px solid #f0f0f0; }}
         td.right {{ text-align: right; }}
         tbody tr {{ cursor: pointer; }}
         tbody tr:hover {{ background: #f9f9f9; }}
         .ticker {{ font-family: 'Courier New', monospace; font-weight: bold; }}
-        .status {{ display: inline-block; padding: 0.25rem 0.5rem; border: 1px solid; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }}
+        .status {{ display: inline-block; padding: 0.25rem 0.5rem; border: 1px solid; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; }}
         .status.open {{ border-color: #2d5016; color: #2d5016; }}
         .status.closed {{ border-color: #666; color: #666; }}
+        .positive {{ color: #2d5016; }}
+        .negative {{ color: #8b0000; }}
         .detail-row {{ display: none; }}
         .detail-row.show {{ display: table-row; }}
         .detail-cell {{ padding: 2rem; background: #f9f9f9; border-bottom: 2px solid #e5e5e5; }}
@@ -291,33 +327,48 @@ def generate_trades(trades_data):
     <div class="container">
         {page_header("trades")}
         <p class="meta" style="margin-top: -2rem; margin-bottom: 2rem;">As of {last_updated}</p>
+        
         <div class="metrics">
             <div class="metric"><div class="metric-label">Total Trades</div><div class="metric-value">{len(trades)}</div></div>
             <div class="metric"><div class="metric-label">Win Rate</div><div class="metric-value">{performance.get('win_rate', 0):.0f}%</div></div>
             <div class="metric"><div class="metric-label">Avg Return</div><div class="metric-value">{performance.get('avg_return', 0):.1f}%</div></div>
             <div class="metric"><div class="metric-label">Total P&L</div><div class="metric-value">${performance.get('total_pnl', 0):,.0f}</div></div>
         </div>
+        
         <h2>Trade Log</h2>
         <table><thead><tr>
-            <th>ID</th><th>Ticker</th><th>Type</th><th>Classification</th>
-            <th>Entry Date</th><th>Status</th><th class="right">Net Debit</th>
+            <th>ID</th>
+            <th>Ticker</th>
+            <th>Type</th>
+            <th>Entry</th>
+            <th>Status</th>
+            <th class="right">Max Loss</th>
+            <th class="right">Max Profit</th>
+            <th class="right">Actual P&L</th>
         </tr></thead><tbody>
 """
     
     for trade in trades:
         status_class = "open" if trade["status"] == "open" else "closed"
+        max_loss = trade['structure'].get('max_loss', 0)
+        profit_pot = trade['structure'].get('profit_potential', 0)
+        actual_pnl = trade.get('realized_pnl', 0) or 0
+        pnl_class = "positive" if actual_pnl > 0 else ("negative" if actual_pnl < 0 else "")
+        pnl_sign = "+" if actual_pnl > 0 else ""
+        
         html += f"""
             <tr onclick="toggleDetail('{trade['id']}')">
                 <td>{trade['id']}</td>
                 <td class="ticker">{trade['ticker']}</td>
                 <td>{trade['trade_type']}</td>
-                <td>{trade['classification']}</td>
                 <td>{trade['entry_date']}</td>
                 <td><span class="status {status_class}">{trade['status']}</span></td>
-                <td class="right">${trade['structure']['net_debit']:.2f}</td>
+                <td class="right negative">-${max_loss:.0f}</td>
+                <td class="right positive">+${profit_pot:.0f}</td>
+                <td class="right {pnl_class}"><strong>{pnl_sign}${actual_pnl:.0f}</strong></td>
             </tr>
             <tr class="detail-row" id="detail-{trade['id']}">
-                <td colspan="7" class="detail-cell">
+                <td colspan="8" class="detail-cell">
                     <div class="detail-grid">
                         <div class="detail-section">
                             <div class="section-title">Entry Thesis</div>
@@ -334,20 +385,20 @@ def generate_trades(trades_data):
                     </div>
                     <div class="detail-grid">
                         <div class="detail-section">
+                            <div class="section-title">Risk Profile</div>
+                            <div class="structure">
+                                Max Loss: ${max_loss:.0f}<br>
+                                Max Profit: ${profit_pot:.0f}<br>
+                                R:R Ratio: {(profit_pot/max_loss if max_loss > 0 else 0):.2f}:1
+                            </div>
+                        </div>
+                        <div class="detail-section">
                             <div class="section-title">Vol Metrics</div>
                             <div class="structure">
                                 IV%: {trade['moontower_metrics']['iv_percentile']}<br>
                                 VRP: {trade['moontower_metrics']['vrp']}<br>
                                 RV%: {trade['moontower_metrics']['rv_percentile']}<br>
                                 Term: {trade['moontower_metrics']['term_structure']}
-                            </div>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Greeks at Entry</div>
-                            <div class="structure">
-                                Delta: {trade['greeks_at_entry']['delta']}<br>
-                                Theta: {trade['greeks_at_entry']['theta']}<br>
-                                Vega: {trade['greeks_at_entry']['vega']}
                             </div>
                         </div>
                     </div>
@@ -369,10 +420,10 @@ def generate_trades(trades_data):
         </tbody></table>
     </div>
     <script>
-        function toggleDetail(tradeId) {{
+        function toggleDetail(tradeId) {
             const row = document.getElementById('detail-' + tradeId);
             row.classList.toggle('show');
-        }}
+        }
     </script>
 </body>
 </html>
@@ -380,7 +431,7 @@ def generate_trades(trades_data):
     return html
 
 def main():
-    print("🔨 Generating 3-page site...")
+    print("🔨 Generating complete site...")
     
     holdings_data = load_json("holdings.json")
     trades_data = load_json("trades.json")
@@ -397,10 +448,10 @@ def main():
     with open(PUBLIC_DIR / "trades.html", "w") as f:
         f.write(trades_html)
     
-    print("✅ Site generated:")
-    print(f"   - {PUBLIC_DIR / 'index.html'}")
-    print(f"   - {PUBLIC_DIR / 'holdings.html'}")
-    print(f"   - {PUBLIC_DIR / 'trades.html'}")
+    print("✅ Complete site generated:")
+    print("   - index.html (SEO + combined returns)")
+    print("   - holdings.html (SEO)")
+    print("   - trades.html (SEO + risk columns: Max Loss | Max Profit | Actual P&L)")
 
 if __name__ == "__main__":
     main()
