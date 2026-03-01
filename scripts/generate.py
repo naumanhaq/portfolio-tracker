@@ -45,6 +45,26 @@ def nav_html(active="home"):
     nav += '        </nav>'
     return nav
 
+def page_header(page_type="home"):
+    """Generate consistent header + nav + tagline."""
+    taglines = {
+        "home": "Long what survives, short what doesn't.",
+        "holdings": "Concentrated positions in enduring businesses.",
+        "trades": "Volatility trades. Short duration, asymmetric payoff."
+    }
+    
+    return f"""
+        <header class="site-header">
+            <h1>enhaq.capital</h1>
+        </header>
+        
+        {nav_html(page_type)}
+        
+        <div class="page-tagline">
+            {taglines.get(page_type, "")}
+        </div>
+"""
+
 def base_styles():
     return """
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -56,11 +76,12 @@ def base_styles():
             padding: 40px 20px;
         }
         .container { max-width: 1000px; margin: 0 auto; }
+        .site-header { margin-bottom: 1.5rem; }
         h1 {
             font-family: 'Caveat', cursive;
             font-size: 4rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0;
         }
         h2 {
             font-family: 'Crimson Text', serif;
@@ -71,7 +92,7 @@ def base_styles():
             padding-bottom: 0.5rem;
         }
         nav {
-            margin: 0 0 3rem 0;
+            margin: 1.5rem 0;
             border-bottom: 1px solid #ccc;
             padding-bottom: 1rem;
         }
@@ -86,13 +107,14 @@ def base_styles():
         }
         nav a:hover { border-bottom: 2px solid #2c2c2c; }
         nav a.active { border-bottom: 2px solid #2c2c2c; font-weight: 600; }
-        footer {
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid #ccc;
-            text-align: center;
-            font-size: 0.85rem;
-            color: #999;
+        .page-tagline {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.1rem;
+            color: #666;
+            font-style: italic;
+            margin: 0 0 3rem 0;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #e5e5e5;
         }
 """
 
@@ -122,8 +144,7 @@ def generate_index(posts_data, holdings_data):
 </head>
 <body>
     <div class="container">
-        <header><h1>enhaq.capital</h1></header>
-        {nav_html("home")}
+        {page_header("home")}
         <div class="quick-stats">
             <div><div class="stat-label">YTD Return</div><div class="stat-value">+{performance.get('ytd_return', 0):.1f}%</div></div>
             <div><div class="stat-label">Since Inception</div><div class="stat-value">+{performance.get('since_inception_return', 0):.1f}%</div></div>
@@ -185,12 +206,8 @@ def generate_holdings(holdings_data):
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Portfolio</h1>
-            <p class="subtitle">Long-term concentrated positions</p>
-            <p class="meta">As of {last_updated} · Inception {inception}</p>
-        </header>
-        {nav_html("holdings")}
+        {page_header("holdings")}
+        <p class="meta" style="margin-top: -2rem; margin-bottom: 2rem;">As of {last_updated} · Inception {inception}</p>
         <div class="metrics">
             <div class="metric"><div class="metric-label">YTD Return</div><div class="metric-value positive">+{performance.get('ytd_return', 0):.1f}%</div></div>
             <div class="metric"><div class="metric-label">1-Year Return</div><div class="metric-value positive">+{performance.get('one_year_return', 0):.1f}%</div></div>
@@ -272,12 +289,8 @@ def generate_trades(trades_data):
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Options</h1>
-            <p class="subtitle">Volatility-based strategies</p>
-            <p class="meta">As of {last_updated}</p>
-        </header>
-        {nav_html("trades")}
+        {page_header("trades")}
+        <p class="meta" style="margin-top: -2rem; margin-bottom: 2rem;">As of {last_updated}</p>
         <div class="metrics">
             <div class="metric"><div class="metric-label">Total Trades</div><div class="metric-value">{len(trades)}</div></div>
             <div class="metric"><div class="metric-label">Win Rate</div><div class="metric-value">{performance.get('win_rate', 0):.0f}%</div></div>

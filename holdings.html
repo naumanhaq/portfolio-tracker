@@ -16,11 +16,12 @@
             padding: 40px 20px;
         }
         .container { max-width: 1000px; margin: 0 auto; }
+        .site-header { margin-bottom: 1.5rem; }
         h1 {
             font-family: 'Caveat', cursive;
             font-size: 4rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0;
         }
         h2 {
             font-family: 'Crimson Text', serif;
@@ -31,7 +32,7 @@
             padding-bottom: 0.5rem;
         }
         nav {
-            margin: 0 0 3rem 0;
+            margin: 1.5rem 0;
             border-bottom: 1px solid #ccc;
             padding-bottom: 1rem;
         }
@@ -46,13 +47,14 @@
         }
         nav a:hover { border-bottom: 2px solid #2c2c2c; }
         nav a.active { border-bottom: 2px solid #2c2c2c; font-weight: 600; }
-        footer {
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid #ccc;
-            text-align: center;
-            font-size: 0.85rem;
-            color: #999;
+        .page-tagline {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.1rem;
+            color: #666;
+            font-style: italic;
+            margin: 0 0 3rem 0;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #e5e5e5;
         }
 
         .subtitle { font-family: 'Crimson Text', serif; font-size: 1.2rem; color: #666; font-style: italic; }
@@ -76,16 +78,22 @@
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Portfolio</h1>
-            <p class="subtitle">Long-term concentrated positions</p>
-            <p class="meta">As of 2026-03-01 · Inception 2024-06-15</p>
+        
+        <header class="site-header">
+            <h1>enhaq.capital</h1>
         </header>
+        
         <nav>
             <a href="index.html">Home</a>
             <a href="holdings.html" class="active">Holdings</a>
             <a href="trades.html">Trades</a>
         </nav>
+        
+        <div class="page-tagline">
+            Concentrated positions in enduring businesses.
+        </div>
+
+        <p class="meta" style="margin-top: -2rem; margin-bottom: 2rem;">As of 2026-03-01 · Inception 2024-06-15</p>
         <div class="metrics">
             <div class="metric"><div class="metric-label">YTD Return</div><div class="metric-value positive">+8.5%</div></div>
             <div class="metric"><div class="metric-label">1-Year Return</div><div class="metric-value positive">+16.7%</div></div>
