@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Options Trades | enhaq.online</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="mb-8">
+            <h1 class="text-4xl font-bold mb-2">Options Trades</h1>
+            <p class="text-gray-600">Moontower Vol Framework</p>
+            <p class="text-sm text-gray-500 mt-2">Last updated: 2026-03-01</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="mb-8 flex gap-4">
+            <a href="index.html" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Long-Term</a>
+            <a href="options.html" class="px-4 py-2 bg-blue-600 text-white rounded">Options Trades</a>
+        </nav>
+
+        <!-- Stats -->
+        <div class="mb-8 grid grid-cols-3 gap-4">
+            <div class="bg-white rounded-lg shadow p-4">
+                <p class="text-gray-600 text-sm">Total Trades</p>
+                <p class="text-3xl font-bold">1</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-4">
+                <p class="text-gray-600 text-sm">Open</p>
+                <p class="text-3xl font-bold text-blue-600">1</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-4">
+                <p class="text-gray-600 text-sm">Closed</p>
+                <p class="text-3xl font-bold text-gray-600">0</p>
+            </div>
+        </div>
+
+        <!-- Trades -->
+        <div class="space-y-4">
+
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-xl font-bold">SPY - Long Calendar</h3>
+                        <p class="text-sm text-gray-600">Trade ID: T001 | Type: P1</p>
+                    </div>
+                    <span class="px-3 py-1 bg-green-100 text-green-800 rounded text-sm font-semibold">OPEN</span>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-6 mb-4">
+                    <div>
+                        <h4 class="font-bold mb-2">Entry Thesis</h4>
+                        <p class="text-gray-700">IV low (12th percentile), term structure flat. Buy near-term vol, sell longer-dated. Expecting IV mean-reversion.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold mb-2">Structure</h4>
+                        <p class="text-gray-700 font-mono text-sm">
+                            Long: SPY Feb 28 550C<br>
+                            Short: SPY Mar 21 550C<br>
+                            Net Debit: $250.00
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-6 mb-4">
+                    <div>
+                        <h4 class="font-bold mb-2">Moontower Metrics</h4>
+                        <div class="text-sm space-y-1">
+                            <p>IV%: 12</p>
+                            <p>VRP: -2.5</p>
+                            <p>RV%: 18</p>
+                            <p>Term Structure: flat</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-bold mb-2">Greeks at Entry</h4>
+                        <div class="text-sm space-y-1 font-mono">
+                            <p>Delta: 0.05</p>
+                            <p>Theta: -15.0</p>
+                            <p>Vega: 45.0</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-bold mb-2">Expected Outcome</h4>
+                        <p class="text-gray-700">IV rises as near-term contract decays faster than far-dated. Profit on vol expansion.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold mb-2">Actual Outcome</h4>
+                        <p class="text-gray-700">Pending (trade open)</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

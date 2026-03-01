@@ -12,13 +12,8 @@ PROJECT_ROOT = Path(__file__).parent.parent
 DATA_DIR = PROJECT_ROOT / "data"
 TEMPLATES_DIR = PROJECT_ROOT / "templates"
 
-# For Cloudflare Pages: output to root
-# For local: output to public/
-import os
-if os.environ.get('CF_PAGES'):
-    PUBLIC_DIR = PROJECT_ROOT  # Cloudflare: output to root
-else:
-    PUBLIC_DIR = PROJECT_ROOT / "public"  # Local: output to public/
+# Output to root for GitHub Pages / Cloudflare
+PUBLIC_DIR = PROJECT_ROOT
 
 # Ensure public dir exists
 PUBLIC_DIR.mkdir(exist_ok=True)
