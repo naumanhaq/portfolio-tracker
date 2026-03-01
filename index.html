@@ -4,13 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>enhaq.capital</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         body {
             font-family: 'EB Garamond', serif;
             background: #ffffff;
@@ -18,17 +15,13 @@
             line-height: 1.7;
             padding: 40px 20px;
         }
-        
         .container { max-width: 1000px; margin: 0 auto; }
-        
         h1 {
             font-family: 'Caveat', cursive;
             font-size: 4rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
-            color: #1a1a1a;
         }
-        
         h2 {
             font-family: 'Crimson Text', serif;
             font-size: 1.5rem;
@@ -37,23 +30,11 @@
             border-bottom: 2px solid #2c2c2c;
             padding-bottom: 0.5rem;
         }
-        
-        .subtitle {
-            font-family: 'Crimson Text', serif;
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 0.5rem;
-            font-style: italic;
-        }
-        
-        .meta { font-size: 0.9rem; color: #999; margin-bottom: 3rem; }
-        
         nav {
             margin: 0 0 3rem 0;
             border-bottom: 1px solid #ccc;
             padding-bottom: 1rem;
         }
-        
         nav a {
             font-family: 'Crimson Text', serif;
             text-decoration: none;
@@ -62,12 +43,9 @@
             font-size: 1.1rem;
             border-bottom: 2px solid transparent;
             padding-bottom: 2px;
-            transition: border-color 0.2s;
         }
-        
         nav a:hover { border-bottom: 2px solid #2c2c2c; }
         nav a.active { border-bottom: 2px solid #2c2c2c; font-weight: 600; }
-        
         footer {
             margin-top: 4rem;
             padding-top: 2rem;
@@ -77,103 +55,40 @@
             color: #999;
         }
 
-        
-        .post {
-            margin: 3rem 0;
-            padding-bottom: 3rem;
-            border-bottom: 1px solid #e5e5e5;
-        }
-        
+        .post { margin: 3rem 0; padding-bottom: 3rem; border-bottom: 1px solid #e5e5e5; }
         .post:last-child { border-bottom: none; }
-        
-        .post-date {
-            font-size: 0.9rem;
-            color: #999;
-            margin-bottom: 0.5rem;
-        }
-        
-        .post-title {
-            font-family: 'Crimson Text', serif;
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-        
-        .post-content {
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-        
-        .post-content p {
-            margin-bottom: 1rem;
-        }
-        
-        .quick-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin: 2rem 0 3rem 0;
-            padding: 2rem;
-            border: 1px solid #e5e5e5;
-        }
-        
-        .stat-label {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: #666;
-        }
-        
-        .stat-value {
-            font-size: 1.5rem;
-            font-weight: 500;
-            margin-top: 0.25rem;
-        }
+        .post-date { font-size: 0.9rem; color: #999; margin-bottom: 0.5rem; }
+        .post-title { font-family: 'Crimson Text', serif; font-size: 2rem; font-weight: 600; margin-bottom: 1rem; }
+        .post-content { font-size: 1.1rem; line-height: 1.8; }
+        .post-content p { margin-bottom: 1rem; }
+        .quick-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2rem 0 3rem 0; padding: 2rem; border: 1px solid #e5e5e5; }
+        .stat-label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #666; }
+        .stat-value { font-size: 1.5rem; font-weight: 500; margin-top: 0.25rem; }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>enhaq.capital</h1>
-        </header>
-
+        <header><h1>enhaq.capital</h1></header>
         <nav>
             <a href="index.html" class="active">Home</a>
             <a href="holdings.html">Holdings</a>
             <a href="trades.html">Trades</a>
         </nav>
-
-        <!-- Quick Stats -->
         <div class="quick-stats">
-            <div>
-                <div class="stat-label">YTD Return</div>
-                <div class="stat-value">+8.5%</div>
-            </div>
-            <div>
-                <div class="stat-label">Since Inception</div>
-                <div class="stat-value">+16.7%</div>
-            </div>
-            <div>
-                <div class="stat-label">Annualized IRR</div>
-                <div class="stat-value">13.2%</div>
-            </div>
+            <div><div class="stat-label">YTD Return</div><div class="stat-value">+8.5%</div></div>
+            <div><div class="stat-label">Since Inception</div><div class="stat-value">+16.7%</div></div>
+            <div><div class="stat-label">Annualized IRR</div><div class="stat-value">13.2%</div></div>
         </div>
-
-        <!-- Posts -->
 
         <article class="post">
             <div class="post-date">2026-03-01</div>
             <h2 class="post-title">Portfolio Inception</h2>
-            <div class="post-content">
-                <p>Concentrated positions in enduring businesses. The portfolio favors quality over diversification—companies with durable competitive advantages, pricing power, and proven survival across economic cycles.</p>
+            <div class="post-content"><p>Concentrated positions in enduring businesses. The portfolio favors quality over diversification—companies with durable competitive advantages, pricing power, and proven survival across economic cycles.</p>
 <p>The barbell approach: long-term equity positions paired with tactical volatility strategies. Equity holdings are buy-and-hold; options are short-duration bets on mispriced volatility.</p>
-<p>Current positioning reflects conviction in luxury goods resilience and a constructive view on equity vol remaining elevated through Q1 2026.</p>
-            </div>
+<p>Current positioning reflects conviction in luxury goods resilience and a constructive view on equity vol remaining elevated through Q1 2026.</p></div>
         </article>
 
-        <footer>
-            <p>Past performance does not guarantee future results.</p>
-        </footer>
+        <footer><p>Past performance does not guarantee future results.</p></footer>
     </div>
 </body>
 </html>
