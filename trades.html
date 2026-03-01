@@ -73,6 +73,13 @@
         .status { display: inline-block; padding: 0.25rem 0.5rem; border: 1px solid; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
         .status.open { border-color: #2d5016; color: #2d5016; }
         .status.closed { border-color: #666; color: #666; }
+        .detail-row { display: none; }
+        .detail-row.show { display: table-row; }
+        .detail-cell { padding: 2rem; background: #f9f9f9; border-bottom: 2px solid #e5e5e5; }
+        .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .detail-section { margin-bottom: 1.5rem; }
+        .section-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #666; margin-bottom: 0.5rem; font-weight: 600; }
+        .structure { font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8; }
     </style>
 </head>
 <body>
@@ -99,7 +106,7 @@
             <th>Entry Date</th><th>Status</th><th class="right">Net Debit</th>
         </tr></thead><tbody>
 
-            <tr>
+            <tr onclick="toggleDetail('T001')">
                 <td>T001</td>
                 <td class="ticker">SPY</td>
                 <td>P1</td>
@@ -108,8 +115,61 @@
                 <td><span class="status open">open</span></td>
                 <td class="right">$250.00</td>
             </tr>
+            <tr class="detail-row" id="detail-T001">
+                <td colspan="7" class="detail-cell">
+                    <div class="detail-grid">
+                        <div class="detail-section">
+                            <div class="section-title">Entry Thesis</div>
+                            <p>IV low (12th percentile), term structure flat. Buy near-term vol, sell longer-dated. Expecting IV mean-reversion.</p>
+                        </div>
+                        <div class="detail-section">
+                            <div class="section-title">Structure</div>
+                            <div class="structure">
+                                Long: SPY Feb 28 550C<br>
+                                Short: SPY Mar 21 550C<br>
+                                Net Debit: $250.00
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-grid">
+                        <div class="detail-section">
+                            <div class="section-title">Vol Metrics</div>
+                            <div class="structure">
+                                IV%: 12<br>
+                                VRP: -2.5<br>
+                                RV%: 18<br>
+                                Term: flat
+                            </div>
+                        </div>
+                        <div class="detail-section">
+                            <div class="section-title">Greeks at Entry</div>
+                            <div class="structure">
+                                Delta: 0.05<br>
+                                Theta: -15.0<br>
+                                Vega: 45.0
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-grid">
+                        <div class="detail-section">
+                            <div class="section-title">Expected Outcome</div>
+                            <p>IV rises as near-term contract decays faster than far-dated. Profit on vol expansion.</p>
+                        </div>
+                        <div class="detail-section">
+                            <div class="section-title">Actual Outcome</div>
+                            <p>Pending (trade open)</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
 
         </tbody></table>
     </div>
+    <script>
+        function toggleDetail(tradeId) {{
+            const row = document.getElementById('detail-' + tradeId);
+            row.classList.toggle('show');
+        }}
+    </script>
 </body>
 </html>

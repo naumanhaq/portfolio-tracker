@@ -261,6 +261,13 @@ def generate_trades(trades_data):
         .status {{ display: inline-block; padding: 0.25rem 0.5rem; border: 1px solid; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }}
         .status.open {{ border-color: #2d5016; color: #2d5016; }}
         .status.closed {{ border-color: #666; color: #666; }}
+        .detail-row {{ display: none; }}
+        .detail-row.show {{ display: table-row; }}
+        .detail-cell {{ padding: 2rem; background: #f9f9f9; border-bottom: 2px solid #e5e5e5; }}
+        .detail-grid {{ display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }}
+        .detail-section {{ margin-bottom: 1.5rem; }}
+        .section-title {{ font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #666; margin-bottom: 0.5rem; font-weight: 600; }}
+        .structure {{ font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8; }}
     </style>
 </head>
 <body>
@@ -287,7 +294,7 @@ def generate_trades(trades_data):
     for trade in trades:
         status_class = "open" if trade["status"] == "open" else "closed"
         html += f"""
-            <tr>
+            <tr onclick="toggleDetail('{trade['id']}')">
                 <td>{trade['id']}</td>
                 <td class="ticker">{trade['ticker']}</td>
                 <td>{trade['trade_type']}</td>
@@ -296,11 +303,64 @@ def generate_trades(trades_data):
                 <td><span class="status {status_class}">{trade['status']}</span></td>
                 <td class="right">${trade['structure']['net_debit']:.2f}</td>
             </tr>
+            <tr class="detail-row" id="detail-{trade['id']}">
+                <td colspan="7" class="detail-cell">
+                    <div class="detail-grid">
+                        <div class="detail-section">
+                            <div class="section-title">Entry Thesis</div>
+                            <p>{trade['entry_thesis']}</p>
+                        </div>
+                        <div class="detail-section">
+                            <div class="section-title">Structure</div>
+                            <div class="structure">
+                                Long: {trade['structure']['long']}<br>
+                                Short: {trade['structure']['short']}<br>
+                                Net Debit: ${trade['structure']['net_debit']:.2f}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-grid">
+                        <div class="detail-section">
+                            <div class="section-title">Vol Metrics</div>
+                            <div class="structure">
+                                IV%: {trade['moontower_metrics']['iv_percentile']}<br>
+                                VRP: {trade['moontower_metrics']['vrp']}<br>
+                                RV%: {trade['moontower_metrics']['rv_percentile']}<br>
+                                Term: {trade['moontower_metrics']['term_structure']}
+                            </div>
+                        </div>
+                        <div class="detail-section">
+                            <div class="section-title">Greeks at Entry</div>
+                            <div class="structure">
+                                Delta: {trade['greeks_at_entry']['delta']}<br>
+                                Theta: {trade['greeks_at_entry']['theta']}<br>
+                                Vega: {trade['greeks_at_entry']['vega']}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-grid">
+                        <div class="detail-section">
+                            <div class="section-title">Expected Outcome</div>
+                            <p>{trade['expected_outcome']}</p>
+                        </div>
+                        <div class="detail-section">
+                            <div class="section-title">Actual Outcome</div>
+                            <p>{trade['actual_outcome'] or 'Pending (trade open)'}</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
 """
     
     html += """
         </tbody></table>
     </div>
+    <script>
+        function toggleDetail(tradeId) {{
+            const row = document.getElementById('detail-' + tradeId);
+            row.classList.toggle('show');
+        }}
+    </script>
 </body>
 </html>
 """
