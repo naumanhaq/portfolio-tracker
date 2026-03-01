@@ -25,7 +25,9 @@
       "structure": {
         "long": "SPY Feb 28 550C",
         "short": "SPY Mar 21 550C",
-        "net_debit": 250.00
+        "net_debit": 250.00,
+        "max_loss": 250.00,
+        "profit_potential": 150.00
       },
       "greeks_at_entry": {
         "delta": 0.05,
