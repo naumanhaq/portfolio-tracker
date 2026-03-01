@@ -1,0 +1,35 @@
+{
+  "last_updated": "2026-03-01",
+  "trades": [
+    {
+      "id": "T001",
+      "ticker": "SPY",
+      "trade_type": "P1",
+      "classification": "Long Calendar",
+      "entry_date": "2026-02-01",
+      "exit_date": null,
+      "status": "open",
+      "entry_thesis": "IV low (12th percentile), term structure flat. Buy near-term vol, sell longer-dated. Expecting IV mean-reversion.",
+      "structure": {
+        "long": "SPY Feb 28 550C",
+        "short": "SPY Mar 21 550C",
+        "net_debit": 250.00
+      },
+      "greeks_at_entry": {
+        "delta": 0.05,
+        "theta": -15.00,
+        "vega": 45.00
+      },
+      "expected_outcome": "IV rises as near-term contract decays faster than far-dated. Profit on vol expansion.",
+      "actual_outcome": null,
+      "realized_pnl": null,
+      "lessons": [],
+      "moontower_metrics": {
+        "iv_percentile": 12,
+        "vrp": -2.5,
+        "rv_percentile": 18,
+        "term_structure": "flat"
+      }
+    }
+  ]
+}
