@@ -202,9 +202,10 @@ def generate_index(posts_data, holdings_data, trades_data):
     for post in posts:
         paragraphs = post["content"].split("\n\n")
         content_html = "\n".join(f"<p>{p}</p>" for p in paragraphs if p.strip())
+        date_html = f'<div class="post-date">{post["date"]}</div>' if post.get("date") else ''
         html += f"""
         <article class="post">
-            <div class="post-date">{post['date']}</div>
+            {date_html}
             <h2 class="post-title">{post['title']}</h2>
             <div class="post-content">{content_html}</div>
         </article>
