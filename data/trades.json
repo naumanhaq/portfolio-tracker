@@ -25,18 +25,17 @@
       "structure": {
         "long": "SPY Feb 28 550C",
         "short": "SPY Mar 21 550C",
-        "net_debit": 250.00,
-        "max_loss": 250.00,
-        "profit_potential": 150.00
+        "net_debit": 250.0,
+        "max_loss": 250.0,
+        "profit_potential": 150.0
       },
       "greeks_at_entry": {
         "delta": 0.05,
-        "theta": -15.00,
-        "vega": 45.00
+        "theta": -15.0,
+        "vega": 45.0
       },
       "expected_outcome": "IV rises as near-term contract decays faster than far-dated. Profit on vol expansion.",
       "actual_outcome": null,
-      "realized_pnl": null,
       "lessons": [],
       "moontower_metrics": {
         "iv_percentile": 12,
@@ -44,6 +43,440 @@
         "rv_percentile": 18,
         "term_structure": "flat"
       }
+    },
+    {
+      "id": "opt-002",
+      "ticker": "BBWI",
+      "trade_type": "Put Option",
+      "classification": "TBD",
+      "entry_date": "2026-03-01",
+      "status": "open",
+      "entry_thesis": "Add thesis",
+      "structure": {
+        "long": "BBWI 2026-03-20 $15.0 Put",
+        "short": "N/A",
+        "net_debit": 0.1,
+        "max_loss": 40.0,
+        "profit_potential": 0
+      },
+      "moontower_metrics": {
+        "iv_percentile": "TBD",
+        "vrp": "TBD",
+        "rv_percentile": "TBD",
+        "term_structure": "TBD"
+      },
+      "greeks": {
+        "delta": 0,
+        "gamma": 0,
+        "theta": 0,
+        "vega": 0
+      },
+      "expected_outcome": "Add expected outcome",
+      "actual_outcome": null,
+      "realized_pnl": 0.0
+    },
+    {
+      "id": "opt-003",
+      "ticker": "BBWI",
+      "trade_type": "Call Option",
+      "classification": "TBD",
+      "entry_date": "2026-03-01",
+      "status": "open",
+      "entry_thesis": "Add thesis",
+      "structure": {
+        "long": "BBWI 2027-01-15 $25.0 Call",
+        "short": "N/A",
+        "net_debit": 3.8,
+        "max_loss": 380.0,
+        "profit_potential": 0
+      },
+      "moontower_metrics": {
+        "iv_percentile": "TBD",
+        "vrp": "TBD",
+        "rv_percentile": "TBD",
+        "term_structure": "TBD"
+      },
+      "greeks": {
+        "delta": 0,
+        "gamma": 0,
+        "theta": 0,
+        "vega": 0
+      },
+      "expected_outcome": "Add expected outcome",
+      "actual_outcome": null,
+      "realized_pnl": 0.0
+    },
+    {
+      "id": "opt-004",
+      "ticker": "GOOGL",
+      "trade_type": "Call Option",
+      "classification": "TBD",
+      "entry_date": "2026-03-01",
+      "status": "open",
+      "entry_thesis": "Add thesis",
+      "structure": {
+        "long": "GOOGL 2026-12-18 $160.0 Call",
+        "short": "N/A",
+        "net_debit": 158.3884,
+        "max_loss": 15838.84,
+        "profit_potential": 0
+      },
+      "moontower_metrics": {
+        "iv_percentile": "TBD",
+        "vrp": "TBD",
+        "rv_percentile": "TBD",
+        "term_structure": "TBD"
+      },
+      "greeks": {
+        "delta": 0,
+        "gamma": 0,
+        "theta": 0,
+        "vega": 0
+      },
+      "expected_outcome": "Add expected outcome",
+      "actual_outcome": null,
+      "realized_pnl": 0.0
+    },
+    {
+      "id": "opt-005",
+      "ticker": "IGV",
+      "trade_type": "Call Option",
+      "classification": "TBD",
+      "entry_date": "2026-03-01",
+      "status": "open",
+      "entry_thesis": "Add thesis",
+      "structure": {
+        "long": "IGV 2027-01-15 $85.0 Call",
+        "short": "N/A",
+        "net_debit": 10.2034,
+        "max_loss": 1020.34,
+        "profit_potential": 0
+      },
+      "moontower_metrics": {
+        "iv_percentile": "TBD",
+        "vrp": "TBD",
+        "rv_percentile": "TBD",
+        "term_structure": "TBD"
+      },
+      "greeks": {
+        "delta": 0,
+        "gamma": 0,
+        "theta": 0,
+        "vega": 0
+      },
+      "expected_outcome": "Add expected outcome",
+      "actual_outcome": null,
+      "realized_pnl": 0.0
+    },
+    {
+      "id": "opt-006",
+      "ticker": "LYFT",
+      "trade_type": "Call Option",
+      "classification": "TBD",
+      "entry_date": "2026-03-01",
+      "status": "open",
+      "entry_thesis": "Add thesis",
+      "structure": {
+        "long": "LYFT 2027-01-15 $20.0 Call",
+        "short": "N/A",
+        "net_debit": 1.59,
+        "max_loss": 318.0,
+        "profit_potential": 0
+      },
+      "moontower_metrics": {
+        "iv_percentile": "TBD",
+        "vrp": "TBD",
+        "rv_percentile": "TBD",
+        "term_structure": "TBD"
+      },
+      "greeks": {
+        "delta": 0,
+        "gamma": 0,
+        "theta": 0,
+        "vega": 0
+      },
+      "expected_outcome": "Add expected outcome",
+      "actual_outcome": null,
+      "realized_pnl": 0.0
+    },
+    {
+      "id": "opt-007",
+      "ticker": "NVO",
+      "trade_type": "Call Option",
+      "classification": "TBD",
+      "entry_date": "2026-03-01",
+      "status": "open",
+      "entry_thesis": "Add thesis",
+      "structure": {
+        "long": "NVO 2027-01-15 $65.0 Call",
+        "short": "N/A",
+        "net_debit": 1.375,
+        "max_loss": 137.5,
+        "profit_potential": 0
+      },
+      "moontower_metrics": {
+        "iv_percentile": "TBD",
+        "vrp": "TBD",
+        "rv_percentile": "TBD",
+        "term_structure": "TBD"
+      },
+      "greeks": {
+        "delta": 0,
+        "gamma": 0,
+        "theta": 0,
+        "vega": 0
+      },
+      "expected_outcome": "Add expected outcome",
+      "actual_outcome": null,
+      "realized_pnl": 0.0
+    },
+    {
+      "id": "opt-008",
+      "ticker": "PYPL",
+      "trade_type": "Call Option",
+      "classification": "TBD",
+      "entry_date": "2026-03-01",
+      "status": "open",
+      "entry_thesis": "Add thesis",
+      "structure": {
+        "long": "PYPL 2026-12-18 $77.5 Call",
+        "short": "N/A",
+        "net_debit": 0.8417,
+        "max_loss": 84.17,
+        "profit_potential": 0
+      },
+      "moontower_metrics": {
+        "iv_percentile": "TBD",
+        "vrp": "TBD",
+        "rv_percentile": "TBD",
+        "term_structure": "TBD"
+      },
+      "greeks": {
+        "delta": 0,
+        "gamma": 0,
+        "theta": 0,
+        "vega": 0
+      },
+      "expected_outcome": "Add expected outcome",
+      "actual_outcome": null,
+      "realized_pnl": 0.0
+    },
+    {
+      "id": "opt-009",
+      "ticker": "QXO",
+      "trade_type": "Call Option",
+      "classification": "TBD",
+      "entry_date": "2026-03-01",
+      "status": "open",
+      "entry_thesis": "Add thesis",
+      "structure": {
+        "long": "QXO 2027-12-17 $20.0 Call",
+        "short": "N/A",
+        "net_debit": 9.0299,
+        "max_loss": 902.99,
+        "profit_potential": 0
+      },
+      "moontower_metrics": {
+        "iv_percentile": "TBD",
+        "vrp": "TBD",
+        "rv_percentile": "TBD",
+        "term_structure": "TBD"
+      },
+      "greeks": {
+        "delta": 0,
+        "gamma": 0,
+        "theta": 0,
+        "vega": 0
+      },
+      "expected_outcome": "Add expected outcome",
+      "actual_outcome": null,
+      "realized_pnl": 0.0
+    },
+    {
+      "id": "opt-010",
+      "ticker": "SPY",
+      "trade_type": "Put Option",
+      "classification": "TBD",
+      "entry_date": "2026-03-01",
+      "status": "open",
+      "entry_thesis": "Add thesis",
+      "structure": {
+        "long": "SPY 2028-01-21 $400.0 Put",
+        "short": "N/A",
+        "net_debit": 8.785,
+        "max_loss": 878.5,
+        "profit_potential": 0
+      },
+      "moontower_metrics": {
+        "iv_percentile": "TBD",
+        "vrp": "TBD",
+        "rv_percentile": "TBD",
+        "term_structure": "TBD"
+      },
+      "greeks": {
+        "delta": 0,
+        "gamma": 0,
+        "theta": 0,
+        "vega": 0
+      },
+      "expected_outcome": "Add expected outcome",
+      "actual_outcome": null,
+      "realized_pnl": 0.0
+    },
+    {
+      "id": "opt-011",
+      "ticker": "TGEN",
+      "trade_type": "Call Option",
+      "classification": "TBD",
+      "entry_date": "2026-03-01",
+      "status": "open",
+      "entry_thesis": "Add thesis",
+      "structure": {
+        "long": "TGEN 2026-04-17 $7.5 Call",
+        "short": "N/A",
+        "net_debit": 0.1652,
+        "max_loss": 16.52,
+        "profit_potential": 0
+      },
+      "moontower_metrics": {
+        "iv_percentile": "TBD",
+        "vrp": "TBD",
+        "rv_percentile": "TBD",
+        "term_structure": "TBD"
+      },
+      "greeks": {
+        "delta": 0,
+        "gamma": 0,
+        "theta": 0,
+        "vega": 0
+      },
+      "expected_outcome": "Add expected outcome",
+      "actual_outcome": null,
+      "realized_pnl": 0.0
+    },
+    {
+      "id": "opt-012",
+      "ticker": "UBER",
+      "trade_type": "Call Option",
+      "classification": "TBD",
+      "entry_date": "2026-03-01",
+      "status": "open",
+      "entry_thesis": "Add thesis",
+      "structure": {
+        "long": "UBER 2026-05-15 $85.0 Call",
+        "short": "N/A",
+        "net_debit": 2.31,
+        "max_loss": 231.0,
+        "profit_potential": 0
+      },
+      "moontower_metrics": {
+        "iv_percentile": "TBD",
+        "vrp": "TBD",
+        "rv_percentile": "TBD",
+        "term_structure": "TBD"
+      },
+      "greeks": {
+        "delta": 0,
+        "gamma": 0,
+        "theta": 0,
+        "vega": 0
+      },
+      "expected_outcome": "Add expected outcome",
+      "actual_outcome": null,
+      "realized_pnl": 0.0
+    },
+    {
+      "id": "opt-013",
+      "ticker": "BBWI",
+      "trade_type": "Put Option",
+      "classification": "TBD",
+      "entry_date": "2026-03-01",
+      "status": "open",
+      "entry_thesis": "Add thesis",
+      "structure": {
+        "long": "N/A",
+        "short": "BBWI 2026-03-20 $25.0 Put",
+        "net_debit": 3.0167,
+        "max_loss": 0,
+        "profit_potential": 0
+      },
+      "moontower_metrics": {
+        "iv_percentile": "TBD",
+        "vrp": "TBD",
+        "rv_percentile": "TBD",
+        "term_structure": "TBD"
+      },
+      "greeks": {
+        "delta": 0,
+        "gamma": 0,
+        "theta": 0,
+        "vega": 0
+      },
+      "expected_outcome": "Add expected outcome",
+      "actual_outcome": null,
+      "realized_pnl": 0.0
+    },
+    {
+      "id": "opt-014",
+      "ticker": "LYFT",
+      "trade_type": "Put Option",
+      "classification": "TBD",
+      "entry_date": "2026-03-01",
+      "status": "open",
+      "entry_thesis": "Add thesis",
+      "structure": {
+        "long": "N/A",
+        "short": "LYFT 2027-01-15 $17.0 Put",
+        "net_debit": 4.9193,
+        "max_loss": 0,
+        "profit_potential": 0
+      },
+      "moontower_metrics": {
+        "iv_percentile": "TBD",
+        "vrp": "TBD",
+        "rv_percentile": "TBD",
+        "term_structure": "TBD"
+      },
+      "greeks": {
+        "delta": 0,
+        "gamma": 0,
+        "theta": 0,
+        "vega": 0
+      },
+      "expected_outcome": "Add expected outcome",
+      "actual_outcome": null,
+      "realized_pnl": 0.0
+    },
+    {
+      "id": "opt-015",
+      "ticker": "UBER",
+      "trade_type": "Put Option",
+      "classification": "TBD",
+      "entry_date": "2026-03-01",
+      "status": "open",
+      "entry_thesis": "Add thesis",
+      "structure": {
+        "long": "N/A",
+        "short": "UBER 2026-05-15 $75.0 Put",
+        "net_debit": 5.225,
+        "max_loss": 0,
+        "profit_potential": 0
+      },
+      "moontower_metrics": {
+        "iv_percentile": "TBD",
+        "vrp": "TBD",
+        "rv_percentile": "TBD",
+        "term_structure": "TBD"
+      },
+      "greeks": {
+        "delta": 0,
+        "gamma": 0,
+        "theta": 0,
+        "vega": 0
+      },
+      "expected_outcome": "Add expected outcome",
+      "actual_outcome": null,
+      "realized_pnl": 0.0
     }
   ]
 }
