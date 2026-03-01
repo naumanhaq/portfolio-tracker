@@ -1,5 +1,14 @@
 {
   "last_updated": "2026-03-01",
+  "performance": {
+    "total_trades": 1,
+    "win_rate": 0,
+    "avg_return": 0,
+    "total_pnl": 0,
+    "sharpe_ratio": null,
+    "best_trade": null,
+    "worst_trade": null
+  },
   "trades": [
     {
       "id": "T001",
@@ -8,7 +17,10 @@
       "classification": "Long Calendar",
       "entry_date": "2026-02-01",
       "exit_date": null,
+      "close_price": null,
       "status": "open",
+      "realized_pnl": null,
+      "return_pct": null,
       "entry_thesis": "IV low (12th percentile), term structure flat. Buy near-term vol, sell longer-dated. Expecting IV mean-reversion.",
       "structure": {
         "long": "SPY Feb 28 550C",
