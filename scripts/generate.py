@@ -390,17 +390,335 @@ def generate_holdings_page(holdings_data):
 
 def generate_trades_page(trades_data):
     """Generate options trades page."""
-    # Simplified for now - similar aesthetic
-    return """<!DOCTYPE html>
+    trades = trades_data["trades"]
+    last_updated = trades_data["last_updated"]
+    
+    # Stats
+    total_trades = len(trades)
+    open_trades = len([t for t in trades if t["status"] == "open"])
+    closed_trades = len([t for t in trades if t["status"] == "closed"])
+    
+    html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Options | enhaq.capital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }}
+        
+        body {{
+            font-family: 'EB Garamond', serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }}
+        
+        .container {{
+            max-width: 1000px;
+            margin: 0 auto;
+        }}
+        
+        h1 {{
+            font-family: 'Caveat', cursive;
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }}
+        
+        h2 {{
+            font-family: 'Crimson Text', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem 0;
+            border-bottom: 2px solid #2c2c2c;
+            padding-bottom: 0.5rem;
+        }}
+        
+        .subtitle {{
+            font-family: 'Crimson Text', serif;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+            font-style: italic;
+        }}
+        
+        .meta {{
+            font-size: 0.9rem;
+            color: #999;
+            margin-bottom: 3rem;
+        }}
+        
+        nav {{
+            margin: 2rem 0;
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            padding: 1rem 0;
+        }}
+        
+        nav a {{
+            font-family: 'Crimson Text', serif;
+            text-decoration: none;
+            color: #2c2c2c;
+            margin-right: 2rem;
+            font-size: 1.1rem;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 2px;
+            transition: border-color 0.2s;
+        }}
+        
+        nav a:hover {{
+            border-bottom: 2px solid #2c2c2c;
+        }}
+        
+        nav a.active {{
+            border-bottom: 2px solid #2c2c2c;
+            font-weight: 600;
+        }}
+        
+        .metrics {{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }}
+        
+        .metric {{
+            border: 1px solid #e5e5e5;
+            padding: 1.5rem;
+            background: #ffffff;
+        }}
+        
+        .metric-label {{
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }}
+        
+        .metric-value {{
+            font-size: 2rem;
+            font-weight: 500;
+            color: #2c2c2c;
+        }}
+        
+        .trade-card {{
+            border: 1px solid #e5e5e5;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            background: #ffffff;
+        }}
+        
+        .trade-header {{
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #f0f0f0;
+        }}
+        
+        .trade-title {{
+            font-family: 'Crimson Text', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }}
+        
+        .trade-id {{
+            font-size: 0.85rem;
+            color: #999;
+        }}
+        
+        .status {{
+            padding: 0.5rem 1rem;
+            border: 1px solid;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }}
+        
+        .status.open {{
+            border-color: #2d5016;
+            color: #2d5016;
+        }}
+        
+        .status.closed {{
+            border-color: #666;
+            color: #666;
+        }}
+        
+        .trade-section {{
+            margin: 1.5rem 0;
+        }}
+        
+        .section-title {{
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #666;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }}
+        
+        .trade-grid {{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }}
+        
+        .structure {{
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }}
+        
+        .vol-metrics {{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }}
+        
+        .vol-item {{
+            font-size: 0.9rem;
+        }}
+        
+        .vol-label {{
+            color: #999;
+            font-size: 0.8rem;
+        }}
+        
+        footer {{
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #ccc;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #999;
+        }}
+    </style>
 </head>
 <body>
-<p>Options page - coming soon</p>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>Options</h1>
+            <p class="subtitle">Volatility-based strategies</p>
+            <p class="meta">As of {last_updated}</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav>
+            <a href="index.html">Holdings</a>
+            <a href="options.html" class="active">Options</a>
+        </nav>
+
+        <!-- Stats -->
+        <div class="metrics">
+            <div class="metric">
+                <div class="metric-label">Total Trades</div>
+                <div class="metric-value">{total_trades}</div>
+            </div>
+            <div class="metric">
+                <div class="metric-label">Open</div>
+                <div class="metric-value">{open_trades}</div>
+            </div>
+            <div class="metric">
+                <div class="metric-label">Closed</div>
+                <div class="metric-value">{closed_trades}</div>
+            </div>
+        </div>
+
+        <!-- Trades -->
+        <h2>Trade Log</h2>
+"""
+    
+    for trade in trades:
+        status_class = "open" if trade["status"] == "open" else "closed"
+        
+        html += f"""
+        <div class="trade-card">
+            <div class="trade-header">
+                <div>
+                    <div class="trade-title">{trade['ticker']} · {trade['classification']}</div>
+                    <div class="trade-id">Trade {trade['id']} · Type {trade['trade_type']}</div>
+                </div>
+                <div class="status {status_class}">{trade['status']}</div>
+            </div>
+            
+            <div class="trade-grid">
+                <div class="trade-section">
+                    <div class="section-title">Entry Thesis</div>
+                    <p>{trade['entry_thesis']}</p>
+                </div>
+                
+                <div class="trade-section">
+                    <div class="section-title">Structure</div>
+                    <div class="structure">
+                        Long: {trade['structure']['long']}<br>
+                        Short: {trade['structure']['short']}<br>
+                        Net Debit: ${trade['structure']['net_debit']:.2f}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="trade-grid">
+                <div class="trade-section">
+                    <div class="section-title">Vol Metrics at Entry</div>
+                    <div class="vol-metrics">
+                        <div class="vol-item"><span class="vol-label">IV%:</span> {trade['moontower_metrics']['iv_percentile']}</div>
+                        <div class="vol-item"><span class="vol-label">VRP:</span> {trade['moontower_metrics']['vrp']}</div>
+                        <div class="vol-item"><span class="vol-label">RV%:</span> {trade['moontower_metrics']['rv_percentile']}</div>
+                        <div class="vol-item"><span class="vol-label">Term:</span> {trade['moontower_metrics']['term_structure']}</div>
+                    </div>
+                </div>
+                
+                <div class="trade-section">
+                    <div class="section-title">Greeks at Entry</div>
+                    <div class="structure">
+                        Delta: {trade['greeks_at_entry']['delta']}<br>
+                        Theta: {trade['greeks_at_entry']['theta']}<br>
+                        Vega: {trade['greeks_at_entry']['vega']}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="trade-grid">
+                <div class="trade-section">
+                    <div class="section-title">Expected Outcome</div>
+                    <p>{trade['expected_outcome']}</p>
+                </div>
+                
+                <div class="trade-section">
+                    <div class="section-title">Actual Outcome</div>
+                    <p>{trade['actual_outcome'] or 'Pending (trade open)'}</p>
+                </div>
+            </div>
+        </div>
+"""
+    
+    html += """
+        <!-- Footer -->
+        <footer>
+            <p>Options trading involves substantial risk and is not suitable for all investors.</p>
+        </footer>
+    </div>
 </body>
-</html>"""
+</html>
+"""
+    
+    return html
 
 def main():
     print("🔨 Generating portfolio site...")
