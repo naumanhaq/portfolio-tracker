@@ -74,7 +74,7 @@ def page_header(page_type="home"):
     
     return f"""
         <header class="site-header">
-            <h1>enhaq.capital</h1>
+            <h1>enhaq capital</h1>
         </header>
         
         {nav_html(page_type)}
