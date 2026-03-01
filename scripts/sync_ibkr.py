@@ -154,29 +154,60 @@ def parse_positions(flex_report):
     return positions
 
 def update_holdings(positions):
-    """Update holdings.json with current IBKR data"""
+    """Update holdings.json with current IBKR data - auto-imports new positions"""
     # Load existing holdings
     with open(HOLDINGS_FILE) as f:
         data = json.load(f)
     
-    # Create lookup by ticker
-    ibkr_lookup = {p['symbol']: p for p in positions}
+    # Create lookup by ticker (existing holdings)
+    existing_tickers = {h['ticker'].split('.')[0]: h for h in data['portfolio']}
     
-    # Update current prices and values
+    # Track total value
     total_value = 0
-    for holding in data['portfolio']:
-        ticker = holding['ticker'].split('.')[0]  # Remove exchange suffix if present
+    new_positions = []
+    
+    # Process all IBKR positions
+    for ibkr_pos in positions:
+        symbol = ibkr_pos['symbol']
+        ticker_base = symbol.split('.')[0]
         
-        if ticker in ibkr_lookup:
-            ibkr_pos = ibkr_lookup[ticker]
+        if ticker_base in existing_tickers:
+            # Update existing holding
+            holding = existing_tickers[ticker_base]
             holding['current_price'] = ibkr_pos['market_price']
             holding['shares'] = ibkr_pos['quantity']
             holding['current_value'] = ibkr_pos['market_value']
             holding['unrealized_pnl'] = ibkr_pos['unrealized_pnl']
             total_value += abs(ibkr_pos['market_value'])
-            print(f"   ✓ Updated {ticker}: ${ibkr_pos['market_price']:.2f} × {ibkr_pos['quantity']}")
+            print(f"   ✓ Updated {symbol}: {ibkr_pos['currency']}{ibkr_pos['market_price']:.2f} × {ibkr_pos['quantity']}")
         else:
-            print(f"   ⚠ {ticker} not found in IBKR positions")
+            # Auto-import new position
+            new_holding = {
+                "ticker": symbol,
+                "name": symbol,  # Placeholder - user can update
+                "category": "Auto-imported",
+                "geography": "Unknown",
+                "entry_date": str(date.today()),
+                "entry_price": ibkr_pos['market_price'],  # Use current as entry (no historical data)
+                "current_price": ibkr_pos['market_price'],
+                "allocation_pct": 0,  # Will calculate after
+                "shares": ibkr_pos['quantity'],
+                "currency": ibkr_pos['currency'],
+                "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+                "thesis_evolution": [
+                    {
+                        "date": str(date.today()),
+                        "note": "Auto-imported from Interactive Brokers"
+                    }
+                ],
+                "add_trim_signals": [],
+                "current_value": ibkr_pos['market_value'],
+                "unrealized_pnl": ibkr_pos['unrealized_pnl']
+            }
+            data['portfolio'].append(new_holding)
+            new_positions.append(symbol)
+            total_value += abs(ibkr_pos['market_value'])
+            print(f"   ✨ NEW: {symbol} imported - {ibkr_pos['currency']}{ibkr_pos['market_price']:.2f} × {ibkr_pos['quantity']}")
     
     # Calculate allocation percentages
     for holding in data['portfolio']:
@@ -190,7 +221,10 @@ def update_holdings(positions):
     with open(HOLDINGS_FILE, 'w') as f:
         json.dump(data, f, indent=2)
     
-    print(f"✅ Holdings updated: {len(data['portfolio'])} positions, total value: ${total_value:,.0f}")
+    if new_positions:
+        print(f"\n✨ Auto-imported {len(new_positions)} new positions: {', '.join(new_positions)}")
+    
+    print(f"✅ Holdings updated: {len(data['portfolio'])} total positions, total value: ${total_value:,.0f}")
     
     return data
 

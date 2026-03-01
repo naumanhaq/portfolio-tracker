@@ -10,7 +10,7 @@
       "entry_date": "2024-06-15",
       "entry_price": 2100.0,
       "current_price": 2049.0,
-      "allocation_pct": 100.0,
+      "allocation_pct": 4.8013282630045175,
       "shares": 0.0,
       "currency": "EUR",
       "thesis": "Enduring luxury brand. Scarcity model. Pricing power. Generational wealth preservation.",
@@ -22,6 +22,820 @@
       ],
       "add_trim_signals": [],
       "current_value": 14377.42,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "CSU",
+      "name": "CSU",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 2520.66,
+      "current_price": 2520.66,
+      "allocation_pct": 7.2012777431657975,
+      "shares": 0.0,
+      "currency": "CAD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 21563.99,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "LMN",
+      "name": "LMN",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 21.23,
+      "current_price": 21.23,
+      "allocation_pct": 4.962819429112465,
+      "shares": 0.0,
+      "currency": "CAD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 14861.0,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "TOI",
+      "name": "TOI",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 93.74,
+      "current_price": 93.74,
+      "allocation_pct": 5.947836062455451,
+      "shares": 0.0,
+      "currency": "CAD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 17810.6,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "CHG",
+      "name": "CHG",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 27.2,
+      "current_price": 27.2,
+      "allocation_pct": 0.9083418913387998,
+      "shares": 0.0,
+      "currency": "EUR",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 2720.0,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "EXO",
+      "name": "EXO",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 74.35,
+      "current_price": 74.35,
+      "allocation_pct": 4.593388099225131,
+      "shares": 0.0,
+      "currency": "EUR",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 13754.75,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "SLm",
+      "name": "SLm",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 33.35,
+      "current_price": 33.35,
+      "allocation_pct": 3.341161993692902,
+      "shares": 0.0,
+      "currency": "EUR",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 10005.0,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "ADBE",
+      "name": "ADBE",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 262.41,
+      "current_price": 262.41,
+      "allocation_pct": 3.067106562396142,
+      "shares": 0.0,
+      "currency": "USD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 9184.35,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "BRBR",
+      "name": "BRBR",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 18.39,
+      "current_price": 18.39,
+      "allocation_pct": 3.684795745967764,
+      "shares": 0.0,
+      "currency": "USD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 11034.0,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "BRK B",
+      "name": "BRK B",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 504.95,
+      "current_price": 504.95,
+      "allocation_pct": 2.5608128217266835,
+      "shares": 0.0,
+      "currency": "USD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 7668.27,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "CPRT",
+      "name": "CPRT",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 38.09,
+      "current_price": 38.09,
+      "allocation_pct": 1.2720125970990768,
+      "shares": 0.0,
+      "currency": "USD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 3809.0,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "GOOGL",
+      "name": "GOOGL",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 311.76,
+      "current_price": 311.76,
+      "allocation_pct": 3.645670254795244,
+      "shares": 0.0,
+      "currency": "USD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 10916.84,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "IAU",
+      "name": "IAU",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 99.07,
+      "current_price": 99.07,
+      "allocation_pct": 6.616869939333449,
+      "shares": 0.0,
+      "currency": "USD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 19814.0,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "IBIT",
+      "name": "IBIT",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 37.19,
+      "current_price": 37.19,
+      "allocation_pct": 4.967828667483818,
+      "shares": 0.0,
+      "currency": "USD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 14876.0,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "IGV",
+      "name": "IGV",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 81.57,
+      "current_price": 81.57,
+      "allocation_pct": 1.0896095305368516,
+      "shares": 0.0,
+      "currency": "USD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 3262.8,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "MU",
+      "name": "MU",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 412.37,
+      "current_price": 412.37,
+      "allocation_pct": 2.065659627195115,
+      "shares": 0.0,
+      "currency": "USD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 6185.55,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "QXO",
+      "name": "QXO",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 23.95,
+      "current_price": 23.95,
+      "allocation_pct": 1.9995209832320087,
+      "shares": 0.0,
+      "currency": "USD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 5987.5,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "RACE",
+      "name": "RACE",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 379.92,
+      "current_price": 379.92,
+      "allocation_pct": 5.074959578785836,
+      "shares": 0.0,
+      "currency": "USD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 15196.8,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "SCZM",
+      "name": "SCZM",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 12.55,
+      "current_price": 12.55,
+      "allocation_pct": 1.2573188312097725,
+      "shares": 0.0,
+      "currency": "USD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 3765.0,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "SLV",
+      "name": "SLV",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 84.99,
+      "current_price": 84.99,
+      "allocation_pct": 1.7029406767253956,
+      "shares": 0.0,
+      "currency": "USD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 5099.4,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "SSRM",
+      "name": "SSRM",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 32.19,
+      "current_price": 32.19,
+      "allocation_pct": 0.2687456386231247,
+      "shares": 0.0,
+      "currency": "USD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 804.75,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "U.U",
+      "name": "U.U",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 20.26,
+      "current_price": 20.26,
+      "allocation_pct": 2.0297433880725095,
+      "shares": 0.0,
+      "currency": "USD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 6078.0,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "UBER",
+      "name": "UBER",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 75.42,
+      "current_price": 75.42,
+      "allocation_pct": 2.0149160424933026,
+      "shares": 0.0,
+      "currency": "USD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 6033.6,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "VWRA",
+      "name": "VWRA",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 177.18,
+      "current_price": 177.18,
+      "allocation_pct": 17.226860925375973,
+      "shares": 0.0,
+      "currency": "USD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 51585.27,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "BBWI  260320P00015000",
+      "name": "BBWI  260320P00015000",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 0.1,
+      "current_price": 0.1,
+      "allocation_pct": 0.013357968990276468,
+      "shares": 0.0,
+      "currency": "USD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 40.0,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "BBWI  270115C00025000",
+      "name": "BBWI  270115C00025000",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 3.8,
+      "current_price": 3.8,
+      "allocation_pct": 0.12690070540762644,
+      "shares": 0.0,
+      "currency": "USD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 380.0,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "GOOGL 261218C00160000",
+      "name": "GOOGL 261218C00160000",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 158.3884,
+      "current_price": 158.3884,
+      "allocation_pct": 5.289368339048763,
+      "shares": 0.0,
+      "currency": "USD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 15838.84,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "IGV   270115C00085000",
+      "name": "IGV   270115C00085000",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 10.2034,
+      "current_price": 10.2034,
+      "allocation_pct": 0.3407417519884673,
+      "shares": 0.0,
+      "currency": "USD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 1020.34,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "LYFT  270115C00020000",
+      "name": "LYFT  270115C00020000",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 1.59,
+      "current_price": 1.59,
+      "allocation_pct": 0.10619585347269793,
+      "shares": 0.0,
+      "currency": "USD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 318.0,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "NVO   270115C00065000",
+      "name": "NVO   270115C00065000",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 1.375,
+      "current_price": 1.375,
+      "allocation_pct": 0.04591801840407536,
+      "shares": 0.0,
+      "currency": "USD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 137.5,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "PYPL  261218C00077500",
+      "name": "PYPL  261218C00077500",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 0.8417,
+      "current_price": 0.8417,
+      "allocation_pct": 0.02810850624778926,
+      "shares": 0.0,
+      "currency": "USD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 84.17,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "QXO   271217C00020000",
+      "name": "QXO   271217C00020000",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 9.0299,
+      "current_price": 9.0299,
+      "allocation_pct": 0.3015528104632437,
+      "shares": 0.0,
+      "currency": "USD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 902.99,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "SPY   280121P00400000",
+      "name": "SPY   280121P00400000",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 8.785,
+      "current_price": 8.785,
+      "allocation_pct": 0.29337439394894693,
+      "shares": 0.0,
+      "currency": "USD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 878.5,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "TGEN  260417C00007500",
+      "name": "TGEN  260417C00007500",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 0.1652,
+      "current_price": 0.1652,
+      "allocation_pct": 0.005516841192984181,
+      "shares": 0.0,
+      "currency": "USD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 16.52,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "UBER  260515C00085000",
+      "name": "UBER  260515C00085000",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 2.31,
+      "current_price": 2.31,
+      "allocation_pct": 0.07714227091884661,
+      "shares": 0.0,
+      "currency": "USD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": 231.0,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "BBWI  260320P00025000",
+      "name": "BBWI  260320P00025000",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 3.0167,
+      "current_price": 3.0167,
+      "allocation_pct": 0.40296985052967027,
+      "shares": 0.0,
+      "currency": "USD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": -1206.68,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "LYFT  270115P00017000",
+      "name": "LYFT  270115P00017000",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 4.9193,
+      "current_price": 4.9193,
+      "allocation_pct": 0.4928389264040027,
+      "shares": 0.0,
+      "currency": "USD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": -1475.79,
+      "unrealized_pnl": 0.0
+    },
+    {
+      "ticker": "UBER  260515P00075000",
+      "name": "UBER  260515P00075000",
+      "category": "Auto-imported",
+      "geography": "Unknown",
+      "entry_date": "2026-03-01",
+      "entry_price": 5.225,
+      "current_price": 5.225,
+      "allocation_pct": 0.17448846993548636,
+      "shares": 0.0,
+      "currency": "USD",
+      "thesis": "Position auto-imported from IBKR. Add investment thesis.",
+      "thesis_evolution": [
+        {
+          "date": "2026-03-01",
+          "note": "Auto-imported from Interactive Brokers"
+        }
+      ],
+      "add_trim_signals": [],
+      "current_value": -522.5,
       "unrealized_pnl": 0.0
     }
   ],
