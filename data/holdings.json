@@ -4,14 +4,14 @@
   "portfolio": [
     {
       "ticker": "RMS.PA",
-      "name": "Hermès International",
+      "name": "Herm\u00e8s International",
       "category": "Luxury Goods",
       "geography": "Europe",
       "entry_date": "2024-06-15",
-      "entry_price": 2100.00,
-      "current_price": 2450.00,
+      "entry_price": 2100.0,
+      "current_price": 2049.0,
       "allocation_pct": 100.0,
-      "shares": 10,
+      "shares": 0.0,
       "currency": "EUR",
       "thesis": "Enduring luxury brand. Scarcity model. Pricing power. Generational wealth preservation.",
       "thesis_evolution": [
@@ -20,7 +20,9 @@
           "note": "Initial entry."
         }
       ],
-      "add_trim_signals": []
+      "add_trim_signals": [],
+      "current_value": 14377.42,
+      "unrealized_pnl": 0.0
     }
   ],
   "performance": {
