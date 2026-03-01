@@ -68,8 +68,8 @@ def generate_holdings_page(holdings_data):
         
         body {{
             font-family: 'EB Garamond', serif;
-            background: #faf8f5;
-            color: #2c2c2c;
+            background: #ffffff;
+            color: #1a1a1a;
             line-height: 1.7;
             padding: 40px 20px;
         }}
@@ -145,9 +145,9 @@ def generate_holdings_page(holdings_data):
         }}
         
         .metric {{
-            border: 1px solid #d4d4d4;
+            border: 1px solid #e5e5e5;
             padding: 1.5rem;
-            background: white;
+            background: #ffffff;
         }}
         
         .metric-label {{
@@ -172,8 +172,8 @@ def generate_holdings_page(holdings_data):
             width: 100%;
             border-collapse: collapse;
             margin: 2rem 0;
-            background: white;
-            border: 1px solid #d4d4d4;
+            background: #ffffff;
+            border: 1px solid #e5e5e5;
         }}
         
         thead {{
@@ -204,7 +204,7 @@ def generate_holdings_page(holdings_data):
         }}
         
         tbody tr:hover {{
-            background: #fafafa;
+            background: #f9f9f9;
         }}
         
         .ticker {{
@@ -233,8 +233,8 @@ def generate_holdings_page(holdings_data):
         .summary {{
             margin: 3rem 0;
             padding: 2rem;
-            border: 1px solid #d4d4d4;
-            background: white;
+            border: 1px solid #e5e5e5;
+            background: #ffffff;
         }}
         
         .summary-grid {{
