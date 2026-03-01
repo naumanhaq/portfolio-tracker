@@ -154,77 +154,69 @@ def parse_positions(flex_report):
     return positions
 
 def update_holdings(positions):
-    """Update holdings.json with current IBKR data - auto-imports new positions"""
+    """
+    Update holdings.json with current IBKR equity positions
+    ONLY updates existing tracked positions - does NOT auto-import
+    ONLY handles STK (stocks) - ignores OPT (options belong in trades)
+    """
     # Load existing holdings
     with open(HOLDINGS_FILE) as f:
         data = json.load(f)
     
-    # Create lookup by ticker (existing holdings)
-    existing_tickers = {h['ticker'].split('.')[0]: h for h in data['portfolio']}
+    # Filter to STOCKS only (ignore options)
+    stock_positions = [p for p in positions if p['asset_class'] == 'STK']
     
-    # Track total value
+    # Create lookup by ticker
+    ibkr_lookup = {p['symbol']: p for p in stock_positions}
+    
+    # Track total value (for allocation %)
     total_value = 0
-    new_positions = []
+    updated_count = 0
     
-    # Process all IBKR positions
-    for ibkr_pos in positions:
-        symbol = ibkr_pos['symbol']
-        ticker_base = symbol.split('.')[0]
+    # Update ONLY existing tracked holdings
+    for holding in data['portfolio']:
+        ticker_base = holding['ticker'].split('.')[0]
         
-        if ticker_base in existing_tickers:
-            # Update existing holding
-            holding = existing_tickers[ticker_base]
+        # Try exact match first, then base ticker
+        ibkr_pos = ibkr_lookup.get(holding['ticker']) or ibkr_lookup.get(ticker_base)
+        
+        if ibkr_pos:
             holding['current_price'] = ibkr_pos['market_price']
             holding['shares'] = ibkr_pos['quantity']
             holding['current_value'] = ibkr_pos['market_value']
             holding['unrealized_pnl'] = ibkr_pos['unrealized_pnl']
             total_value += abs(ibkr_pos['market_value'])
-            print(f"   ✓ Updated {symbol}: {ibkr_pos['currency']}{ibkr_pos['market_price']:.2f} × {ibkr_pos['quantity']}")
+            updated_count += 1
+            print(f"   ✓ {holding['ticker']}: {ibkr_pos['currency']}{ibkr_pos['market_price']:.2f} × {ibkr_pos['quantity']:.0f} = {ibkr_pos['currency']}{ibkr_pos['market_value']:,.0f}")
         else:
-            # Auto-import new position
-            new_holding = {
-                "ticker": symbol,
-                "name": symbol,  # Placeholder - user can update
-                "category": "Auto-imported",
-                "geography": "Unknown",
-                "entry_date": str(date.today()),
-                "entry_price": ibkr_pos['market_price'],  # Use current as entry (no historical data)
-                "current_price": ibkr_pos['market_price'],
-                "allocation_pct": 0,  # Will calculate after
-                "shares": ibkr_pos['quantity'],
-                "currency": ibkr_pos['currency'],
-                "thesis": "Position auto-imported from IBKR. Add investment thesis.",
-                "thesis_evolution": [
-                    {
-                        "date": str(date.today()),
-                        "note": "Auto-imported from Interactive Brokers"
-                    }
-                ],
-                "add_trim_signals": [],
-                "current_value": ibkr_pos['market_value'],
-                "unrealized_pnl": ibkr_pos['unrealized_pnl']
-            }
-            data['portfolio'].append(new_holding)
-            new_positions.append(symbol)
-            total_value += abs(ibkr_pos['market_value'])
-            print(f"   ✨ NEW: {symbol} imported - {ibkr_pos['currency']}{ibkr_pos['market_price']:.2f} × {ibkr_pos['quantity']}")
+            print(f"   ⚠ {holding['ticker']} not found in IBKR (may be sold or closed)")
     
     # Calculate allocation percentages
     for holding in data['portfolio']:
         if holding.get('current_value') and total_value > 0:
             holding['allocation_pct'] = (abs(holding['current_value']) / total_value) * 100
+        else:
+            holding['allocation_pct'] = 0
     
-    # Update last_updated
+    # Update timestamp
     data['last_updated'] = str(date.today())
     
     # Save
     with open(HOLDINGS_FILE, 'w') as f:
         json.dump(data, f, indent=2)
     
-    if new_positions:
-        print(f"\n✨ Auto-imported {len(new_positions)} new positions: {', '.join(new_positions)}")
+    print(f"\n✅ Updated {updated_count}/{len(data['portfolio'])} tracked holdings")
+    print(f"   Total equity value: ${total_value:,.0f}")
     
-    print(f"✅ Holdings updated: {len(data['portfolio'])} total positions, total value: ${total_value:,.0f}")
+    # Report on untracked positions
+    tracked_tickers = {h['ticker'].split('.')[0] for h in data['portfolio']}
+    untracked = [p['symbol'] for p in stock_positions if p['symbol'] not in tracked_tickers]
+    
+    if untracked:
+        print(f"\n📋 Untracked equity positions in IBKR (add manually if you want to track):")
+        for symbol in untracked:
+            pos = ibkr_lookup[symbol]
+            print(f"   - {symbol}: {pos['quantity']:.0f} shares @ {pos['currency']}{pos['market_price']:.2f}")
     
     return data
 
