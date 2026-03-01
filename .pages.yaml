@@ -1,5 +1,0 @@
-# Cloudflare Pages configuration
-build:
-  command: python3 scripts/generate.py
-  cwd: /
-  output_directory: public
