@@ -32,15 +32,15 @@ def calculate_return(entry_price, current_price):
 def seo_meta(page="home"):
     meta = {
         "home": {
-            "title": "enhaq.capital – Long what survives, short what doesn't",
+            "title": "enhaq capital – Long what survives, short what doesn't",
             "description": "Concentrated equity positions and volatility strategies. Portfolio commentary and trade transparency.",
         },
         "holdings": {
-            "title": "Holdings – enhaq.capital",
+            "title": "Holdings – enhaq capital",
             "description": "Long-term concentrated positions in enduring businesses. Performance metrics and portfolio composition.",
         },
         "trades": {
-            "title": "Trades – enhaq.capital",
+            "title": "Trades – enhaq capital",
             "description": "Options trade log. Volatility-based strategies with full transparency on structure, risk, and outcomes.",
         }
     }
@@ -146,7 +146,7 @@ def generate_index(posts_data, holdings_data):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>enhaq.capital – Long what survives, short what doesn't</title>
+    <title>enhaq capital – Long what survives, short what doesn't</title>
     {seo_meta("home")}
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -215,7 +215,7 @@ def generate_holdings(holdings_data):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Holdings – enhaq.capital</title>
+    <title>Holdings – enhaq capital</title>
     {seo_meta("holdings")}
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -290,7 +290,7 @@ def generate_trades(trades_data):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trades – enhaq.capital</title>
+    <title>Trades – enhaq capital</title>
     {seo_meta("trades")}
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
