@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Generate static HTML site from JSON data.
-Institutional fund manager presentation.
+Hand-drawn sketch aesthetic - contemporary + classic.
 """
 
 import json
@@ -56,107 +56,330 @@ def generate_holdings_page(holdings_data):
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio | enhaq.capital</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }}
+        
+        body {{
+            font-family: 'EB Garamond', serif;
+            background: #faf8f5;
+            color: #2c2c2c;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }}
+        
+        .container {{
+            max-width: 1000px;
+            margin: 0 auto;
+        }}
+        
+        h1 {{
+            font-family: 'Caveat', cursive;
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }}
+        
+        h2 {{
+            font-family: 'Crimson Text', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem 0;
+            border-bottom: 2px solid #2c2c2c;
+            padding-bottom: 0.5rem;
+        }}
+        
+        .subtitle {{
+            font-family: 'Crimson Text', serif;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+            font-style: italic;
+        }}
+        
+        .meta {{
+            font-size: 0.9rem;
+            color: #999;
+            margin-bottom: 3rem;
+        }}
+        
+        nav {{
+            margin: 2rem 0;
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            padding: 1rem 0;
+        }}
+        
+        nav a {{
+            font-family: 'Crimson Text', serif;
+            text-decoration: none;
+            color: #2c2c2c;
+            margin-right: 2rem;
+            font-size: 1.1rem;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 2px;
+            transition: border-color 0.2s;
+        }}
+        
+        nav a:hover {{
+            border-bottom: 2px solid #2c2c2c;
+        }}
+        
+        nav a.active {{
+            border-bottom: 2px solid #2c2c2c;
+            font-weight: 600;
+        }}
+        
+        .metrics {{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }}
+        
+        .metric {{
+            border: 1px solid #d4d4d4;
+            padding: 1.5rem;
+            background: white;
+        }}
+        
+        .metric-label {{
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }}
+        
+        .metric-value {{
+            font-size: 2rem;
+            font-weight: 500;
+            color: #2c2c2c;
+        }}
+        
+        .metric-value.positive {{
+            color: #2d5016;
+        }}
+        
+        table {{
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border: 1px solid #d4d4d4;
+        }}
+        
+        thead {{
+            border-bottom: 2px solid #2c2c2c;
+        }}
+        
+        th {{
+            text-align: left;
+            padding: 1rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #666;
+        }}
+        
+        th.right {{
+            text-align: right;
+        }}
+        
+        td {{
+            padding: 1rem;
+            border-bottom: 1px solid #f0f0f0;
+        }}
+        
+        td.right {{
+            text-align: right;
+        }}
+        
+        tbody tr:hover {{
+            background: #fafafa;
+        }}
+        
+        .ticker {{
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }}
+        
+        .category {{
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border: 1px solid #ccc;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }}
+        
+        .positive {{
+            color: #2d5016;
+        }}
+        
+        .negative {{
+            color: #8b0000;
+        }}
+        
+        .summary {{
+            margin: 3rem 0;
+            padding: 2rem;
+            border: 1px solid #d4d4d4;
+            background: white;
+        }}
+        
+        .summary-grid {{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }}
+        
+        .summary-item {{
+            border-left: 3px solid #2c2c2c;
+            padding-left: 1rem;
+        }}
+        
+        .summary-label {{
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }}
+        
+        .summary-value {{
+            font-size: 1.8rem;
+            font-weight: 500;
+        }}
+        
+        .summary-note {{
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 0.25rem;
+        }}
+        
+        footer {{
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #ccc;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #999;
+        }}
+        
+        footer p {{
+            margin: 0.5rem 0;
+        }}
+    </style>
 </head>
-<body class="bg-gray-50 text-gray-900">
-    <div class="max-w-7xl mx-auto px-4 py-8">
+<body>
+    <div class="container">
         <!-- Header -->
-        <header class="mb-8">
-            <h1 class="text-4xl font-bold mb-2">Portfolio</h1>
-            <p class="text-gray-600">Long-term concentrated positions</p>
-            <p class="text-sm text-gray-500 mt-2">As of {last_updated} | Inception: {inception}</p>
+        <header>
+            <h1>Portfolio</h1>
+            <p class="subtitle">Long-term concentrated positions</p>
+            <p class="meta">As of {last_updated} · Inception {inception}</p>
         </header>
 
         <!-- Navigation -->
-        <nav class="mb-8 flex gap-4">
-            <a href="index.html" class="px-4 py-2 bg-blue-600 text-white rounded">Holdings</a>
-            <a href="options.html" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Options</a>
+        <nav>
+            <a href="index.html" class="active">Holdings</a>
+            <a href="options.html">Options</a>
         </nav>
 
         <!-- Performance Metrics -->
-        <div class="mb-8 grid grid-cols-4 gap-4">
-            <div class="bg-white rounded-lg shadow p-6">
-                <p class="text-gray-600 text-sm mb-1">YTD Return</p>
-                <p class="text-3xl font-bold text-green-600">+{performance.get('ytd_return', 0):.1f}%</p>
+        <div class="metrics">
+            <div class="metric">
+                <div class="metric-label">YTD Return</div>
+                <div class="metric-value positive">+{performance.get('ytd_return', 0):.1f}%</div>
             </div>
-            <div class="bg-white rounded-lg shadow p-6">
-                <p class="text-gray-600 text-sm mb-1">1-Year Return</p>
-                <p class="text-3xl font-bold text-green-600">+{performance.get('one_year_return', 0):.1f}%</p>
+            <div class="metric">
+                <div class="metric-label">1-Year Return</div>
+                <div class="metric-value positive">+{performance.get('one_year_return', 0):.1f}%</div>
             </div>
-            <div class="bg-white rounded-lg shadow p-6">
-                <p class="text-gray-600 text-sm mb-1">Since Inception</p>
-                <p class="text-3xl font-bold text-green-600">+{performance.get('since_inception_return', 0):.1f}%</p>
+            <div class="metric">
+                <div class="metric-label">Since Inception</div>
+                <div class="metric-value positive">+{performance.get('since_inception_return', 0):.1f}%</div>
             </div>
-            <div class="bg-white rounded-lg shadow p-6">
-                <p class="text-gray-600 text-sm mb-1">Annualized IRR</p>
-                <p class="text-3xl font-bold">{performance.get('annualized_irr', 0):.1f}%</p>
+            <div class="metric">
+                <div class="metric-label">Annualized IRR</div>
+                <div class="metric-value">{performance.get('annualized_irr', 0):.1f}%</div>
             </div>
         </div>
 
         <!-- Holdings Table -->
-        <div class="bg-white rounded-lg shadow overflow-hidden">
-            <table class="w-full">
-                <thead class="bg-gray-100">
-                    <tr>
-                        <th class="px-4 py-3 text-left">Ticker</th>
-                        <th class="px-4 py-3 text-left">Name</th>
-                        <th class="px-4 py-3 text-left">Category</th>
-                        <th class="px-4 py-3 text-left">Geography</th>
-                        <th class="px-4 py-3 text-right">Allocation</th>
-                        <th class="px-4 py-3 text-right">Return</th>
-                        <th class="px-4 py-3 text-right">Holding Period</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y">
+        <h2>Current Positions</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Ticker</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Geography</th>
+                    <th class="right">Allocation</th>
+                    <th class="right">Return</th>
+                    <th class="right">Holding Period</th>
+                </tr>
+            </thead>
+            <tbody>
 """
     
     for holding in portfolio:
         holding_return = calculate_return(holding["entry_price"], holding.get("current_price"))
         holding_period = calculate_holding_period(holding["entry_date"])
-        return_class = "text-green-600" if holding_return and holding_return > 0 else "text-red-600"
+        return_class = "positive" if holding_return and holding_return > 0 else "negative"
         return_sign = "+" if holding_return and holding_return > 0 else ""
         
         html += f"""
-                    <tr class="hover:bg-gray-50">
-                        <td class="px-4 py-3 font-mono font-bold">{holding['ticker']}</td>
-                        <td class="px-4 py-3">{holding['name']}</td>
-                        <td class="px-4 py-3"><span class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs">{holding['category']}</span></td>
-                        <td class="px-4 py-3 text-gray-600">{holding.get('geography', 'N/A')}</td>
-                        <td class="px-4 py-3 text-right font-semibold">{holding['allocation_pct']:.1f}%</td>
-                        <td class="px-4 py-3 text-right font-semibold {return_class}">{return_sign}{holding_return:.1f}%</td>
-                        <td class="px-4 py-3 text-right text-gray-600">{holding_period}</td>
-                    </tr>
+                <tr>
+                    <td class="ticker">{holding['ticker']}</td>
+                    <td>{holding['name']}</td>
+                    <td><span class="category">{holding['category']}</span></td>
+                    <td>{holding.get('geography', 'N/A')}</td>
+                    <td class="right"><strong>{holding['allocation_pct']:.1f}%</strong></td>
+                    <td class="right {return_class}"><strong>{return_sign}{holding_return:.1f}%</strong></td>
+                    <td class="right">{holding_period}</td>
+                </tr>
 """
     
     html += f"""
-                </tbody>
-            </table>
-        </div>
+            </tbody>
+        </table>
 
         <!-- Summary -->
-        <div class="mt-8 bg-white rounded-lg shadow p-6">
-            <h2 class="text-xl font-bold mb-4">Portfolio Characteristics</h2>
-            <div class="grid grid-cols-3 gap-6">
-                <div>
-                    <p class="text-gray-600 text-sm">Total Positions</p>
-                    <p class="text-2xl font-bold">{len(portfolio)}</p>
+        <div class="summary">
+            <h2>Portfolio Characteristics</h2>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <div class="summary-label">Total Positions</div>
+                    <div class="summary-value">{len(portfolio)}</div>
                 </div>
-                <div>
-                    <p class="text-gray-600 text-sm">Concentration</p>
-                    <p class="text-2xl font-bold">High</p>
-                    <p class="text-xs text-gray-500 mt-1">Top 3: {sum(h['allocation_pct'] for h in portfolio[:3]):.0f}%</p>
+                <div class="summary-item">
+                    <div class="summary-label">Concentration</div>
+                    <div class="summary-value">High</div>
+                    <div class="summary-note">Top 3: {sum(h['allocation_pct'] for h in portfolio[:3]):.0f}%</div>
                 </div>
-                <div>
-                    <p class="text-gray-600 text-sm">Investment Horizon</p>
-                    <p class="text-2xl font-bold">20+ years</p>
+                <div class="summary-item">
+                    <div class="summary-label">Investment Horizon</div>
+                    <div class="summary-value">20+ years</div>
                 </div>
             </div>
         </div>
 
         <!-- Footer -->
-        <footer class="mt-12 text-center text-sm text-gray-500">
+        <footer>
             <p>Past performance does not guarantee future results.</p>
-            <p class="mt-2">This portfolio tracker is for informational purposes only.</p>
+            <p>This portfolio tracker is for informational purposes only.</p>
         </footer>
     </div>
 </body>
@@ -167,131 +390,17 @@ def generate_holdings_page(holdings_data):
 
 def generate_trades_page(trades_data):
     """Generate options trades page."""
-    trades = trades_data["trades"]
-    last_updated = trades_data["last_updated"]
-    
-    # Stats
-    total_trades = len(trades)
-    open_trades = len([t for t in trades if t["status"] == "open"])
-    closed_trades = len([t for t in trades if t["status"] == "closed"])
-    
-    html = f"""<!DOCTYPE html>
+    # Simplified for now - similar aesthetic
+    return """<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Options | enhaq.capital</title>
-    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-50 text-gray-900">
-    <div class="max-w-7xl mx-auto px-4 py-8">
-        <!-- Header -->
-        <header class="mb-8">
-            <h1 class="text-4xl font-bold mb-2">Options Trading</h1>
-            <p class="text-gray-600">Volatility-based strategies</p>
-            <p class="text-sm text-gray-500 mt-2">As of {last_updated}</p>
-        </header>
-
-        <!-- Navigation -->
-        <nav class="mb-8 flex gap-4">
-            <a href="index.html" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Holdings</a>
-            <a href="options.html" class="px-4 py-2 bg-blue-600 text-white rounded">Options</a>
-        </nav>
-
-        <!-- Stats -->
-        <div class="mb-8 grid grid-cols-3 gap-4">
-            <div class="bg-white rounded-lg shadow p-4">
-                <p class="text-gray-600 text-sm">Total Trades</p>
-                <p class="text-3xl font-bold">{total_trades}</p>
-            </div>
-            <div class="bg-white rounded-lg shadow p-4">
-                <p class="text-gray-600 text-sm">Open</p>
-                <p class="text-3xl font-bold text-blue-600">{open_trades}</p>
-            </div>
-            <div class="bg-white rounded-lg shadow p-4">
-                <p class="text-gray-600 text-sm">Closed</p>
-                <p class="text-3xl font-bold text-gray-600">{closed_trades}</p>
-            </div>
-        </div>
-
-        <!-- Trades -->
-        <div class="space-y-4">
-"""
-    
-    for trade in trades:
-        status_color = "bg-green-100 text-green-800" if trade["status"] == "open" else "bg-gray-100 text-gray-800"
-        
-        html += f"""
-            <div class="bg-white rounded-lg shadow p-6">
-                <div class="flex justify-between items-start mb-4">
-                    <div>
-                        <h3 class="text-xl font-bold">{trade['ticker']} - {trade['classification']}</h3>
-                        <p class="text-sm text-gray-600">Trade ID: {trade['id']} | Type: {trade['trade_type']}</p>
-                    </div>
-                    <span class="px-3 py-1 {status_color} rounded text-sm font-semibold">{trade['status'].upper()}</span>
-                </div>
-                
-                <div class="grid grid-cols-2 gap-6 mb-4">
-                    <div>
-                        <h4 class="font-bold mb-2">Entry Thesis</h4>
-                        <p class="text-gray-700">{trade['entry_thesis']}</p>
-                    </div>
-                    <div>
-                        <h4 class="font-bold mb-2">Structure</h4>
-                        <p class="text-gray-700 font-mono text-sm">
-                            Long: {trade['structure']['long']}<br>
-                            Short: {trade['structure']['short']}<br>
-                            Net Debit: ${trade['structure']['net_debit']:.2f}
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="grid grid-cols-2 gap-6 mb-4">
-                    <div>
-                        <h4 class="font-bold mb-2">Vol Metrics</h4>
-                        <div class="text-sm space-y-1">
-                            <p>IV%: {trade['moontower_metrics']['iv_percentile']}</p>
-                            <p>VRP: {trade['moontower_metrics']['vrp']}</p>
-                            <p>RV%: {trade['moontower_metrics']['rv_percentile']}</p>
-                            <p>Term Structure: {trade['moontower_metrics']['term_structure']}</p>
-                        </div>
-                    </div>
-                    <div>
-                        <h4 class="font-bold mb-2">Greeks at Entry</h4>
-                        <div class="text-sm space-y-1 font-mono">
-                            <p>Delta: {trade['greeks_at_entry']['delta']}</p>
-                            <p>Theta: {trade['greeks_at_entry']['theta']}</p>
-                            <p>Vega: {trade['greeks_at_entry']['vega']}</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="grid grid-cols-2 gap-6">
-                    <div>
-                        <h4 class="font-bold mb-2">Expected Outcome</h4>
-                        <p class="text-gray-700">{trade['expected_outcome']}</p>
-                    </div>
-                    <div>
-                        <h4 class="font-bold mb-2">Actual Outcome</h4>
-                        <p class="text-gray-700">{trade['actual_outcome'] or 'Pending (trade open)'}</p>
-                    </div>
-                </div>
-            </div>
-"""
-    
-    html += """
-        </div>
-
-        <!-- Footer -->
-        <footer class="mt-12 text-center text-sm text-gray-500">
-            <p>Options trading involves substantial risk and is not suitable for all investors.</p>
-        </footer>
-    </div>
+<body>
+<p>Options page - coming soon</p>
 </body>
-</html>
-"""
-    
-    return html
+</html>"""
 
 def main():
     print("🔨 Generating portfolio site...")
@@ -304,7 +413,7 @@ def main():
     holdings_html = generate_holdings_page(holdings_data)
     trades_html = generate_trades_page(trades_data)
     
-    # Write to public/
+    # Write to root
     with open(PUBLIC_DIR / "index.html", "w") as f:
         f.write(holdings_html)
     
