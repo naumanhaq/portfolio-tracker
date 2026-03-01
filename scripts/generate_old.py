@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 """
 Generate static HTML site from JSON data.
-Institutional fund manager presentation.
 """
 
 import json
 from pathlib import Path
-from datetime import datetime, date
+from datetime import datetime
 
 # Paths
 PROJECT_ROOT = Path(__file__).parent.parent
 DATA_DIR = PROJECT_ROOT / "data"
+TEMPLATES_DIR = PROJECT_ROOT / "templates"
+
+# Output to root for GitHub Pages / Cloudflare
 PUBLIC_DIR = PROJECT_ROOT
 
 # Ensure public dir exists
@@ -21,77 +23,36 @@ def load_json(filename):
     with open(DATA_DIR / filename) as f:
         return json.load(f)
 
-def calculate_holding_period(entry_date_str):
-    """Calculate holding period from entry date."""
-    entry = datetime.strptime(entry_date_str, "%Y-%m-%d").date()
-    today = date.today()
-    delta = today - entry
-    
-    years = delta.days // 365
-    months = (delta.days % 365) // 30
-    
-    if years > 0:
-        return f"{years}y {months}m"
-    elif months > 0:
-        return f"{months}m"
-    else:
-        return f"{delta.days}d"
-
-def calculate_return(entry_price, current_price):
-    """Calculate return percentage."""
-    if not current_price:
-        return None
-    return ((current_price - entry_price) / entry_price) * 100
-
 def generate_holdings_page(holdings_data):
     """Generate long-term holdings page."""
     portfolio = holdings_data["portfolio"]
-    performance = holdings_data.get("performance", {})
     last_updated = holdings_data["last_updated"]
-    inception = holdings_data.get("portfolio_inception", "N/A")
+    
+    # Calculate totals (will be updated when we add current prices)
+    total_cost = sum(h["entry_price"] * h["shares"] for h in portfolio if h["currency"] == "EUR")
     
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | enhaq.capital</title>
+    <title>Long-Term Portfolio | enhaq.online</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 text-gray-900">
     <div class="max-w-7xl mx-auto px-4 py-8">
         <!-- Header -->
         <header class="mb-8">
-            <h1 class="text-4xl font-bold mb-2">Portfolio</h1>
-            <p class="text-gray-600">Long-term concentrated positions</p>
-            <p class="text-sm text-gray-500 mt-2">As of {last_updated} | Inception: {inception}</p>
+            <h1 class="text-4xl font-bold mb-2">Long-Term Portfolio</h1>
+            <p class="text-gray-600">Fisher Quality Growth + Lindy Survival</p>
+            <p class="text-sm text-gray-500 mt-2">Last updated: {last_updated}</p>
         </header>
 
         <!-- Navigation -->
         <nav class="mb-8 flex gap-4">
-            <a href="index.html" class="px-4 py-2 bg-blue-600 text-white rounded">Holdings</a>
-            <a href="options.html" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Options</a>
+            <a href="index.html" class="px-4 py-2 bg-blue-600 text-white rounded">Long-Term</a>
+            <a href="options.html" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Options Trades</a>
         </nav>
-
-        <!-- Performance Metrics -->
-        <div class="mb-8 grid grid-cols-4 gap-4">
-            <div class="bg-white rounded-lg shadow p-6">
-                <p class="text-gray-600 text-sm mb-1">YTD Return</p>
-                <p class="text-3xl font-bold text-green-600">+{performance.get('ytd_return', 0):.1f}%</p>
-            </div>
-            <div class="bg-white rounded-lg shadow p-6">
-                <p class="text-gray-600 text-sm mb-1">1-Year Return</p>
-                <p class="text-3xl font-bold text-green-600">+{performance.get('one_year_return', 0):.1f}%</p>
-            </div>
-            <div class="bg-white rounded-lg shadow p-6">
-                <p class="text-gray-600 text-sm mb-1">Since Inception</p>
-                <p class="text-3xl font-bold text-green-600">+{performance.get('since_inception_return', 0):.1f}%</p>
-            </div>
-            <div class="bg-white rounded-lg shadow p-6">
-                <p class="text-gray-600 text-sm mb-1">Annualized IRR</p>
-                <p class="text-3xl font-bold">{performance.get('annualized_irr', 0):.1f}%</p>
-            </div>
-        </div>
 
         <!-- Holdings Table -->
         <div class="bg-white rounded-lg shadow overflow-hidden">
@@ -101,30 +62,52 @@ def generate_holdings_page(holdings_data):
                         <th class="px-4 py-3 text-left">Ticker</th>
                         <th class="px-4 py-3 text-left">Name</th>
                         <th class="px-4 py-3 text-left">Category</th>
-                        <th class="px-4 py-3 text-left">Geography</th>
-                        <th class="px-4 py-3 text-right">Allocation</th>
-                        <th class="px-4 py-3 text-right">Return</th>
-                        <th class="px-4 py-3 text-right">Holding Period</th>
+                        <th class="px-4 py-3 text-right">Entry Date</th>
+                        <th class="px-4 py-3 text-right">Entry Price</th>
+                        <th class="px-4 py-3 text-right">Shares</th>
+                        <th class="px-4 py-3 text-right">Cost Basis</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y">
 """
     
     for holding in portfolio:
-        holding_return = calculate_return(holding["entry_price"], holding.get("current_price"))
-        holding_period = calculate_holding_period(holding["entry_date"])
-        return_class = "text-green-600" if holding_return and holding_return > 0 else "text-red-600"
-        return_sign = "+" if holding_return and holding_return > 0 else ""
-        
+        cost_basis = holding["entry_price"] * holding["shares"]
         html += f"""
-                    <tr class="hover:bg-gray-50">
+                    <tr class="hover:bg-gray-50 cursor-pointer" onclick="toggleDetails('{holding['ticker']}')">
                         <td class="px-4 py-3 font-mono font-bold">{holding['ticker']}</td>
                         <td class="px-4 py-3">{holding['name']}</td>
                         <td class="px-4 py-3"><span class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs">{holding['category']}</span></td>
-                        <td class="px-4 py-3 text-gray-600">{holding.get('geography', 'N/A')}</td>
-                        <td class="px-4 py-3 text-right font-semibold">{holding['allocation_pct']:.1f}%</td>
-                        <td class="px-4 py-3 text-right font-semibold {return_class}">{return_sign}{holding_return:.1f}%</td>
-                        <td class="px-4 py-3 text-right text-gray-600">{holding_period}</td>
+                        <td class="px-4 py-3 text-right">{holding['entry_date']}</td>
+                        <td class="px-4 py-3 text-right font-mono">€{holding['entry_price']:,.2f}</td>
+                        <td class="px-4 py-3 text-right">{holding['shares']}</td>
+                        <td class="px-4 py-3 text-right font-mono">€{cost_basis:,.2f}</td>
+                    </tr>
+                    <tr id="details-{holding['ticker']}" class="hidden bg-gray-50">
+                        <td colspan="7" class="px-4 py-4">
+                            <div class="space-y-4">
+                                <div>
+                                    <h3 class="font-bold mb-2">Investment Thesis</h3>
+                                    <p class="text-gray-700">{holding['thesis']}</p>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold mb-2">Valuation Notes</h3>
+                                    <p class="text-gray-700">{holding['valuation_notes']}</p>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold mb-2">Thesis Evolution</h3>
+"""
+        for note in holding["thesis_evolution"]:
+            html += f"""
+                                    <div class="mb-2">
+                                        <span class="text-sm font-mono text-gray-600">{note['date']}</span>
+                                        <p class="text-gray-700">{note['note']}</p>
+                                    </div>
+"""
+        html += """
+                                </div>
+                            </div>
+                        </td>
                     </tr>
 """
     
@@ -135,30 +118,30 @@ def generate_holdings_page(holdings_data):
 
         <!-- Summary -->
         <div class="mt-8 bg-white rounded-lg shadow p-6">
-            <h2 class="text-xl font-bold mb-4">Portfolio Characteristics</h2>
-            <div class="grid grid-cols-3 gap-6">
+            <h2 class="text-xl font-bold mb-4">Portfolio Summary</h2>
+            <div class="grid grid-cols-3 gap-4">
                 <div>
-                    <p class="text-gray-600 text-sm">Total Positions</p>
+                    <p class="text-gray-600 text-sm">Total Holdings</p>
                     <p class="text-2xl font-bold">{len(portfolio)}</p>
                 </div>
                 <div>
-                    <p class="text-gray-600 text-sm">Concentration</p>
-                    <p class="text-2xl font-bold">High</p>
-                    <p class="text-xs text-gray-500 mt-1">Top 3: {sum(h['allocation_pct'] for h in portfolio[:3]):.0f}%</p>
+                    <p class="text-gray-600 text-sm">Total Cost Basis</p>
+                    <p class="text-2xl font-bold">€{total_cost:,.2f}</p>
                 </div>
                 <div>
-                    <p class="text-gray-600 text-sm">Investment Horizon</p>
+                    <p class="text-gray-600 text-sm">Target Horizon</p>
                     <p class="text-2xl font-bold">20+ years</p>
                 </div>
             </div>
         </div>
-
-        <!-- Footer -->
-        <footer class="mt-12 text-center text-sm text-gray-500">
-            <p>Past performance does not guarantee future results.</p>
-            <p class="mt-2">This portfolio tracker is for informational purposes only.</p>
-        </footer>
     </div>
+
+    <script>
+        function toggleDetails(ticker) {{
+            const row = document.getElementById('details-' + ticker);
+            row.classList.toggle('hidden');
+        }}
+    </script>
 </body>
 </html>
 """
@@ -180,22 +163,22 @@ def generate_trades_page(trades_data):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Options | enhaq.capital</title>
+    <title>Options Trades | enhaq.online</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 text-gray-900">
     <div class="max-w-7xl mx-auto px-4 py-8">
         <!-- Header -->
         <header class="mb-8">
-            <h1 class="text-4xl font-bold mb-2">Options Trading</h1>
-            <p class="text-gray-600">Volatility-based strategies</p>
-            <p class="text-sm text-gray-500 mt-2">As of {last_updated}</p>
+            <h1 class="text-4xl font-bold mb-2">Options Trades</h1>
+            <p class="text-gray-600">Moontower Vol Framework</p>
+            <p class="text-sm text-gray-500 mt-2">Last updated: {last_updated}</p>
         </header>
 
         <!-- Navigation -->
         <nav class="mb-8 flex gap-4">
-            <a href="index.html" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Holdings</a>
-            <a href="options.html" class="px-4 py-2 bg-blue-600 text-white rounded">Options</a>
+            <a href="index.html" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Long-Term</a>
+            <a href="options.html" class="px-4 py-2 bg-blue-600 text-white rounded">Options Trades</a>
         </nav>
 
         <!-- Stats -->
@@ -248,7 +231,7 @@ def generate_trades_page(trades_data):
                 
                 <div class="grid grid-cols-2 gap-6 mb-4">
                     <div>
-                        <h4 class="font-bold mb-2">Vol Metrics</h4>
+                        <h4 class="font-bold mb-2">Moontower Metrics</h4>
                         <div class="text-sm space-y-1">
                             <p>IV%: {trade['moontower_metrics']['iv_percentile']}</p>
                             <p>VRP: {trade['moontower_metrics']['vrp']}</p>
@@ -281,11 +264,6 @@ def generate_trades_page(trades_data):
     
     html += """
         </div>
-
-        <!-- Footer -->
-        <footer class="mt-12 text-center text-sm text-gray-500">
-            <p>Options trading involves substantial risk and is not suitable for all investors.</p>
-        </footer>
     </div>
 </body>
 </html>
@@ -314,6 +292,7 @@ def main():
     print(f"✅ Site generated:")
     print(f"   - {PUBLIC_DIR / 'index.html'}")
     print(f"   - {PUBLIC_DIR / 'options.html'}")
+    print(f"\nOpen in browser: file://{PUBLIC_DIR / 'index.html'}")
 
 if __name__ == "__main__":
     main()
