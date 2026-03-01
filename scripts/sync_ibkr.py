@@ -191,13 +191,17 @@ def update_holdings(positions):
             print(f"   ✓ {symbol}: {ibkr_pos['currency']}{ibkr_pos['market_price']:.2f} × {ibkr_pos['quantity']:.0f}")
         else:
             # Auto-import new equity position
+            # Calculate actual cost basis from unrealized P&L
+            cost_basis_total = ibkr_pos['market_value'] - ibkr_pos['unrealized_pnl']
+            cost_basis_per_share = cost_basis_total / ibkr_pos['quantity'] if ibkr_pos['quantity'] != 0 else ibkr_pos['market_price']
+            
             new_holding = {
                 "ticker": symbol,
                 "name": symbol,
                 "category": "Equity",
                 "geography": "TBD",
                 "entry_date": str(date.today()),
-                "entry_price": ibkr_pos['market_price'],
+                "entry_price": cost_basis_per_share,
                 "current_price": ibkr_pos['market_price'],
                 "allocation_pct": 0,
                 "shares": ibkr_pos['quantity'],
