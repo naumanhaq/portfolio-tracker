@@ -62,31 +62,23 @@
         }
 
         .meta { font-size: 0.9rem; color: #999; margin-bottom: 3rem; }
-        .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin: 2rem 0; }
+        .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0; }
         .metric { border: 1px solid #e5e5e5; padding: 1.5rem; }
         .metric-label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #666; margin-bottom: 0.5rem; }
         .metric-value { font-size: 2rem; font-weight: 500; }
-        table { width: 100%; border-collapse: collapse; margin: 2rem 0; border: 1px solid #e5e5e5; font-size: 0.9rem; }
+        .category-section { margin: 3rem 0 1.5rem 0; border-bottom: 2px solid #2c2c2c; padding-bottom: 0.5rem; }
+        .category-title { font-family: 'Crimson Text', serif; font-size: 1.3rem; font-weight: 600; display: inline; }
+        .category-desc { font-size: 0.9rem; color: #666; margin-left: 1rem; font-style: italic; }
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0 2rem 0; border: 1px solid #e5e5e5; font-size: 0.9rem; }
         thead { border-bottom: 2px solid #2c2c2c; }
         th { text-align: left; padding: 0.75rem; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: #666; }
         th.right { text-align: right; }
         td { padding: 0.75rem; border-bottom: 1px solid #f0f0f0; }
         td.right { text-align: right; }
-        tbody tr { cursor: pointer; }
         tbody tr:hover { background: #f9f9f9; }
-        .ticker { font-family: 'Courier New', monospace; font-weight: bold; }
-        .status { display: inline-block; padding: 0.25rem 0.5rem; border: 1px solid; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; }
-        .status.open { border-color: #2d5016; color: #2d5016; }
-        .status.closed { border-color: #666; color: #666; }
+        .ticker { font-family: 'Courier New', monospace; font-weight: bold; font-size: 0.85rem; }
         .positive { color: #2d5016; }
         .negative { color: #8b0000; }
-        .detail-row { display: none; }
-        .detail-row.show { display: table-row; }
-        .detail-cell { padding: 2rem; background: #f9f9f9; border-bottom: 2px solid #e5e5e5; }
-        .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-        .detail-section { margin-bottom: 1.5rem; }
-        .section-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #666; margin-bottom: 0.5rem; font-weight: 600; }
-        .structure { font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8; }
     </style>
 </head>
 <body>
@@ -106,904 +98,170 @@
             Volatility trades. Short duration, asymmetric payoff.
         </div>
 
-        <p class="meta" style="margin-top: -2rem; margin-bottom: 2rem;">As of 2026-03-01</p>
+        <p class="meta" style="margin-top: -2rem; margin-bottom: 2rem;">As of 2026-03-02</p>
         
         <div class="metrics">
-            <div class="metric"><div class="metric-label">Total Trades</div><div class="metric-value">15</div></div>
-            <div class="metric"><div class="metric-label">Win Rate</div><div class="metric-value">0%</div></div>
-            <div class="metric"><div class="metric-label">Avg Return</div><div class="metric-value">0.0%</div></div>
-            <div class="metric"><div class="metric-label">Total P&L</div><div class="metric-value">$0</div></div>
+            <div class="metric"><div class="metric-label">Total Positions</div><div class="metric-value">14</div></div>
+            <div class="metric"><div class="metric-label">Total Value</div><div class="metric-value">$16,643</div></div>
+            <div class="metric"><div class="metric-label">Unrealized P&L</div><div class="metric-value">$5,910</div></div>
         </div>
-        
-        <h2>Trade Log</h2>
+
+        <div class="category-section">
+            <span class="category-title">Long-Term Strategic</span>
+            <span class="category-desc">LEAPS on core holdings & tail hedges</span>
+        </div>
         <table><thead><tr>
-            <th>ID</th>
-            <th>Ticker</th>
-            <th>Type</th>
-            <th>Entry</th>
-            <th>Status</th>
-            <th class="right">Max Loss</th>
-            <th class="right">Max Profit</th>
-            <th class="right">Actual P&L</th>
+            <th>Symbol</th><th>Type</th><th class="right">Value</th><th class="right">Cost</th><th class="right">P&L</th><th class="right">Return</th>
         </tr></thead><tbody>
 
-            <tr onclick="toggleDetail('T001')">
-                <td>T001</td>
-                <td class="ticker">SPY</td>
-                <td>P1</td>
-                <td>2026-02-01</td>
-                <td><span class="status open">open</span></td>
-                <td class="right negative">-$250</td>
-                <td class="right positive">+$150</td>
-                <td class="right "><strong>$0</strong></td>
-            </tr>
-            <tr class="detail-row" id="detail-T001">
-                <td colspan="8" class="detail-cell">
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Entry Thesis</div>
-                            <p>IV low (12th percentile), term structure flat. Buy near-term vol, sell longer-dated. Expecting IV mean-reversion.</p>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Structure</div>
-                            <div class="structure">
-                                Long: SPY Feb 28 550C<br>
-                                Short: SPY Mar 21 550C<br>
-                                Net Debit: $250.00
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Risk Profile</div>
-                            <div class="structure">
-                                Max Loss: $250<br>
-                                Max Profit: $150<br>
-                                R:R Ratio: 0.60:1
-                            </div>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Vol Metrics</div>
-                            <div class="structure">
-                                IV%: 12<br>
-                                VRP: -2.5<br>
-                                RV%: 18<br>
-                                Term: flat
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Expected Outcome</div>
-                            <p>IV rises as near-term contract decays faster than far-dated. Profit on vol expansion.</p>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Actual Outcome</div>
-                            <p>Pending (trade open)</p>
-                        </div>
-                    </div>
-                </td>
+            <tr>
+                <td class="ticker">GOOGL 261218C00160000</td>
+                <td>Call</td>
+                <td class="right">$15,839</td>
+                <td class="right">$3,332</td>
+                <td class="right positive">$12,507</td>
+                <td class="right positive"><strong>+375.4%</strong></td>
             </tr>
 
-            <tr onclick="toggleDetail('opt-002')">
-                <td>opt-002</td>
-                <td class="ticker">BBWI</td>
-                <td>Put Option</td>
-                <td>2026-03-01</td>
-                <td><span class="status open">open</span></td>
-                <td class="right negative">-$40</td>
-                <td class="right positive">+$0</td>
-                <td class="right "><strong>$0</strong></td>
-            </tr>
-            <tr class="detail-row" id="detail-opt-002">
-                <td colspan="8" class="detail-cell">
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Entry Thesis</div>
-                            <p>Add thesis</p>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Structure</div>
-                            <div class="structure">
-                                Long: BBWI 2026-03-20 $15.0 Put<br>
-                                Short: N/A<br>
-                                Net Debit: $0.10
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Risk Profile</div>
-                            <div class="structure">
-                                Max Loss: $40<br>
-                                Max Profit: $0<br>
-                                R:R Ratio: 0.00:1
-                            </div>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Vol Metrics</div>
-                            <div class="structure">
-                                IV%: TBD<br>
-                                VRP: TBD<br>
-                                RV%: TBD<br>
-                                Term: TBD
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Expected Outcome</div>
-                            <p>Add expected outcome</p>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Actual Outcome</div>
-                            <p>Pending (trade open)</p>
-                        </div>
-                    </div>
-                </td>
+            <tr>
+                <td class="ticker">QXO   271217C00020000</td>
+                <td>Call</td>
+                <td class="right">$903</td>
+                <td class="right">$849</td>
+                <td class="right positive">$54</td>
+                <td class="right positive"><strong>+6.3%</strong></td>
             </tr>
 
-            <tr onclick="toggleDetail('opt-003')">
-                <td>opt-003</td>
-                <td class="ticker">BBWI</td>
-                <td>Call Option</td>
-                <td>2026-03-01</td>
-                <td><span class="status open">open</span></td>
-                <td class="right negative">-$380</td>
-                <td class="right positive">+$0</td>
-                <td class="right "><strong>$0</strong></td>
-            </tr>
-            <tr class="detail-row" id="detail-opt-003">
-                <td colspan="8" class="detail-cell">
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Entry Thesis</div>
-                            <p>Add thesis</p>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Structure</div>
-                            <div class="structure">
-                                Long: BBWI 2027-01-15 $25.0 Call<br>
-                                Short: N/A<br>
-                                Net Debit: $3.80
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Risk Profile</div>
-                            <div class="structure">
-                                Max Loss: $380<br>
-                                Max Profit: $0<br>
-                                R:R Ratio: 0.00:1
-                            </div>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Vol Metrics</div>
-                            <div class="structure">
-                                IV%: TBD<br>
-                                VRP: TBD<br>
-                                RV%: TBD<br>
-                                Term: TBD
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Expected Outcome</div>
-                            <p>Add expected outcome</p>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Actual Outcome</div>
-                            <p>Pending (trade open)</p>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-
-            <tr onclick="toggleDetail('opt-004')">
-                <td>opt-004</td>
-                <td class="ticker">GOOGL</td>
-                <td>Call Option</td>
-                <td>2026-03-01</td>
-                <td><span class="status open">open</span></td>
-                <td class="right negative">-$15839</td>
-                <td class="right positive">+$0</td>
-                <td class="right "><strong>$0</strong></td>
-            </tr>
-            <tr class="detail-row" id="detail-opt-004">
-                <td colspan="8" class="detail-cell">
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Entry Thesis</div>
-                            <p>Add thesis</p>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Structure</div>
-                            <div class="structure">
-                                Long: GOOGL 2026-12-18 $160.0 Call<br>
-                                Short: N/A<br>
-                                Net Debit: $158.39
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Risk Profile</div>
-                            <div class="structure">
-                                Max Loss: $15839<br>
-                                Max Profit: $0<br>
-                                R:R Ratio: 0.00:1
-                            </div>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Vol Metrics</div>
-                            <div class="structure">
-                                IV%: TBD<br>
-                                VRP: TBD<br>
-                                RV%: TBD<br>
-                                Term: TBD
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Expected Outcome</div>
-                            <p>Add expected outcome</p>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Actual Outcome</div>
-                            <p>Pending (trade open)</p>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-
-            <tr onclick="toggleDetail('opt-005')">
-                <td>opt-005</td>
-                <td class="ticker">IGV</td>
-                <td>Call Option</td>
-                <td>2026-03-01</td>
-                <td><span class="status open">open</span></td>
-                <td class="right negative">-$1020</td>
-                <td class="right positive">+$0</td>
-                <td class="right "><strong>$0</strong></td>
-            </tr>
-            <tr class="detail-row" id="detail-opt-005">
-                <td colspan="8" class="detail-cell">
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Entry Thesis</div>
-                            <p>Add thesis</p>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Structure</div>
-                            <div class="structure">
-                                Long: IGV 2027-01-15 $85.0 Call<br>
-                                Short: N/A<br>
-                                Net Debit: $10.20
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Risk Profile</div>
-                            <div class="structure">
-                                Max Loss: $1020<br>
-                                Max Profit: $0<br>
-                                R:R Ratio: 0.00:1
-                            </div>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Vol Metrics</div>
-                            <div class="structure">
-                                IV%: TBD<br>
-                                VRP: TBD<br>
-                                RV%: TBD<br>
-                                Term: TBD
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Expected Outcome</div>
-                            <p>Add expected outcome</p>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Actual Outcome</div>
-                            <p>Pending (trade open)</p>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-
-            <tr onclick="toggleDetail('opt-006')">
-                <td>opt-006</td>
-                <td class="ticker">LYFT</td>
-                <td>Call Option</td>
-                <td>2026-03-01</td>
-                <td><span class="status open">open</span></td>
-                <td class="right negative">-$318</td>
-                <td class="right positive">+$0</td>
-                <td class="right "><strong>$0</strong></td>
-            </tr>
-            <tr class="detail-row" id="detail-opt-006">
-                <td colspan="8" class="detail-cell">
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Entry Thesis</div>
-                            <p>Add thesis</p>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Structure</div>
-                            <div class="structure">
-                                Long: LYFT 2027-01-15 $20.0 Call<br>
-                                Short: N/A<br>
-                                Net Debit: $1.59
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Risk Profile</div>
-                            <div class="structure">
-                                Max Loss: $318<br>
-                                Max Profit: $0<br>
-                                R:R Ratio: 0.00:1
-                            </div>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Vol Metrics</div>
-                            <div class="structure">
-                                IV%: TBD<br>
-                                VRP: TBD<br>
-                                RV%: TBD<br>
-                                Term: TBD
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Expected Outcome</div>
-                            <p>Add expected outcome</p>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Actual Outcome</div>
-                            <p>Pending (trade open)</p>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-
-            <tr onclick="toggleDetail('opt-007')">
-                <td>opt-007</td>
-                <td class="ticker">NVO</td>
-                <td>Call Option</td>
-                <td>2026-03-01</td>
-                <td><span class="status open">open</span></td>
-                <td class="right negative">-$138</td>
-                <td class="right positive">+$0</td>
-                <td class="right "><strong>$0</strong></td>
-            </tr>
-            <tr class="detail-row" id="detail-opt-007">
-                <td colspan="8" class="detail-cell">
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Entry Thesis</div>
-                            <p>Add thesis</p>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Structure</div>
-                            <div class="structure">
-                                Long: NVO 2027-01-15 $65.0 Call<br>
-                                Short: N/A<br>
-                                Net Debit: $1.38
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Risk Profile</div>
-                            <div class="structure">
-                                Max Loss: $138<br>
-                                Max Profit: $0<br>
-                                R:R Ratio: 0.00:1
-                            </div>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Vol Metrics</div>
-                            <div class="structure">
-                                IV%: TBD<br>
-                                VRP: TBD<br>
-                                RV%: TBD<br>
-                                Term: TBD
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Expected Outcome</div>
-                            <p>Add expected outcome</p>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Actual Outcome</div>
-                            <p>Pending (trade open)</p>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-
-            <tr onclick="toggleDetail('opt-008')">
-                <td>opt-008</td>
-                <td class="ticker">PYPL</td>
-                <td>Call Option</td>
-                <td>2026-03-01</td>
-                <td><span class="status open">open</span></td>
-                <td class="right negative">-$84</td>
-                <td class="right positive">+$0</td>
-                <td class="right "><strong>$0</strong></td>
-            </tr>
-            <tr class="detail-row" id="detail-opt-008">
-                <td colspan="8" class="detail-cell">
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Entry Thesis</div>
-                            <p>Add thesis</p>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Structure</div>
-                            <div class="structure">
-                                Long: PYPL 2026-12-18 $77.5 Call<br>
-                                Short: N/A<br>
-                                Net Debit: $0.84
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Risk Profile</div>
-                            <div class="structure">
-                                Max Loss: $84<br>
-                                Max Profit: $0<br>
-                                R:R Ratio: 0.00:1
-                            </div>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Vol Metrics</div>
-                            <div class="structure">
-                                IV%: TBD<br>
-                                VRP: TBD<br>
-                                RV%: TBD<br>
-                                Term: TBD
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Expected Outcome</div>
-                            <p>Add expected outcome</p>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Actual Outcome</div>
-                            <p>Pending (trade open)</p>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-
-            <tr onclick="toggleDetail('opt-009')">
-                <td>opt-009</td>
-                <td class="ticker">QXO</td>
-                <td>Call Option</td>
-                <td>2026-03-01</td>
-                <td><span class="status open">open</span></td>
-                <td class="right negative">-$903</td>
-                <td class="right positive">+$0</td>
-                <td class="right "><strong>$0</strong></td>
-            </tr>
-            <tr class="detail-row" id="detail-opt-009">
-                <td colspan="8" class="detail-cell">
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Entry Thesis</div>
-                            <p>Add thesis</p>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Structure</div>
-                            <div class="structure">
-                                Long: QXO 2027-12-17 $20.0 Call<br>
-                                Short: N/A<br>
-                                Net Debit: $9.03
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Risk Profile</div>
-                            <div class="structure">
-                                Max Loss: $903<br>
-                                Max Profit: $0<br>
-                                R:R Ratio: 0.00:1
-                            </div>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Vol Metrics</div>
-                            <div class="structure">
-                                IV%: TBD<br>
-                                VRP: TBD<br>
-                                RV%: TBD<br>
-                                Term: TBD
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Expected Outcome</div>
-                            <p>Add expected outcome</p>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Actual Outcome</div>
-                            <p>Pending (trade open)</p>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-
-            <tr onclick="toggleDetail('opt-010')">
-                <td>opt-010</td>
-                <td class="ticker">SPY</td>
-                <td>Put Option</td>
-                <td>2026-03-01</td>
-                <td><span class="status open">open</span></td>
-                <td class="right negative">-$878</td>
-                <td class="right positive">+$0</td>
-                <td class="right "><strong>$0</strong></td>
-            </tr>
-            <tr class="detail-row" id="detail-opt-010">
-                <td colspan="8" class="detail-cell">
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Entry Thesis</div>
-                            <p>Add thesis</p>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Structure</div>
-                            <div class="structure">
-                                Long: SPY 2028-01-21 $400.0 Put<br>
-                                Short: N/A<br>
-                                Net Debit: $8.79
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Risk Profile</div>
-                            <div class="structure">
-                                Max Loss: $878<br>
-                                Max Profit: $0<br>
-                                R:R Ratio: 0.00:1
-                            </div>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Vol Metrics</div>
-                            <div class="structure">
-                                IV%: TBD<br>
-                                VRP: TBD<br>
-                                RV%: TBD<br>
-                                Term: TBD
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Expected Outcome</div>
-                            <p>Add expected outcome</p>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Actual Outcome</div>
-                            <p>Pending (trade open)</p>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-
-            <tr onclick="toggleDetail('opt-011')">
-                <td>opt-011</td>
-                <td class="ticker">TGEN</td>
-                <td>Call Option</td>
-                <td>2026-03-01</td>
-                <td><span class="status open">open</span></td>
-                <td class="right negative">-$17</td>
-                <td class="right positive">+$0</td>
-                <td class="right "><strong>$0</strong></td>
-            </tr>
-            <tr class="detail-row" id="detail-opt-011">
-                <td colspan="8" class="detail-cell">
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Entry Thesis</div>
-                            <p>Add thesis</p>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Structure</div>
-                            <div class="structure">
-                                Long: TGEN 2026-04-17 $7.5 Call<br>
-                                Short: N/A<br>
-                                Net Debit: $0.17
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Risk Profile</div>
-                            <div class="structure">
-                                Max Loss: $17<br>
-                                Max Profit: $0<br>
-                                R:R Ratio: 0.00:1
-                            </div>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Vol Metrics</div>
-                            <div class="structure">
-                                IV%: TBD<br>
-                                VRP: TBD<br>
-                                RV%: TBD<br>
-                                Term: TBD
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Expected Outcome</div>
-                            <p>Add expected outcome</p>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Actual Outcome</div>
-                            <p>Pending (trade open)</p>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-
-            <tr onclick="toggleDetail('opt-012')">
-                <td>opt-012</td>
-                <td class="ticker">UBER</td>
-                <td>Call Option</td>
-                <td>2026-03-01</td>
-                <td><span class="status open">open</span></td>
-                <td class="right negative">-$231</td>
-                <td class="right positive">+$0</td>
-                <td class="right "><strong>$0</strong></td>
-            </tr>
-            <tr class="detail-row" id="detail-opt-012">
-                <td colspan="8" class="detail-cell">
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Entry Thesis</div>
-                            <p>Add thesis</p>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Structure</div>
-                            <div class="structure">
-                                Long: UBER 2026-05-15 $85.0 Call<br>
-                                Short: N/A<br>
-                                Net Debit: $2.31
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Risk Profile</div>
-                            <div class="structure">
-                                Max Loss: $231<br>
-                                Max Profit: $0<br>
-                                R:R Ratio: 0.00:1
-                            </div>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Vol Metrics</div>
-                            <div class="structure">
-                                IV%: TBD<br>
-                                VRP: TBD<br>
-                                RV%: TBD<br>
-                                Term: TBD
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Expected Outcome</div>
-                            <p>Add expected outcome</p>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Actual Outcome</div>
-                            <p>Pending (trade open)</p>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-
-            <tr onclick="toggleDetail('opt-013')">
-                <td>opt-013</td>
-                <td class="ticker">BBWI</td>
-                <td>Put Option</td>
-                <td>2026-03-01</td>
-                <td><span class="status open">open</span></td>
-                <td class="right negative">-$0</td>
-                <td class="right positive">+$0</td>
-                <td class="right "><strong>$0</strong></td>
-            </tr>
-            <tr class="detail-row" id="detail-opt-013">
-                <td colspan="8" class="detail-cell">
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Entry Thesis</div>
-                            <p>Add thesis</p>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Structure</div>
-                            <div class="structure">
-                                Long: N/A<br>
-                                Short: BBWI 2026-03-20 $25.0 Put<br>
-                                Net Debit: $3.02
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Risk Profile</div>
-                            <div class="structure">
-                                Max Loss: $0<br>
-                                Max Profit: $0<br>
-                                R:R Ratio: 0.00:1
-                            </div>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Vol Metrics</div>
-                            <div class="structure">
-                                IV%: TBD<br>
-                                VRP: TBD<br>
-                                RV%: TBD<br>
-                                Term: TBD
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Expected Outcome</div>
-                            <p>Add expected outcome</p>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Actual Outcome</div>
-                            <p>Pending (trade open)</p>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-
-            <tr onclick="toggleDetail('opt-014')">
-                <td>opt-014</td>
-                <td class="ticker">LYFT</td>
-                <td>Put Option</td>
-                <td>2026-03-01</td>
-                <td><span class="status open">open</span></td>
-                <td class="right negative">-$0</td>
-                <td class="right positive">+$0</td>
-                <td class="right "><strong>$0</strong></td>
-            </tr>
-            <tr class="detail-row" id="detail-opt-014">
-                <td colspan="8" class="detail-cell">
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Entry Thesis</div>
-                            <p>Add thesis</p>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Structure</div>
-                            <div class="structure">
-                                Long: N/A<br>
-                                Short: LYFT 2027-01-15 $17.0 Put<br>
-                                Net Debit: $4.92
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Risk Profile</div>
-                            <div class="structure">
-                                Max Loss: $0<br>
-                                Max Profit: $0<br>
-                                R:R Ratio: 0.00:1
-                            </div>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Vol Metrics</div>
-                            <div class="structure">
-                                IV%: TBD<br>
-                                VRP: TBD<br>
-                                RV%: TBD<br>
-                                Term: TBD
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Expected Outcome</div>
-                            <p>Add expected outcome</p>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Actual Outcome</div>
-                            <p>Pending (trade open)</p>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-
-            <tr onclick="toggleDetail('opt-015')">
-                <td>opt-015</td>
-                <td class="ticker">UBER</td>
-                <td>Put Option</td>
-                <td>2026-03-01</td>
-                <td><span class="status open">open</span></td>
-                <td class="right negative">-$0</td>
-                <td class="right positive">+$0</td>
-                <td class="right "><strong>$0</strong></td>
-            </tr>
-            <tr class="detail-row" id="detail-opt-015">
-                <td colspan="8" class="detail-cell">
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Entry Thesis</div>
-                            <p>Add thesis</p>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Structure</div>
-                            <div class="structure">
-                                Long: N/A<br>
-                                Short: UBER 2026-05-15 $75.0 Put<br>
-                                Net Debit: $5.22
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Risk Profile</div>
-                            <div class="structure">
-                                Max Loss: $0<br>
-                                Max Profit: $0<br>
-                                R:R Ratio: 0.00:1
-                            </div>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Vol Metrics</div>
-                            <div class="structure">
-                                IV%: TBD<br>
-                                VRP: TBD<br>
-                                RV%: TBD<br>
-                                Term: TBD
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Expected Outcome</div>
-                            <p>Add expected outcome</p>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Actual Outcome</div>
-                            <p>Pending (trade open)</p>
-                        </div>
-                    </div>
-                </td>
+            <tr>
+                <td class="ticker">SPY   280121P00400000</td>
+                <td>Put</td>
+                <td class="right">$878</td>
+                <td class="right">$938</td>
+                <td class="right negative">$-60</td>
+                <td class="right negative"><strong>-6.3%</strong></td>
             </tr>
 
         </tbody></table>
+
+        <div class="category-section">
+            <span class="category-title">Medium-Term</span>
+            <span class="category-desc">6-12 month positions</span>
+        </div>
+        <table><thead><tr>
+            <th>Symbol</th><th>Type</th><th class="right">Value</th><th class="right">Cost</th><th class="right">P&L</th><th class="right">Return</th>
+        </tr></thead><tbody>
+
+            <tr>
+                <td class="ticker">BBWI  270115C00025000</td>
+                <td>Call</td>
+                <td class="right">$380</td>
+                <td class="right">$750</td>
+                <td class="right negative">$-370</td>
+                <td class="right negative"><strong>-49.4%</strong></td>
+            </tr>
+
+            <tr>
+                <td class="ticker">IGV   270115C00085000</td>
+                <td>Call</td>
+                <td class="right">$1,020</td>
+                <td class="right">$1,246</td>
+                <td class="right negative">$-226</td>
+                <td class="right negative"><strong>-18.1%</strong></td>
+            </tr>
+
+            <tr>
+                <td class="ticker">LYFT  270115C00020000</td>
+                <td>Call</td>
+                <td class="right">$318</td>
+                <td class="right">$904</td>
+                <td class="right negative">$-586</td>
+                <td class="right negative"><strong>-64.8%</strong></td>
+            </tr>
+
+            <tr>
+                <td class="ticker">LYFT  270115P00017000</td>
+                <td>Put</td>
+                <td class="right">$-1,476</td>
+                <td class="right">$880</td>
+                <td class="right negative">$-596</td>
+                <td class="right positive"><strong>+67.7%</strong></td>
+            </tr>
+
+            <tr>
+                <td class="ticker">NVO   270115C00065000</td>
+                <td>Call</td>
+                <td class="right">$138</td>
+                <td class="right">$1,645</td>
+                <td class="right negative">$-1,508</td>
+                <td class="right negative"><strong>-91.6%</strong></td>
+            </tr>
+
+            <tr>
+                <td class="ticker">PYPL  261218C00077500</td>
+                <td>Call</td>
+                <td class="right">$84</td>
+                <td class="right">$1,706</td>
+                <td class="right negative">$-1,622</td>
+                <td class="right negative"><strong>-95.1%</strong></td>
+            </tr>
+
+        </tbody></table>
+
+        <div class="category-section">
+            <span class="category-title">Short-Term Tactical</span>
+            <span class="category-desc">Directional bets (<6 months)</span>
+        </div>
+        <table><thead><tr>
+            <th>Symbol</th><th>Type</th><th class="right">Value</th><th class="right">Cost</th><th class="right">P&L</th><th class="right">Return</th>
+        </tr></thead><tbody>
+
+            <tr>
+                <td class="ticker">BBWI  260320P00015000</td>
+                <td>Put</td>
+                <td class="right">$40</td>
+                <td class="right">$120</td>
+                <td class="right negative">$-80</td>
+                <td class="right negative"><strong>-66.7%</strong></td>
+            </tr>
+
+            <tr>
+                <td class="ticker">BBWI  260320P00025000</td>
+                <td>Put</td>
+                <td class="right">$-1,207</td>
+                <td class="right">$860</td>
+                <td class="right negative">$-347</td>
+                <td class="right positive"><strong>+40.3%</strong></td>
+            </tr>
+
+            <tr>
+                <td class="ticker">TGEN  260417C00007500</td>
+                <td>Call</td>
+                <td class="right">$17</td>
+                <td class="right">$448</td>
+                <td class="right negative">$-432</td>
+                <td class="right negative"><strong>-96.3%</strong></td>
+            </tr>
+
+            <tr>
+                <td class="ticker">UBER  260515C00085000</td>
+                <td>Call</td>
+                <td class="right">$231</td>
+                <td class="right">$931</td>
+                <td class="right negative">$-700</td>
+                <td class="right negative"><strong>-75.2%</strong></td>
+            </tr>
+
+            <tr>
+                <td class="ticker">UBER  260515P00075000</td>
+                <td>Put</td>
+                <td class="right">$-522</td>
+                <td class="right">$397</td>
+                <td class="right negative">$-126</td>
+                <td class="right positive"><strong>+31.6%</strong></td>
+            </tr>
+
+        </tbody></table>
+
     </div>
-    <script>
-        function toggleDetail(tradeId) {
-            const row = document.getElementById('detail-' + tradeId);
-            row.classList.toggle('show');
-        }
-    </script>
 </body>
 </html>

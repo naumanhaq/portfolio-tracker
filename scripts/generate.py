@@ -308,9 +308,9 @@ def generate_holdings(holdings_data):
     return html
 
 def generate_trades(trades_data):
-    trades = trades_data["trades"]
-    performance = trades_data.get("performance", {})
-    last_updated = trades_data["last_updated"]
+    categories = trades_data.get("categories", {})
+    summary = trades_data.get("summary", {})
+    last_updated = trades_data.get("last_updated", "N/A")
     
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -323,31 +323,23 @@ def generate_trades(trades_data):
     <style>
         {base_styles()}
         .meta {{ font-size: 0.9rem; color: #999; margin-bottom: 3rem; }}
-        .metrics {{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin: 2rem 0; }}
+        .metrics {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0; }}
         .metric {{ border: 1px solid #e5e5e5; padding: 1.5rem; }}
         .metric-label {{ font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #666; margin-bottom: 0.5rem; }}
         .metric-value {{ font-size: 2rem; font-weight: 500; }}
-        table {{ width: 100%; border-collapse: collapse; margin: 2rem 0; border: 1px solid #e5e5e5; font-size: 0.9rem; }}
+        .category-section {{ margin: 3rem 0 1.5rem 0; border-bottom: 2px solid #2c2c2c; padding-bottom: 0.5rem; }}
+        .category-title {{ font-family: 'Crimson Text', serif; font-size: 1.3rem; font-weight: 600; display: inline; }}
+        .category-desc {{ font-size: 0.9rem; color: #666; margin-left: 1rem; font-style: italic; }}
+        table {{ width: 100%; border-collapse: collapse; margin: 1rem 0 2rem 0; border: 1px solid #e5e5e5; font-size: 0.9rem; }}
         thead {{ border-bottom: 2px solid #2c2c2c; }}
         th {{ text-align: left; padding: 0.75rem; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: #666; }}
         th.right {{ text-align: right; }}
         td {{ padding: 0.75rem; border-bottom: 1px solid #f0f0f0; }}
         td.right {{ text-align: right; }}
-        tbody tr {{ cursor: pointer; }}
         tbody tr:hover {{ background: #f9f9f9; }}
-        .ticker {{ font-family: 'Courier New', monospace; font-weight: bold; }}
-        .status {{ display: inline-block; padding: 0.25rem 0.5rem; border: 1px solid; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; }}
-        .status.open {{ border-color: #2d5016; color: #2d5016; }}
-        .status.closed {{ border-color: #666; color: #666; }}
+        .ticker {{ font-family: 'Courier New', monospace; font-weight: bold; font-size: 0.85rem; }}
         .positive {{ color: #2d5016; }}
         .negative {{ color: #8b0000; }}
-        .detail-row {{ display: none; }}
-        .detail-row.show {{ display: table-row; }}
-        .detail-cell {{ padding: 2rem; background: #f9f9f9; border-bottom: 2px solid #e5e5e5; }}
-        .detail-grid {{ display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }}
-        .detail-section {{ margin-bottom: 1.5rem; }}
-        .section-title {{ font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #666; margin-bottom: 0.5rem; font-weight: 600; }}
-        .structure {{ font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8; }}
     </style>
 </head>
 <body>
@@ -356,106 +348,71 @@ def generate_trades(trades_data):
         <p class="meta" style="margin-top: -2rem; margin-bottom: 2rem;">As of {last_updated}</p>
         
         <div class="metrics">
-            <div class="metric"><div class="metric-label">Total Trades</div><div class="metric-value">{len(trades)}</div></div>
-            <div class="metric"><div class="metric-label">Win Rate</div><div class="metric-value">{performance.get('win_rate', 0):.0f}%</div></div>
-            <div class="metric"><div class="metric-label">Avg Return</div><div class="metric-value">{performance.get('avg_return', 0):.1f}%</div></div>
-            <div class="metric"><div class="metric-label">Total P&L</div><div class="metric-value">${performance.get('total_pnl', 0):,.0f}</div></div>
+            <div class="metric"><div class="metric-label">Total Positions</div><div class="metric-value">{summary.get('total_positions', 0)}</div></div>
+            <div class="metric"><div class="metric-label">Total Value</div><div class="metric-value">${summary.get('total_value', 0):,.0f}</div></div>
+            <div class="metric"><div class="metric-label">Unrealized P&L</div><div class="metric-value">${summary.get('total_unrealized_pnl', 0):,.0f}</div></div>
         </div>
-        
-        <h2>Trade Log</h2>
-        <table><thead><tr>
-            <th>ID</th>
-            <th>Ticker</th>
-            <th>Type</th>
-            <th>Entry</th>
-            <th>Status</th>
-            <th class="right">Max Loss</th>
-            <th class="right">Max Profit</th>
-            <th class="right">Actual P&L</th>
-        </tr></thead><tbody>
 """
     
-    for trade in trades:
-        status_class = "open" if trade["status"] == "open" else "closed"
-        max_loss = trade['structure'].get('max_loss', 0)
-        profit_pot = trade['structure'].get('profit_potential', 0)
-        actual_pnl = trade.get('realized_pnl', 0) or 0
-        pnl_class = "positive" if actual_pnl > 0 else ("negative" if actual_pnl < 0 else "")
-        pnl_sign = "+" if actual_pnl > 0 else ""
+    # Render each category
+    for cat_key in ['long_term_strategic', 'medium_term', 'short_term_tactical']:
+        if cat_key not in categories:
+            continue
+            
+        cat = categories[cat_key]
+        positions = cat.get('positions', [])
         
         html += f"""
-            <tr onclick="toggleDetail('{trade['id']}')">
-                <td>{trade['id']}</td>
-                <td class="ticker">{trade['ticker']}</td>
-                <td>{trade['trade_type']}</td>
-                <td>{trade['entry_date']}</td>
-                <td><span class="status {status_class}">{trade['status']}</span></td>
-                <td class="right negative">-${max_loss:.0f}</td>
-                <td class="right positive">+${profit_pot:.0f}</td>
-                <td class="right {pnl_class}"><strong>{pnl_sign}${actual_pnl:.0f}</strong></td>
+        <div class="category-section">
+            <span class="category-title">{cat['name']}</span>
+            <span class="category-desc">{cat['description']}</span>
+        </div>
+        <table><thead><tr>
+            <th>Symbol</th><th>Type</th><th class="right">Value</th><th class="right">Cost</th><th class="right">P&L</th><th class="right">Return</th>
+        </tr></thead><tbody>
+"""
+        
+        for opt in positions:
+            symbol = opt['symbol']
+            value = opt['value']
+            cost = opt.get('cost_basis', 0)
+            pnl = opt['unrealized_pnl']
+            ret = opt.get('return_pct', 0)
+            
+            ret_sign = '+' if ret > 0 else ''
+            ret_class = 'positive' if ret > 0 else 'negative'
+            pnl_class = 'positive' if pnl > 0 else 'negative'
+            
+            # Parse symbol for type (Call/Put)
+            if 'C' in symbol.split()[-1]:
+                opt_type = 'Call'
+            elif 'P' in symbol.split()[-1]:
+                opt_type = 'Put'
+            else:
+                opt_type = '-'
+            
+            html += f"""
+            <tr>
+                <td class="ticker">{symbol}</td>
+                <td>{opt_type}</td>
+                <td class="right">${value:,.0f}</td>
+                <td class="right">${abs(cost):,.0f}</td>
+                <td class="right {pnl_class}">${pnl:,.0f}</td>
+                <td class="right {ret_class}"><strong>{ret_sign}{ret:.1f}%</strong></td>
             </tr>
-            <tr class="detail-row" id="detail-{trade['id']}">
-                <td colspan="8" class="detail-cell">
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Entry Thesis</div>
-                            <p>{trade['entry_thesis']}</p>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Structure</div>
-                            <div class="structure">
-                                Long: {trade['structure']['long']}<br>
-                                Short: {trade['structure']['short']}<br>
-                                Net Debit: ${trade['structure']['net_debit']:.2f}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Risk Profile</div>
-                            <div class="structure">
-                                Max Loss: ${max_loss:.0f}<br>
-                                Max Profit: ${profit_pot:.0f}<br>
-                                R:R Ratio: {(profit_pot/max_loss if max_loss > 0 else 0):.2f}:1
-                            </div>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Vol Metrics</div>
-                            <div class="structure">
-                                IV%: {trade['moontower_metrics']['iv_percentile']}<br>
-                                VRP: {trade['moontower_metrics']['vrp']}<br>
-                                RV%: {trade['moontower_metrics']['rv_percentile']}<br>
-                                Term: {trade['moontower_metrics']['term_structure']}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-grid">
-                        <div class="detail-section">
-                            <div class="section-title">Expected Outcome</div>
-                            <p>{trade['expected_outcome']}</p>
-                        </div>
-                        <div class="detail-section">
-                            <div class="section-title">Actual Outcome</div>
-                            <p>{trade['actual_outcome'] or 'Pending (trade open)'}</p>
-                        </div>
-                    </div>
-                </td>
-            </tr>
+"""
+        
+        html += """
+        </tbody></table>
 """
     
     html += """
-        </tbody></table>
     </div>
-    <script>
-        function toggleDetail(tradeId) {
-            const row = document.getElementById('detail-' + tradeId);
-            row.classList.toggle('show');
-        }
-    </script>
 </body>
 </html>
 """
     return html
+
 
 def main():
     print("🔨 Generating complete site...")
