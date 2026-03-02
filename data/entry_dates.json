@@ -136,5 +136,12 @@
     "entry_price": 10.12,
     "total_buys": 1,
     "total_quantity": 300
+  },
+  "SLm": {
+    "entry_date": "2025-11-06",
+    "entry_price": 32.95,
+    "total_buys": 2,
+    "total_quantity": 300,
+    "note": "IBKR ticker: 6SZA (German exchange)"
   }
 }
