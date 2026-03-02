@@ -325,7 +325,7 @@
         "value": -1206.68,
         "cost_basis": -860.02624,
         "unrealized_pnl": -346.65376,
-        "return_pct": 40.31
+        "return_pct": -40.31
       },
       {
         "symbol": "BBWI  270115C00025000",
@@ -380,7 +380,7 @@
         "value": -1475.79,
         "cost_basis": -879.88638,
         "unrealized_pnl": -595.90362,
-        "return_pct": 67.73
+        "return_pct": -67.73
       },
       {
         "symbol": "NVO   270115C00065000",
@@ -457,7 +457,7 @@
         "value": -522.5,
         "cost_basis": -396.98061,
         "unrealized_pnl": -125.51939,
-        "return_pct": 31.62
+        "return_pct": -31.62
       }
     ],
     "etfs": [
