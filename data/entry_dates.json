@@ -1,0 +1,140 @@
+{
+  "VWRA": {
+    "entry_date": "2020-08-27",
+    "entry_price": 89.85,
+    "total_buys": 54,
+    "total_quantity": 862.1461
+  },
+  "RMS": {
+    "entry_date": "2024-02-28",
+    "entry_price": 2307.5,
+    "total_buys": 9,
+    "total_quantity": 7.0168
+  },
+  "ADBE": {
+    "entry_date": "2024-04-05",
+    "entry_price": 495.0,
+    "total_buys": 8,
+    "total_quantity": 135.0
+  },
+  "CSU": {
+    "entry_date": "2025-12-09",
+    "entry_price": 3336.47,
+    "total_buys": 19,
+    "total_quantity": 8.5549
+  },
+  "LMN": {
+    "entry_date": "2025-12-08",
+    "entry_price": 28.948,
+    "total_buys": 15,
+    "total_quantity": 700.0
+  },
+  "TOI": {
+    "entry_date": "2025-12-08",
+    "entry_price": 123.65,
+    "total_buys": 14,
+    "total_quantity": 190.0
+  },
+  "CHG": {
+    "entry_date": "2025-12-30",
+    "entry_price": 41.0,
+    "total_buys": 1,
+    "total_quantity": 100.0
+  },
+  "EXO": {
+    "entry_date": "2025-12-16",
+    "entry_price": 72.4,
+    "total_buys": 5,
+    "total_quantity": 185.0
+  },
+  "BRBR": {
+    "entry_date": "2025-10-31",
+    "entry_price": 30.08,
+    "total_buys": 6,
+    "total_quantity": 600.0
+  },
+  "CPRT": {
+    "entry_date": "2025-12-08",
+    "entry_price": 38.345,
+    "total_buys": 1,
+    "total_quantity": 100.0
+  },
+  "GOOGL": {
+    "entry_date": "2025-04-08",
+    "entry_price": 150.23,
+    "total_buys": 3,
+    "total_quantity": 35.0168
+  },
+  "IAU": {
+    "entry_date": "2025-06-30",
+    "entry_price": 61.88,
+    "total_buys": 1,
+    "total_quantity": 400.0
+  },
+  "IBIT": {
+    "entry_date": "2025-06-27",
+    "entry_price": 60.9556,
+    "total_buys": 5,
+    "total_quantity": 400.0
+  },
+  "QXO": {
+    "entry_date": "2025-09-11",
+    "entry_price": 21.72,
+    "total_buys": 3,
+    "total_quantity": 250.0
+  },
+  "RACE": {
+    "entry_date": "2025-12-05",
+    "entry_price": 396.97,
+    "total_buys": 7,
+    "total_quantity": 40.0
+  },
+  "SLV": {
+    "entry_date": "2025-07-11",
+    "entry_price": 34.878,
+    "total_buys": 1,
+    "total_quantity": 100.0
+  },
+  "SSRM": {
+    "entry_date": "2025-11-05",
+    "entry_price": 18.858,
+    "total_buys": 2,
+    "total_quantity": 200.0
+  },
+  "U.U": {
+    "entry_date": "2025-10-07",
+    "entry_price": 19.59,
+    "total_buys": 1,
+    "total_quantity": 300.0
+  },
+  "UBER": {
+    "entry_date": "2025-12-12",
+    "entry_price": 84.74,
+    "total_buys": 5,
+    "total_quantity": 80.0
+  },
+  "BRK B": {
+    "entry_date": "2026-01-08",
+    "entry_price": 499.99,
+    "total_buys": 3,
+    "total_quantity": 15.1862
+  },
+  "MU": {
+    "entry_date": "2026-01-20",
+    "entry_price": 367.46,
+    "total_buys": 2,
+    "total_quantity": 15.0
+  },
+  "IGV": {
+    "entry_date": "2026-02-10",
+    "entry_price": 86.2493,
+    "total_buys": 4,
+    "total_quantity": 40.0
+  },
+  "SCZM": {
+    "entry_date": "2026-01-07",
+    "entry_price": 10.12,
+    "total_buys": 1,
+    "total_quantity": 300
+  }
+}

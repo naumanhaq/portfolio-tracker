@@ -1,0 +1,42 @@
+{
+  "account": "Interactive Brokers U4407190",
+  "currency": "USD",
+  "flows": [
+    {"date": "2020-08-24", "type": "deposit", "amount": 20265.00},
+    {"date": "2021-07-27", "type": "deposit", "amount": 6965.00},
+    {"date": "2024-01-30", "type": "deposit", "amount": 25000.00},
+    {"date": "2024-04-04", "type": "deposit", "amount": 7000.00},
+    {"date": "2024-04-24", "type": "deposit", "amount": 4000.00},
+    {"date": "2024-06-25", "type": "withdrawal", "amount": -12500.00},
+    {"date": "2024-06-30", "type": "deposit", "amount": 32000.00},
+    {"date": "2024-07-29", "type": "deposit", "amount": 2000.00},
+    {"date": "2024-08-14", "type": "deposit", "amount": 50000.00},
+    {"date": "2024-08-15", "type": "deposit", "amount": 45000.00},
+    {"date": "2024-08-27", "type": "deposit", "amount": 3000.00},
+    {"date": "2024-09-26", "type": "deposit", "amount": 3000.00},
+    {"date": "2024-10-29", "type": "withdrawal", "amount": -10000.00},
+    {"date": "2024-11-19", "type": "withdrawal", "amount": -2500.00},
+    {"date": "2024-11-26", "type": "withdrawal", "amount": -4500.00},
+    {"date": "2025-01-30", "type": "deposit", "amount": 5400.00},
+    {"date": "2025-02-10", "type": "deposit", "amount": 20000.00},
+    {"date": "2025-02-14", "type": "deposit", "amount": 10000.00},
+    {"date": "2025-02-28", "type": "deposit", "amount": 5000.00},
+    {"date": "2025-03-25", "type": "deposit", "amount": 3000.00},
+    {"date": "2025-04-07", "type": "deposit", "amount": 2500.00},
+    {"date": "2025-04-08", "type": "deposit", "amount": 5000.00},
+    {"date": "2025-04-23", "type": "deposit", "amount": 1500.00},
+    {"date": "2025-05-23", "type": "deposit", "amount": 2000.00},
+    {"date": "2025-06-26", "type": "deposit", "amount": 4000.00},
+    {"date": "2025-07-18", "type": "withdrawal", "amount": -2000.00},
+    {"date": "2025-08-11", "type": "withdrawal", "amount": -55000.00},
+    {"date": "2025-08-11", "type": "withdrawal", "amount": -25000.00},
+    {"date": "2026-01-23", "type": "deposit", "amount": 11000.00}
+  ],
+  "summary": {
+    "total_deposits": 175630.25,
+    "total_withdrawals": 19500.00,
+    "net_capital_deployed": 156130.25,
+    "largest_deposit": {"date": "2024-08-14", "amount": 50000.00},
+    "largest_withdrawal": {"date": "2025-08-11", "amount": 55000.00}
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "as_of_date": "2026-02-28",
+  "account_value": 238092.76,
+  "total_deposits": 175630.25,
+  "total_withdrawals": 19500.00,
+  "net_capital_deployed": 156130.25,
+  "absolute_gain": 81962.51,
+  "irr_annualized": 0.1714,
+  "twr_cumulative": 0.6516,
+  "twr_annualized": 0.0952,
+  "time_period_years": 5.51,
+  "benchmark_spxtr": {
+    "cumulative": 1.174,
+    "annualized": 0.1976
+  },
+  "alpha_vs_benchmark": -0.0262,
+  "best_month": {
+    "date": "2025-05",
+    "return": 0.1303
+  },
+  "worst_month": {
+    "date": "2022-04",
+    "return": -0.0904
+  }
+}
