@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-03-01",
+  "last_updated": "2026-02-28",
   "portfolio_inception": "2024-06-15",
   "portfolio": [
     {
@@ -415,6 +415,6 @@
     "ytd_return": 1.053352803,
     "one_year_return": 19.71031442,
     "since_inception_return": 65.16247374,
-    "annualized_irr": 11.847722498181817
+    "annualized_irr": 17.14
   }
 }
