@@ -6,6 +6,7 @@ Complete 3-page generator with SEO + risk columns
 import json
 from pathlib import Path
 from datetime import datetime, date
+from collections import defaultdict
 
 PROJECT_ROOT = Path(__file__).parent.parent
 DATA_DIR = PROJECT_ROOT / "data"
@@ -210,6 +211,16 @@ def generate_holdings(holdings_data):
     last_updated = holdings_data["last_updated"]
     inception = holdings_data.get("portfolio_inception", "N/A")
     
+    # Group by asset class
+    by_category = defaultdict(list)
+    for holding in portfolio:
+        by_category[holding['category']].append(holding)
+    
+    # Sort categories by total allocation
+    category_totals = {cat: sum(h['allocation_pct'] for h in holdings) 
+                       for cat, holdings in by_category.items()}
+    sorted_categories = sorted(category_totals.items(), key=lambda x: x[1], reverse=True)
+    
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -226,7 +237,10 @@ def generate_holdings(holdings_data):
         .metric-label {{ font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #666; margin-bottom: 0.5rem; }}
         .metric-value {{ font-size: 2rem; font-weight: 500; }}
         .metric-value.positive {{ color: #2d5016; }}
-        table {{ width: 100%; border-collapse: collapse; margin: 2rem 0; border: 1px solid #e5e5e5; }}
+        .asset-class {{ margin: 3rem 0 1.5rem 0; border-bottom: 2px solid #2c2c2c; padding-bottom: 0.5rem; }}
+        .asset-class-title {{ font-family: 'Crimson Text', serif; font-size: 1.3rem; font-weight: 600; display: inline; }}
+        .asset-class-allocation {{ font-size: 1rem; color: #666; margin-left: 1rem; }}
+        table {{ width: 100%; border-collapse: collapse; margin: 1rem 0 2rem 0; border: 1px solid #e5e5e5; }}
         thead {{ border-bottom: 2px solid #2c2c2c; }}
         th {{ text-align: left; padding: 1rem; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: #666; }}
         th.right {{ text-align: right; }}
@@ -234,8 +248,8 @@ def generate_holdings(holdings_data):
         td.right {{ text-align: right; }}
         tbody tr:hover {{ background: #f9f9f9; }}
         .ticker {{ font-family: 'Courier New', monospace; font-weight: bold; }}
-        .category {{ display: inline-block; padding: 0.25rem 0.5rem; border: 1px solid #ccc; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }}
         .positive {{ color: #2d5016; }}
+        .negative {{ color: #8b0000; }}
     </style>
 </head>
 <body>
@@ -248,32 +262,45 @@ def generate_holdings(holdings_data):
             <div class="metric"><div class="metric-label">Since Inception</div><div class="metric-value positive">+{performance.get('since_inception_return', 0):.1f}%</div></div>
             <div class="metric"><div class="metric-label">Annualized IRR</div><div class="metric-value">{performance.get('annualized_irr', 0):.1f}%</div></div>
         </div>
-        <h2>Current Positions</h2>
+"""
+    
+    # Generate sections for each asset class
+    for category, total_alloc in sorted_categories:
+        holdings = sorted(by_category[category], key=lambda x: x['allocation_pct'], reverse=True)
+        
+        html += f"""
+        <div class="asset-class">
+            <span class="asset-class-title">{category}</span>
+            <span class="asset-class-allocation">({total_alloc:.1f}% allocation)</span>
+        </div>
         <table><thead><tr>
-            <th>Ticker</th><th>Name</th><th>Category</th><th>Geography</th>
+            <th>Ticker</th><th>Name</th><th>Geography</th>
             <th class="right">Allocation</th><th class="right">Return</th><th class="right">Holding Period</th>
         </tr></thead><tbody>
 """
-    
-    for holding in portfolio:
-        ret = calculate_return(holding["entry_price"], holding.get("current_price"))
-        period = calculate_holding_period(holding["entry_date"])
-        ret_sign = "+" if ret and ret > 0 else ""
         
-        html += f"""
+        for holding in holdings:
+            ret = calculate_return(holding["entry_price"], holding.get("current_price"))
+            period = calculate_holding_period(holding["entry_date"])
+            ret_sign = "+" if ret and ret > 0 else ""
+            ret_class = "positive" if ret and ret > 0 else "negative"
+            
+            html += f"""
             <tr>
                 <td class="ticker">{holding['ticker']}</td>
                 <td>{holding['name']}</td>
-                <td><span class="category">{holding['category']}</span></td>
                 <td>{holding.get('geography', 'N/A')}</td>
                 <td class="right"><strong>{holding['allocation_pct']:.1f}%</strong></td>
-                <td class="right positive"><strong>{ret_sign}{ret:.1f}%</strong></td>
+                <td class="right {ret_class}"><strong>{ret_sign}{ret:.1f}%</strong></td>
                 <td class="right">{period}</td>
             </tr>
 """
+        
+        html += """
+        </tbody></table>
+"""
     
     html += """
-        </tbody></table>
     </div>
 </body>
 </html>

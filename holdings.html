@@ -67,7 +67,10 @@
         .metric-label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #666; margin-bottom: 0.5rem; }
         .metric-value { font-size: 2rem; font-weight: 500; }
         .metric-value.positive { color: #2d5016; }
-        table { width: 100%; border-collapse: collapse; margin: 2rem 0; border: 1px solid #e5e5e5; }
+        .asset-class { margin: 3rem 0 1.5rem 0; border-bottom: 2px solid #2c2c2c; padding-bottom: 0.5rem; }
+        .asset-class-title { font-family: 'Crimson Text', serif; font-size: 1.3rem; font-weight: 600; display: inline; }
+        .asset-class-allocation { font-size: 1rem; color: #666; margin-left: 1rem; }
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0 2rem 0; border: 1px solid #e5e5e5; }
         thead { border-bottom: 2px solid #2c2c2c; }
         th { text-align: left; padding: 1rem; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: #666; }
         th.right { text-align: right; }
@@ -75,8 +78,8 @@
         td.right { text-align: right; }
         tbody tr:hover { background: #f9f9f9; }
         .ticker { font-family: 'Courier New', monospace; font-weight: bold; }
-        .category { display: inline-block; padding: 0.25rem 0.5rem; border: 1px solid #ccc; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
         .positive { color: #2d5016; }
+        .negative { color: #8b0000; }
     </style>
 </head>
 <body>
@@ -103,126 +106,46 @@
             <div class="metric"><div class="metric-label">Since Inception</div><div class="metric-value positive">+65.2%</div></div>
             <div class="metric"><div class="metric-label">Annualized IRR</div><div class="metric-value">17.1%</div></div>
         </div>
-        <h2>Current Positions</h2>
+
+        <div class="asset-class">
+            <span class="asset-class-title">Technology</span>
+            <span class="asset-class-allocation">(32.5% allocation)</span>
+        </div>
         <table><thead><tr>
-            <th>Ticker</th><th>Name</th><th>Category</th><th>Geography</th>
+            <th>Ticker</th><th>Name</th><th>Geography</th>
             <th class="right">Allocation</th><th class="right">Return</th><th class="right">Holding Period</th>
         </tr></thead><tbody>
 
             <tr>
                 <td class="ticker">CSU</td>
                 <td>Constellation Software</td>
-                <td><span class="category">Technology</span></td>
                 <td>Canada</td>
                 <td class="right"><strong>7.8%</strong></td>
-                <td class="right positive"><strong>-24.5%</strong></td>
-                <td class="right">2m</td>
-            </tr>
-
-            <tr>
-                <td class="ticker">LMN</td>
-                <td>Lumine Group</td>
-                <td><span class="category">Technology</span></td>
-                <td>Canada</td>
-                <td class="right"><strong>5.4%</strong></td>
-                <td class="right positive"><strong>-26.7%</strong></td>
+                <td class="right negative"><strong>-24.5%</strong></td>
                 <td class="right">2m</td>
             </tr>
 
             <tr>
                 <td class="ticker">TOI</td>
                 <td>Topicus.com</td>
-                <td><span class="category">Technology</span></td>
                 <td>Canada</td>
                 <td class="right"><strong>6.4%</strong></td>
-                <td class="right positive"><strong>-24.2%</strong></td>
+                <td class="right negative"><strong>-24.2%</strong></td>
                 <td class="right">2m</td>
             </tr>
 
             <tr>
-                <td class="ticker">CHG</td>
-                <td>Compagnie Financière Richemont (Cartier)</td>
-                <td><span class="category">Luxury Goods</span></td>
-                <td>Europe</td>
-                <td class="right"><strong>1.0%</strong></td>
-                <td class="right positive"><strong>-33.7%</strong></td>
-                <td class="right">2m</td>
-            </tr>
-
-            <tr>
-                <td class="ticker">EXO</td>
-                <td>Exor N.V.</td>
-                <td><span class="category">Luxury Goods</span></td>
-                <td>Europe</td>
-                <td class="right"><strong>5.0%</strong></td>
-                <td class="right positive"><strong>+2.7%</strong></td>
-                <td class="right">2m</td>
-            </tr>
-
-            <tr>
-                <td class="ticker">RMS</td>
-                <td>Hermès International</td>
-                <td><span class="category">Luxury Goods</span></td>
-                <td>Europe</td>
-                <td class="right"><strong>5.2%</strong></td>
-                <td class="right positive"><strong>-11.2%</strong></td>
-                <td class="right">2y 0m</td>
-            </tr>
-
-            <tr>
-                <td class="ticker">SLm</td>
-                <td>Sanlorenzo S.p.A.</td>
-                <td><span class="category">Luxury Goods</span></td>
-                <td>Europe</td>
-                <td class="right"><strong>3.6%</strong></td>
-                <td class="right positive"><strong>+1.2%</strong></td>
-                <td class="right">3m</td>
-            </tr>
-
-            <tr>
-                <td class="ticker">ADBE</td>
-                <td>Adobe Inc.</td>
-                <td><span class="category">Technology</span></td>
-                <td>USA</td>
-                <td class="right"><strong>3.3%</strong></td>
-                <td class="right positive"><strong>-47.0%</strong></td>
-                <td class="right">1y 11m</td>
-            </tr>
-
-            <tr>
-                <td class="ticker">BRBR</td>
-                <td>BellRing Brands</td>
-                <td><span class="category">Financials</span></td>
-                <td>USA</td>
-                <td class="right"><strong>4.0%</strong></td>
-                <td class="right positive"><strong>-38.9%</strong></td>
-                <td class="right">4m</td>
-            </tr>
-
-            <tr>
-                <td class="ticker">BRK B</td>
-                <td>Berkshire Hathaway Class B</td>
-                <td><span class="category">Financials</span></td>
-                <td>USA</td>
-                <td class="right"><strong>2.8%</strong></td>
-                <td class="right positive"><strong>+1.0%</strong></td>
-                <td class="right">1m</td>
-            </tr>
-
-            <tr>
-                <td class="ticker">CPRT</td>
-                <td>Copart Inc.</td>
-                <td><span class="category">Industrials</span></td>
-                <td>USA</td>
-                <td class="right"><strong>1.4%</strong></td>
-                <td class="right positive"><strong>-0.7%</strong></td>
+                <td class="ticker">LMN</td>
+                <td>Lumine Group</td>
+                <td>Canada</td>
+                <td class="right"><strong>5.4%</strong></td>
+                <td class="right negative"><strong>-26.7%</strong></td>
                 <td class="right">2m</td>
             </tr>
 
             <tr>
                 <td class="ticker">GOOGL</td>
                 <td>Alphabet Inc.</td>
-                <td><span class="category">Technology</span></td>
                 <td>USA</td>
                 <td class="right"><strong>3.9%</strong></td>
                 <td class="right positive"><strong>+107.5%</strong></td>
@@ -230,39 +153,17 @@
             </tr>
 
             <tr>
-                <td class="ticker">IAU</td>
-                <td>iShares Gold Trust</td>
-                <td><span class="category">Commodities</span></td>
-                <td>Global</td>
-                <td class="right"><strong>7.2%</strong></td>
-                <td class="right positive"><strong>+60.1%</strong></td>
-                <td class="right">8m</td>
-            </tr>
-
-            <tr>
-                <td class="ticker">IBIT</td>
-                <td>iShares Bitcoin Trust</td>
-                <td><span class="category">Alternative Assets</span></td>
+                <td class="ticker">ADBE</td>
+                <td>Adobe Inc.</td>
                 <td>USA</td>
-                <td class="right"><strong>5.4%</strong></td>
-                <td class="right positive"><strong>-39.0%</strong></td>
-                <td class="right">8m</td>
-            </tr>
-
-            <tr>
-                <td class="ticker">IGV</td>
-                <td>iShares Expanded Tech-Software ETF</td>
-                <td><span class="category">Technology</span></td>
-                <td>USA</td>
-                <td class="right"><strong>1.2%</strong></td>
-                <td class="right positive"><strong>-5.4%</strong></td>
-                <td class="right">20d</td>
+                <td class="right"><strong>3.3%</strong></td>
+                <td class="right negative"><strong>-47.0%</strong></td>
+                <td class="right">1y 11m</td>
             </tr>
 
             <tr>
                 <td class="ticker">MU</td>
                 <td>Micron Technology</td>
-                <td><span class="category">Technology</span></td>
                 <td>USA</td>
                 <td class="right"><strong>2.2%</strong></td>
                 <td class="right positive"><strong>+12.2%</strong></td>
@@ -270,79 +171,37 @@
             </tr>
 
             <tr>
-                <td class="ticker">QXO</td>
-                <td>QXO Inc.</td>
-                <td><span class="category">Industrials</span></td>
-                <td>USA</td>
-                <td class="right"><strong>2.2%</strong></td>
-                <td class="right positive"><strong>+10.3%</strong></td>
-                <td class="right">5m</td>
-            </tr>
-
-            <tr>
-                <td class="ticker">RACE</td>
-                <td>Ferrari N.V.</td>
-                <td><span class="category">Luxury Auto</span></td>
-                <td>Europe</td>
-                <td class="right"><strong>5.5%</strong></td>
-                <td class="right positive"><strong>-4.3%</strong></td>
-                <td class="right">2m</td>
-            </tr>
-
-            <tr>
-                <td class="ticker">SCZM</td>
-                <td>SCZM ETF</td>
-                <td><span class="category">Equities</span></td>
-                <td>Emerging Markets</td>
-                <td class="right"><strong>1.4%</strong></td>
-                <td class="right positive"><strong>+24.0%</strong></td>
-                <td class="right">1m</td>
-            </tr>
-
-            <tr>
-                <td class="ticker">SLV</td>
-                <td>iShares Silver Trust</td>
-                <td><span class="category">Commodities</span></td>
-                <td>Global</td>
-                <td class="right"><strong>1.8%</strong></td>
-                <td class="right positive"><strong>+143.7%</strong></td>
-                <td class="right">7m</td>
-            </tr>
-
-            <tr>
-                <td class="ticker">SSRM</td>
-                <td>SSR Mining</td>
-                <td><span class="category">Materials</span></td>
-                <td>Canada</td>
-                <td class="right"><strong>0.3%</strong></td>
-                <td class="right positive"><strong>+70.7%</strong></td>
-                <td class="right">3m</td>
-            </tr>
-
-            <tr>
-                <td class="ticker">U.U</td>
-                <td>Unity Software</td>
-                <td><span class="category">Technology</span></td>
-                <td>USA</td>
-                <td class="right"><strong>2.2%</strong></td>
-                <td class="right positive"><strong>+3.4%</strong></td>
-                <td class="right">4m</td>
-            </tr>
-
-            <tr>
                 <td class="ticker">UBER</td>
                 <td>Uber Technologies</td>
-                <td><span class="category">Technology</span></td>
                 <td>USA</td>
                 <td class="right"><strong>2.2%</strong></td>
-                <td class="right positive"><strong>-11.0%</strong></td>
+                <td class="right negative"><strong>-11.0%</strong></td>
                 <td class="right">2m</td>
             </tr>
+
+            <tr>
+                <td class="ticker">IGV</td>
+                <td>iShares Expanded Tech-Software ETF</td>
+                <td>USA</td>
+                <td class="right"><strong>1.2%</strong></td>
+                <td class="right negative"><strong>-5.4%</strong></td>
+                <td class="right">20d</td>
+            </tr>
+
+        </tbody></table>
+
+        <div class="asset-class">
+            <span class="asset-class-title">Global Equity</span>
+            <span class="asset-class-allocation">(18.7% allocation)</span>
+        </div>
+        <table><thead><tr>
+            <th>Ticker</th><th>Name</th><th>Geography</th>
+            <th class="right">Allocation</th><th class="right">Return</th><th class="right">Holding Period</th>
+        </tr></thead><tbody>
 
             <tr>
                 <td class="ticker">VWRA</td>
                 <td>Vanguard FTSE All-World</td>
-                <td><span class="category">Global Equity</span></td>
                 <td>Global</td>
                 <td class="right"><strong>18.7%</strong></td>
                 <td class="right positive"><strong>+97.2%</strong></td>
@@ -350,6 +209,230 @@
             </tr>
 
         </tbody></table>
+
+        <div class="asset-class">
+            <span class="asset-class-title">Luxury Goods</span>
+            <span class="asset-class-allocation">(14.8% allocation)</span>
+        </div>
+        <table><thead><tr>
+            <th>Ticker</th><th>Name</th><th>Geography</th>
+            <th class="right">Allocation</th><th class="right">Return</th><th class="right">Holding Period</th>
+        </tr></thead><tbody>
+
+            <tr>
+                <td class="ticker">RMS</td>
+                <td>Hermès International</td>
+                <td>Europe</td>
+                <td class="right"><strong>5.2%</strong></td>
+                <td class="right negative"><strong>-11.2%</strong></td>
+                <td class="right">2y 0m</td>
+            </tr>
+
+            <tr>
+                <td class="ticker">EXO</td>
+                <td>Exor N.V.</td>
+                <td>Europe</td>
+                <td class="right"><strong>5.0%</strong></td>
+                <td class="right positive"><strong>+2.7%</strong></td>
+                <td class="right">2m</td>
+            </tr>
+
+            <tr>
+                <td class="ticker">SLm</td>
+                <td>Sanlorenzo S.p.A.</td>
+                <td>Europe</td>
+                <td class="right"><strong>3.6%</strong></td>
+                <td class="right positive"><strong>+1.2%</strong></td>
+                <td class="right">3m</td>
+            </tr>
+
+            <tr>
+                <td class="ticker">CHG</td>
+                <td>Compagnie Financière Richemont (Cartier)</td>
+                <td>Europe</td>
+                <td class="right"><strong>1.0%</strong></td>
+                <td class="right negative"><strong>-33.7%</strong></td>
+                <td class="right">2m</td>
+            </tr>
+
+        </tbody></table>
+
+        <div class="asset-class">
+            <span class="asset-class-title">Commodities</span>
+            <span class="asset-class-allocation">(11.2% allocation)</span>
+        </div>
+        <table><thead><tr>
+            <th>Ticker</th><th>Name</th><th>Geography</th>
+            <th class="right">Allocation</th><th class="right">Return</th><th class="right">Holding Period</th>
+        </tr></thead><tbody>
+
+            <tr>
+                <td class="ticker">IAU</td>
+                <td>iShares Gold Trust</td>
+                <td>Global</td>
+                <td class="right"><strong>7.2%</strong></td>
+                <td class="right positive"><strong>+60.1%</strong></td>
+                <td class="right">8m</td>
+            </tr>
+
+            <tr>
+                <td class="ticker">U.U</td>
+                <td>Sprott Physical Uranium Trust</td>
+                <td>USA</td>
+                <td class="right"><strong>2.2%</strong></td>
+                <td class="right positive"><strong>+3.4%</strong></td>
+                <td class="right">4m</td>
+            </tr>
+
+            <tr>
+                <td class="ticker">SLV</td>
+                <td>iShares Silver Trust</td>
+                <td>Global</td>
+                <td class="right"><strong>1.8%</strong></td>
+                <td class="right positive"><strong>+143.7%</strong></td>
+                <td class="right">7m</td>
+            </tr>
+
+        </tbody></table>
+
+        <div class="asset-class">
+            <span class="asset-class-title">Financials</span>
+            <span class="asset-class-allocation">(6.8% allocation)</span>
+        </div>
+        <table><thead><tr>
+            <th>Ticker</th><th>Name</th><th>Geography</th>
+            <th class="right">Allocation</th><th class="right">Return</th><th class="right">Holding Period</th>
+        </tr></thead><tbody>
+
+            <tr>
+                <td class="ticker">BRBR</td>
+                <td>BellRing Brands</td>
+                <td>USA</td>
+                <td class="right"><strong>4.0%</strong></td>
+                <td class="right negative"><strong>-38.9%</strong></td>
+                <td class="right">4m</td>
+            </tr>
+
+            <tr>
+                <td class="ticker">BRK B</td>
+                <td>Berkshire Hathaway Class B</td>
+                <td>USA</td>
+                <td class="right"><strong>2.8%</strong></td>
+                <td class="right positive"><strong>+1.0%</strong></td>
+                <td class="right">1m</td>
+            </tr>
+
+        </tbody></table>
+
+        <div class="asset-class">
+            <span class="asset-class-title">Luxury Auto</span>
+            <span class="asset-class-allocation">(5.5% allocation)</span>
+        </div>
+        <table><thead><tr>
+            <th>Ticker</th><th>Name</th><th>Geography</th>
+            <th class="right">Allocation</th><th class="right">Return</th><th class="right">Holding Period</th>
+        </tr></thead><tbody>
+
+            <tr>
+                <td class="ticker">RACE</td>
+                <td>Ferrari N.V.</td>
+                <td>Europe</td>
+                <td class="right"><strong>5.5%</strong></td>
+                <td class="right negative"><strong>-4.3%</strong></td>
+                <td class="right">2m</td>
+            </tr>
+
+        </tbody></table>
+
+        <div class="asset-class">
+            <span class="asset-class-title">Alternative Assets</span>
+            <span class="asset-class-allocation">(5.4% allocation)</span>
+        </div>
+        <table><thead><tr>
+            <th>Ticker</th><th>Name</th><th>Geography</th>
+            <th class="right">Allocation</th><th class="right">Return</th><th class="right">Holding Period</th>
+        </tr></thead><tbody>
+
+            <tr>
+                <td class="ticker">IBIT</td>
+                <td>iShares Bitcoin Trust</td>
+                <td>USA</td>
+                <td class="right"><strong>5.4%</strong></td>
+                <td class="right negative"><strong>-39.0%</strong></td>
+                <td class="right">8m</td>
+            </tr>
+
+        </tbody></table>
+
+        <div class="asset-class">
+            <span class="asset-class-title">Industrials</span>
+            <span class="asset-class-allocation">(3.5% allocation)</span>
+        </div>
+        <table><thead><tr>
+            <th>Ticker</th><th>Name</th><th>Geography</th>
+            <th class="right">Allocation</th><th class="right">Return</th><th class="right">Holding Period</th>
+        </tr></thead><tbody>
+
+            <tr>
+                <td class="ticker">QXO</td>
+                <td>QXO Inc.</td>
+                <td>USA</td>
+                <td class="right"><strong>2.2%</strong></td>
+                <td class="right positive"><strong>+10.3%</strong></td>
+                <td class="right">5m</td>
+            </tr>
+
+            <tr>
+                <td class="ticker">CPRT</td>
+                <td>Copart Inc.</td>
+                <td>USA</td>
+                <td class="right"><strong>1.4%</strong></td>
+                <td class="right negative"><strong>-0.7%</strong></td>
+                <td class="right">2m</td>
+            </tr>
+
+        </tbody></table>
+
+        <div class="asset-class">
+            <span class="asset-class-title">Equities</span>
+            <span class="asset-class-allocation">(1.4% allocation)</span>
+        </div>
+        <table><thead><tr>
+            <th>Ticker</th><th>Name</th><th>Geography</th>
+            <th class="right">Allocation</th><th class="right">Return</th><th class="right">Holding Period</th>
+        </tr></thead><tbody>
+
+            <tr>
+                <td class="ticker">SCZM</td>
+                <td>SCZM ETF</td>
+                <td>Emerging Markets</td>
+                <td class="right"><strong>1.4%</strong></td>
+                <td class="right positive"><strong>+24.0%</strong></td>
+                <td class="right">1m</td>
+            </tr>
+
+        </tbody></table>
+
+        <div class="asset-class">
+            <span class="asset-class-title">Materials</span>
+            <span class="asset-class-allocation">(0.3% allocation)</span>
+        </div>
+        <table><thead><tr>
+            <th>Ticker</th><th>Name</th><th>Geography</th>
+            <th class="right">Allocation</th><th class="right">Return</th><th class="right">Holding Period</th>
+        </tr></thead><tbody>
+
+            <tr>
+                <td class="ticker">SSRM</td>
+                <td>SSR Mining</td>
+                <td>Canada</td>
+                <td class="right"><strong>0.3%</strong></td>
+                <td class="right positive"><strong>+70.7%</strong></td>
+                <td class="right">3m</td>
+            </tr>
+
+        </tbody></table>
+
     </div>
 </body>
 </html>
