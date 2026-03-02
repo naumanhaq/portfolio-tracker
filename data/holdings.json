@@ -73,7 +73,7 @@
     {
       "ticker": "EXO",
       "name": "Exor N.V.",
-      "category": "Luxury Goods",
+      "category": "Holding Companies",
       "geography": "Europe",
       "entry_date": "2025-12-16",
       "entry_price": 72.4,
@@ -141,7 +141,7 @@
     {
       "ticker": "BRBR",
       "name": "BellRing Brands",
-      "category": "Financials",
+      "category": "Consumer Staples",
       "geography": "USA",
       "entry_date": "2025-10-31",
       "entry_price": 30.08,
@@ -294,7 +294,7 @@
     {
       "ticker": "RACE",
       "name": "Ferrari N.V.",
-      "category": "Luxury Auto",
+      "category": "Luxury Goods",
       "geography": "Europe",
       "entry_date": "2025-12-05",
       "entry_price": 396.97,
@@ -310,8 +310,8 @@
     },
     {
       "ticker": "SCZM",
-      "name": "SCZM ETF",
-      "category": "Equities",
+      "name": "Santacruz Silver Mining",
+      "category": "Materials",
       "geography": "Emerging Markets",
       "entry_date": "2026-01-07",
       "entry_price": 10.12,
