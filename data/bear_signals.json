@@ -1,14 +1,14 @@
 {
-  "last_updated": "2026-03-03T18:57:02.484158",
+  "last_updated": "2026-03-03T21:03:02.833248",
   "market_summary": {
-    "sp500": 6881.62,
-    "vix": 25.2,
-    "drawdown_from_52w_high": -1.39
+    "sp500": 6725.53,
+    "vix": 26.98,
+    "drawdown_from_52w_high": -3.63
   },
   "indicators": [
     {
       "name": "S&P Oscillator Oversold",
-      "value": -0.03,
+      "value": -2.13,
       "threshold": "\u2264 -10%",
       "met": false,
       "description": "Current S&P 500 vs 10-day MA",
@@ -16,7 +16,7 @@
     },
     {
       "name": "Dow Jones Death Cross",
-      "value": "50-DMA: 49110, 200-DMA: 46218",
+      "value": "50-DMA: 49107, 200-DMA: 46246",
       "threshold": "50-DMA below 200-DMA",
       "met": false,
       "description": "Death cross formation",
@@ -32,7 +32,7 @@
     },
     {
       "name": "% Stocks Above 200-DMA",
-      "value": "S&P vs 200-DMA: 4.8%",
+      "value": "S&P vs 200-DMA: 2.4%",
       "threshold": "< 15% (approx)",
       "met": false,
       "description": "Breadth indicator (proxy)",
@@ -41,7 +41,7 @@
     },
     {
       "name": "S&P 500 Intraday Price",
-      "value": "6882 (150-WMA: 6724, 200-WMA: 6565)",
+      "value": "6726 (150-WMA: 6726, 200-WMA: 6569)",
       "threshold": "Within 5% of 150-WMA or 200-WMA",
       "met": true,
       "description": "Price near key support",
@@ -49,7 +49,7 @@
     },
     {
       "name": "S&P 500 Weekly RSI",
-      "value": 52.6,
+      "value": 42.1,
       "threshold": "< 35",
       "met": false,
       "description": "Weekly oversold condition",
@@ -57,7 +57,7 @@
     },
     {
       "name": "Nasdaq Weekly RSI",
-      "value": 41.3,
+      "value": 35.1,
       "threshold": "< 35",
       "met": false,
       "description": "Tech index oversold",
@@ -65,7 +65,7 @@
     },
     {
       "name": "S&P 500 Monthly RSI",
-      "value": 72.0,
+      "value": 66.6,
       "threshold": "< 45",
       "met": false,
       "description": "Monthly oversold",
@@ -73,7 +73,7 @@
     },
     {
       "name": "VIX 1-Year RSI",
-      "value": 50.4,
+      "value": 50.6,
       "threshold": "> 60",
       "met": false,
       "description": "Fear index elevated long-term",
@@ -81,7 +81,7 @@
     },
     {
       "name": "Fibonacci Retracement",
-      "value": "Current: 6882, 50% Fib: 5973",
+      "value": "Current: 6726, 50% Fib: 5973",
       "threshold": "Around 50% retracement",
       "met": false,
       "description": "Low: 4967, High: 6979",
