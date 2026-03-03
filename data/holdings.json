@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-28",
+  "last_updated": "2026-03-03",
   "portfolio_inception": "2024-06-15",
   "portfolio": [
     {
@@ -9,15 +9,15 @@
       "geography": "Canada",
       "entry_date": "2025-12-09",
       "entry_price": 2849.23,
-      "current_price": 2520.66,
-      "allocation_pct": 7.8019054618030825,
+      "current_price": 2566.65,
+      "allocation_pct": 9.594099375218198,
       "shares": 8.5549,
       "currency": "CAD",
       "thesis": "Add investment thesis",
       "thesis_evolution": [],
       "add_trim_signals": [],
-      "current_value": 21563.99,
-      "unrealized_pnl": -2810.888749
+      "current_value": 21957.43,
+      "unrealized_pnl": -2417.448756
     },
     {
       "ticker": "LMN",
@@ -26,15 +26,15 @@
       "geography": "Canada",
       "entry_date": "2025-12-08",
       "entry_price": 24.2,
-      "current_price": 21.23,
-      "allocation_pct": 5.376746931706776,
+      "current_price": 20.87,
+      "allocation_pct": 6.383269707454955,
       "shares": 700.0,
       "currency": "CAD",
       "thesis": "Add investment thesis",
       "thesis_evolution": [],
       "add_trim_signals": [],
-      "current_value": 14861.0,
-      "unrealized_pnl": -2076.48
+      "current_value": 14609.0,
+      "unrealized_pnl": -2328.48
     },
     {
       "ticker": "TOI",
@@ -43,15 +43,15 @@
       "geography": "Canada",
       "entry_date": "2025-12-08",
       "entry_price": 110.24,
-      "current_price": 93.74,
-      "allocation_pct": 6.443919581579753,
+      "current_price": 94.08,
+      "allocation_pct": 7.81040609724819,
       "shares": 190.0,
       "currency": "CAD",
       "thesis": "Add investment thesis",
       "thesis_evolution": [],
       "add_trim_signals": [],
-      "current_value": 17810.6,
-      "unrealized_pnl": -3135.02
+      "current_value": 17875.2,
+      "unrealized_pnl": -3070.42
     },
     {
       "ticker": "CHG",
@@ -60,15 +60,15 @@
       "geography": "Europe",
       "entry_date": "2025-12-30",
       "entry_price": 41.0,
-      "current_price": 27.2,
-      "allocation_pct": 0.9841027961942287,
+      "current_price": 26.2,
+      "allocation_pct": 1.1447851758184668,
       "shares": 100.0,
       "currency": "EUR",
       "thesis": "Add investment thesis",
       "thesis_evolution": [],
       "add_trim_signals": [],
-      "current_value": 2720.0,
-      "unrealized_pnl": -1383.0
+      "current_value": 2620.0,
+      "unrealized_pnl": -1483.0
     },
     {
       "ticker": "EXO",
@@ -77,15 +77,15 @@
       "geography": "Europe",
       "entry_date": "2025-12-16",
       "entry_price": 72.4,
-      "current_price": 74.35,
-      "allocation_pct": 4.97650291762962,
+      "current_price": 72.3,
+      "allocation_pct": 5.844303098915994,
       "shares": 185.0,
       "currency": "EUR",
       "thesis": "Add investment thesis",
       "thesis_evolution": [],
       "add_trim_signals": [],
-      "current_value": 13754.75,
-      "unrealized_pnl": 386.13
+      "current_value": 13375.5,
+      "unrealized_pnl": 6.88
     },
     {
       "ticker": "RMS",
@@ -94,15 +94,15 @@
       "geography": "Europe",
       "entry_date": "2024-02-28",
       "entry_price": 2135.69,
-      "current_price": 2049.0,
-      "allocation_pct": 5.201786479433392,
-      "shares": 7.0168,
+      "current_price": 1967.0,
+      "allocation_pct": 6.675277315470024,
+      "shares": 7.7668,
       "currency": "EUR",
       "thesis": "Add investment thesis",
       "thesis_evolution": [],
       "add_trim_signals": [],
-      "current_value": 14377.42,
-      "unrealized_pnl": -608.321
+      "current_value": 15277.3,
+      "unrealized_pnl": -1188.315999
     },
     {
       "ticker": "SLm",
@@ -111,15 +111,15 @@
       "geography": "Europe",
       "entry_date": "2025-11-06",
       "entry_price": 30.89,
-      "current_price": 33.35,
-      "allocation_pct": 3.6198339985011976,
+      "current_price": 31.55,
+      "allocation_pct": 4.135645682870911,
       "shares": 300.0,
       "currency": "EUR",
       "thesis": "Add investment thesis",
       "thesis_evolution": [],
       "add_trim_signals": [],
-      "current_value": 10005.0,
-      "unrealized_pnl": 736.5
+      "current_value": 9465.0,
+      "unrealized_pnl": 196.5
     },
     {
       "ticker": "ADBE",
@@ -128,15 +128,15 @@
       "geography": "USA",
       "entry_date": "2024-04-05",
       "entry_price": 308.94,
-      "current_price": 262.41,
-      "allocation_pct": 3.322920778024435,
+      "current_price": 260.88,
+      "allocation_pct": 3.9896200318180366,
       "shares": 35.0,
       "currency": "USD",
       "thesis": "Add investment thesis",
       "thesis_evolution": [],
       "add_trim_signals": [],
-      "current_value": 9184.35,
-      "unrealized_pnl": -1628.6775
+      "current_value": 9130.8,
+      "unrealized_pnl": -1682.2275
     },
     {
       "ticker": "BRBR",
@@ -145,15 +145,15 @@
       "geography": "USA",
       "entry_date": "2025-10-31",
       "entry_price": 32.15,
-      "current_price": 18.39,
-      "allocation_pct": 3.9921287695614405,
-      "shares": 600.0,
+      "current_price": 18.15,
+      "allocation_pct": 5.154810347984108,
+      "shares": 650.0,
       "currency": "USD",
       "thesis": "Add investment thesis",
       "thesis_evolution": [],
       "add_trim_signals": [],
-      "current_value": 11034.0,
-      "unrealized_pnl": -8257.02352
+      "current_value": 11797.5,
+      "unrealized_pnl": -8401.42352
     },
     {
       "ticker": "BRK B",
@@ -162,15 +162,15 @@
       "geography": "USA",
       "entry_date": "2026-01-08",
       "entry_price": 485.69,
-      "current_price": 504.95,
-      "allocation_pct": 2.774399245945705,
-      "shares": 15.1862,
+      "current_price": 480.17,
+      "allocation_pct": 4.801661598880383,
+      "shares": 22.8862,
       "currency": "USD",
       "thesis": "Add investment thesis",
       "thesis_evolution": [],
       "add_trim_signals": [],
-      "current_value": 7668.27,
-      "unrealized_pnl": 292.525376
+      "current_value": 10989.27,
+      "unrealized_pnl": -110.582625
     },
     {
       "ticker": "CPRT",
@@ -179,15 +179,15 @@
       "geography": "USA",
       "entry_date": "2025-12-08",
       "entry_price": 38.345,
-      "current_price": 38.09,
-      "allocation_pct": 1.3781057171705209,
+      "current_price": 38.31,
+      "allocation_pct": 1.673920613954407,
       "shares": 100.0,
       "currency": "USD",
       "thesis": "Add investment thesis",
       "thesis_evolution": [],
       "add_trim_signals": [],
-      "current_value": 3809.0,
-      "unrealized_pnl": -26.5
+      "current_value": 3831.0,
+      "unrealized_pnl": -4.5
     },
     {
       "ticker": "GOOGL",
@@ -196,15 +196,15 @@
       "geography": "USA",
       "entry_date": "2025-04-08",
       "entry_price": 153.08,
-      "current_price": 311.76,
-      "allocation_pct": 3.949739988825369,
+      "current_price": 306.52,
+      "allocation_pct": 4.689839682011885,
       "shares": 35.0168,
       "currency": "USD",
       "thesis": "Add investment thesis",
       "thesis_evolution": [],
       "add_trim_signals": [],
-      "current_value": 10916.84,
-      "unrealized_pnl": 5556.494972
+      "current_value": 10733.35,
+      "unrealized_pnl": 5373.004972
     },
     {
       "ticker": "IAU",
@@ -213,15 +213,15 @@
       "geography": "Global",
       "entry_date": "2025-06-30",
       "entry_price": 61.88,
-      "current_price": 99.07,
-      "allocation_pct": 7.1687547072766336,
+      "current_price": 100.38,
+      "allocation_pct": 8.772025644935702,
       "shares": 200.0,
       "currency": "USD",
       "thesis": "Add investment thesis",
       "thesis_evolution": [],
       "add_trim_signals": [],
-      "current_value": 19814.0,
-      "unrealized_pnl": 7437.068692
+      "current_value": 20076.0,
+      "unrealized_pnl": 7699.068692
     },
     {
       "ticker": "IBIT",
@@ -230,15 +230,15 @@
       "geography": "USA",
       "entry_date": "2025-06-27",
       "entry_price": 60.9556,
-      "current_price": 37.19,
-      "allocation_pct": 5.382173969185788,
+      "current_price": 39.195,
+      "allocation_pct": 6.850359536825161,
       "shares": 400.0,
       "currency": "USD",
       "thesis": "Add investment thesis",
       "thesis_evolution": [],
       "add_trim_signals": [],
-      "current_value": 14876.0,
-      "unrealized_pnl": -7645.887
+      "current_value": 15678.0,
+      "unrealized_pnl": -6843.887
     },
     {
       "ticker": "IGV",
@@ -247,15 +247,15 @@
       "geography": "USA",
       "entry_date": "2026-02-10",
       "entry_price": 86.2493,
-      "current_price": 81.57,
-      "allocation_pct": 1.1804891924347534,
+      "current_price": 82.77,
+      "allocation_pct": 1.4466239542365573,
       "shares": 40.0,
       "currency": "USD",
       "thesis": "Add investment thesis",
       "thesis_evolution": [],
       "add_trim_signals": [],
-      "current_value": 3262.8,
-      "unrealized_pnl": -47.211
+      "current_value": 3310.8,
+      "unrealized_pnl": 0.789
     },
     {
       "ticker": "MU",
@@ -264,15 +264,15 @@
       "geography": "USA",
       "entry_date": "2026-01-20",
       "entry_price": 368.51,
-      "current_price": 412.37,
-      "allocation_pct": 2.2379474452202985,
+      "current_price": 412.67,
+      "allocation_pct": 2.704686060143168,
       "shares": 15.0,
       "currency": "USD",
       "thesis": "Add investment thesis",
       "thesis_evolution": [],
       "add_trim_signals": [],
-      "current_value": 6185.55,
-      "unrealized_pnl": 657.85
+      "current_value": 6190.05,
+      "unrealized_pnl": 662.35
     },
     {
       "ticker": "QXO",
@@ -281,15 +281,15 @@
       "geography": "USA",
       "entry_date": "2025-09-11",
       "entry_price": 19.57,
-      "current_price": 23.95,
-      "allocation_pct": 2.166292460372406,
+      "current_price": 22.92,
+      "allocation_pct": 2.5036713959693953,
       "shares": 250.0,
       "currency": "USD",
       "thesis": "Add investment thesis",
       "thesis_evolution": [],
       "add_trim_signals": [],
-      "current_value": 5987.5,
-      "unrealized_pnl": 1095.2945
+      "current_value": 5730.0,
+      "unrealized_pnl": 837.7945
     },
     {
       "ticker": "RACE",
@@ -298,15 +298,15 @@
       "geography": "Europe",
       "entry_date": "2025-12-05",
       "entry_price": 356.88,
-      "current_price": 379.92,
-      "allocation_pct": 5.498240210736931,
+      "current_price": 362.75,
+      "allocation_pct": 6.340012557681661,
       "shares": 40.0,
       "currency": "USD",
       "thesis": "Add investment thesis",
       "thesis_evolution": [],
       "add_trim_signals": [],
-      "current_value": 15196.8,
-      "unrealized_pnl": 921.625
+      "current_value": 14510.0,
+      "unrealized_pnl": 234.825
     },
     {
       "ticker": "SCZM",
@@ -315,15 +315,15 @@
       "geography": "Emerging Markets",
       "entry_date": "2026-01-07",
       "entry_price": 10.12,
-      "current_price": 12.55,
-      "allocation_pct": 1.3621864072320848,
+      "current_price": 12.15,
+      "allocation_pct": 1.592649605289432,
       "shares": 300.0,
       "currency": "USD",
       "thesis": "Add investment thesis",
       "thesis_evolution": [],
       "add_trim_signals": [],
-      "current_value": 3765.0,
-      "unrealized_pnl": 727.5
+      "current_value": 3645.0,
+      "unrealized_pnl": 607.5
     },
     {
       "ticker": "SLV",
@@ -332,15 +332,15 @@
       "geography": "Global",
       "entry_date": "2025-07-11",
       "entry_price": 34.878,
-      "current_price": 84.99,
-      "allocation_pct": 1.8449756613650181,
+      "current_price": 81.57,
+      "allocation_pct": 2.138476186065168,
       "shares": 60.0,
       "currency": "USD",
       "thesis": "Add investment thesis",
       "thesis_evolution": [],
       "add_trim_signals": [],
-      "current_value": 5099.4,
-      "unrealized_pnl": 3006.11838
+      "current_value": 4894.2,
+      "unrealized_pnl": 2800.91838
     },
     {
       "ticker": "SSRM",
@@ -349,15 +349,15 @@
       "geography": "Canada",
       "entry_date": "2025-11-05",
       "entry_price": 18.858,
-      "current_price": 32.19,
-      "allocation_pct": 0.29116056074900937,
+      "current_price": 31.94,
+      "allocation_pct": 0.3488973140805518,
       "shares": 25.0,
       "currency": "USD",
       "thesis": "Add investment thesis",
       "thesis_evolution": [],
       "add_trim_signals": [],
-      "current_value": 804.75,
-      "unrealized_pnl": 333.24945
+      "current_value": 798.5,
+      "unrealized_pnl": 326.99945
     },
     {
       "ticker": "U.U",
@@ -366,15 +366,15 @@
       "geography": "USA",
       "entry_date": "2025-10-07",
       "entry_price": 19.59,
-      "current_price": 20.26,
-      "allocation_pct": 2.19903558649578,
+      "current_price": 20.98,
+      "allocation_pct": 2.750106067405126,
       "shares": 300.0,
       "currency": "USD",
       "thesis": "Add investment thesis",
       "thesis_evolution": [],
       "add_trim_signals": [],
-      "current_value": 6078.0,
-      "unrealized_pnl": 198.6
+      "current_value": 6294.0,
+      "unrealized_pnl": 414.6
     },
     {
       "ticker": "UBER",
@@ -383,15 +383,15 @@
       "geography": "USA",
       "entry_date": "2025-12-12",
       "entry_price": 79.35,
-      "current_price": 75.42,
-      "allocation_pct": 2.182971555557904,
+      "current_price": 75.95,
+      "allocation_pct": 2.6548529497225206,
       "shares": 80.0,
       "currency": "USD",
       "thesis": "Add investment thesis",
       "thesis_evolution": [],
       "add_trim_signals": [],
-      "current_value": 6033.6,
-      "unrealized_pnl": -314.4825
+      "current_value": 6076.0,
+      "unrealized_pnl": -272.0825
     },
     {
       "ticker": "VWRA",
@@ -401,7 +401,7 @@
       "entry_date": "2020-08-27",
       "entry_price": 89.85,
       "current_price": 177.18,
-      "allocation_pct": 18.66367957699789,
+      "allocation_pct": 22.539714651371405,
       "shares": 291.1461,
       "currency": "USD",
       "thesis": "Add investment thesis",
