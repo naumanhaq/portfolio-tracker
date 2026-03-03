@@ -38,7 +38,7 @@ def load_credentials():
 
 def request_flex_report(query_id, token):
     """Request Flex Query execution and return reference code"""
-    url = f"https://ndcdyn.interactivebrokers.com/AccountManagement/FlexWebService/SendRequest"
+    url = f"https://gdcdyn.interactivebrokers.com/Universal/servlet/FlexStatementService.SendRequest"
     params = {
         't': token,
         'q': query_id,
@@ -80,7 +80,7 @@ def request_flex_report(query_id, token):
 
 def fetch_flex_report(ref_code, token, max_attempts=10):
     """Fetch Flex Query report using reference code"""
-    url = "https://ndcdyn.interactivebrokers.com/AccountManagement/FlexWebService/GetStatement"
+    url = "https://gdcdyn.interactivebrokers.com/Universal/servlet/FlexStatementService.GetStatement"
     params = {
         't': token,
         'q': ref_code,
@@ -137,7 +137,7 @@ def parse_positions(flex_report):
         quantity = float(position.get('position', 0))
         market_price = float(position.get('markPrice', 0))
         market_value = float(position.get('positionValue', 0))
-        unrealized_pnl = float(position.get('unrealizedPnL', 0))
+        unrealized_pnl = float(position.get('fifoPnlUnrealized', 0))  # IBKR uses fifoPnlUnrealized, not unrealizedPnL
         asset_class = position.get('assetCategory', 'STK')
         currency = position.get('currency', 'USD')
         
