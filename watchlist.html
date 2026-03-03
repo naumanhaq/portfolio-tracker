@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watchlist | enhaq capital</title>
+    <meta name="description" content="Pre-selected quality compounders for bear market deployment. Select now, buy when signals fire.">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'EB Garamond', serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+        .container { max-width: 1000px; margin: 0 auto; }
+        .site-header { margin-bottom: 1.5rem; }
+        h1 {
+            font-family: 'Caveat', cursive;
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 0;
+        }
+        h2 {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem 0;
+            border-bottom: 2px solid #2c2c2c;
+            padding-bottom: 0.5rem;
+        }
+        nav {
+            margin: 1.5rem 0;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 1rem;
+        }
+        nav a {
+            font-family: 'Crimson Text', serif;
+            text-decoration: none;
+            color: #2c2c2c;
+            margin-right: 2rem;
+            font-size: 1.1rem;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 2px;
+        }
+        nav a:hover { border-bottom: 2px solid #2c2c2c; }
+        nav a.active { border-bottom: 2px solid #2c2c2c; font-weight: 600; }
+        .page-tagline {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.1rem;
+            color: #666;
+            font-style: italic;
+            margin: 0 0 2rem 0;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .philosophy-box {
+            background: #f8f9fa;
+            border: 1px solid #e5e5e5;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-left: 4px solid #2c2c2c;
+        }
+        .philosophy-box h3 {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .category-section {
+            margin: 3rem 0;
+        }
+        .category-header {
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #2c2c2c;
+        }
+        .category-title {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        .category-allocation {
+            font-size: 1rem;
+            color: #666;
+            margin-left: 1rem;
+        }
+        .category-rationale {
+            font-size: 0.95rem;
+            color: #666;
+            font-style: italic;
+            margin: 0.75rem 0 1.5rem 0;
+        }
+        
+        .watchlist-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            border: 1px solid #e5e5e5;
+        }
+        .watchlist-table thead {
+            border-bottom: 2px solid #2c2c2c;
+        }
+        .watchlist-table th {
+            text-align: left;
+            padding: 0.75rem;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #666;
+        }
+        .watchlist-table td {
+            padding: 1rem 0.75rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .position-row {
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .position-row:hover {
+            background: #f5f5f5 !important;
+        }
+        .position-row.expanded {
+            background: #fafafa !important;
+        }
+        
+        .pos-ticker {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+        .status-owned, .status-watch {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 0.25rem;
+            font-weight: 600;
+        }
+        .status-owned {
+            color: #2d5016;
+        }
+        .status-watch {
+            color: #666;
+        }
+        .pos-geo {
+            font-size: 0.85rem;
+            color: #999;
+            margin-top: 0.25rem;
+        }
+        .pos-alloc {
+            font-weight: 500;
+        }
+        .pos-trigger {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .detail-row {
+            background: #fafafa;
+        }
+        .detail-cell {
+            padding: 0 !important;
+        }
+        .pos-detail {
+            padding: 1.5rem 2rem;
+            border-left: 4px solid #2c2c2c;
+            background: #f8f9fa;
+        }
+        .detail-section {
+            margin-bottom: 1.5rem;
+        }
+        .detail-label {
+            font-family: 'Crimson Text', serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        .detail-content {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #444;
+        }
+        .detail-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: white;
+            border: 1px solid #e5e5e5;
+        }
+        .detail-metric {
+            text-align: center;
+        }
+        .metric-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #999;
+            margin-bottom: 0.25rem;
+        }
+        .metric-value {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #2c2c2c;
+        }
+        .add-flag {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #2d5016;
+            padding: 0.25rem 0.75rem;
+            border-radius: 3px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 1rem;
+        }
+        .pos-notes {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            background: #fff3cd;
+            border-left: 3px solid #856404;
+            font-size: 0.9rem;
+            color: #856404;
+        }
+        
+        .deployment-notes {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: #f8f9fa;
+            border: 1px solid #e5e5e5;
+        }
+        .deployment-notes h2 {
+            margin-top: 0;
+        }
+        .deployment-notes ul {
+            margin: 1rem 0 0 1.5rem;
+            line-height: 1.9;
+        }
+        
+        .footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e5e5e5;
+            text-align: center;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        .footer a {
+            color: #666;
+            text-decoration: none;
+            border-bottom: 1px solid #ccc;
+        }
+        .footer a:hover {
+            border-bottom: 1px solid #2c2c2c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="site-header">
+            <h1>enhaq capital</h1>
+        </header>
+        
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="holdings.html">Holdings</a>
+            <a href="trades.html">Trades</a>
+            <a href="bear-signals.html">Bear Signals</a>
+            <a href="watchlist.html" class="active">Watchlist</a>
+        </nav>
+        
+        <div class="page-tagline">
+            Pre-selected quality compounders. Select now, buy when signals fire.
+        </div>
+        
+        <div class="philosophy-box">
+            <h3>Deployment Philosophy</h3>
+            <p>Pre-selected quality compounders for bear market deployment</p>
+            <p style="margin-top: 0.75rem;"><strong>Select during bull markets, buy during bear markets when 8+ indicators trigger. Heavy deployment, not DCA.</strong></p>
+        </div>
+        
+        
+        <div class="category-section">
+            <div class="category-header">
+                <span class="category-title">Vertical Market Software</span>
+                <span class="category-allocation">25% target allocation</span>
+            </div>
+            <div class="category-rationale">High switching costs, recurring revenue, capital-light compounding. Fisher quality + Lindy durability.</div>
+            
+            <table class="watchlist-table">
+                <thead>
+                    <tr>
+                        <th>Ticker</th>
+                        <th>Company</th>
+                        <th>Allocation</th>
+                        <th>Entry Trigger</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+            <tr class="position-row clickable-row" onclick="togglePositionDetail('CSU')">
+                <td class="pos-ticker">
+                    <strong>CSU</strong>
+                    <div class="status-owned">Currently Owned</div>
+                </td>
+                <td class="pos-name">
+                    Constellation Software
+                    <div class="pos-geo">Canada</div>
+                </td>
+                <td class="pos-alloc">7.8% → 12%</td>
+                <td class="pos-trigger">8+ indicators or CSU down >25% from peak</td>
+            </tr>
+            <tr class="detail-row" id="detail-CSU" style="display: none;">
+                <td colspan="4" class="detail-cell">
+                    <div class="pos-detail">
+                        <div class="detail-section">
+                            <div class="detail-label">Investment Thesis</div>
+                            <div class="detail-content">VMS roll-up pioneer. 30-year track record of disciplined M&A at 25%+ ROIC. Burgiss, Lerro leadership. Decentralized operating model. Quality compounds forever.</div>
+                        </div>
+                        <div class="detail-metrics">
+                            <div class="detail-metric">
+                                <div class="metric-label">Fisher Score</div>
+                                <div class="metric-value">14/15</div>
+                            </div>
+                            <div class="detail-metric">
+                                <div class="metric-label">Lindy Test</div>
+                                <div class="metric-value">30 years</div>
+                            </div>
+                            <div class="detail-metric">
+                                <div class="metric-label">Target Weight</div>
+                                <div class="metric-value">12%</div>
+                            </div>
+                        </div>
+                        <span class="add-flag">✓ Add on dip</span>
+                        
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="position-row clickable-row" onclick="togglePositionDetail('TOI')">
+                <td class="pos-ticker">
+                    <strong>TOI</strong>
+                    <div class="status-owned">Currently Owned</div>
+                </td>
+                <td class="pos-name">
+                    Topicus.com
+                    <div class="pos-geo">Europe</div>
+                </td>
+                <td class="pos-alloc">6.4% → 8%</td>
+                <td class="pos-trigger">8+ indicators</td>
+            </tr>
+            <tr class="detail-row" id="detail-TOI" style="display: none;">
+                <td colspan="4" class="detail-cell">
+                    <div class="pos-detail">
+                        <div class="detail-section">
+                            <div class="detail-label">Investment Thesis</div>
+                            <div class="detail-content">CSU spinoff focused on European VMS. Robin van Poelje leadership. Same playbook, earlier stage, smaller scale. Geographic diversification from CSU.</div>
+                        </div>
+                        <div class="detail-metrics">
+                            <div class="detail-metric">
+                                <div class="metric-label">Fisher Score</div>
+                                <div class="metric-value">13/15</div>
+                            </div>
+                            <div class="detail-metric">
+                                <div class="metric-label">Lindy Test</div>
+                                <div class="metric-value">5 years</div>
+                            </div>
+                            <div class="detail-metric">
+                                <div class="metric-label">Target Weight</div>
+                                <div class="metric-value">8%</div>
+                            </div>
+                        </div>
+                        <span class="add-flag">✓ Add on dip</span>
+                        
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="position-row clickable-row" onclick="togglePositionDetail('LMN')">
+                <td class="pos-ticker">
+                    <strong>LMN</strong>
+                    <div class="status-owned">Currently Owned</div>
+                </td>
+                <td class="pos-name">
+                    Lumine Group
+                    <div class="pos-geo">Canada</div>
+                </td>
+                <td class="pos-alloc">5.4% → 5%</td>
+                <td class="pos-trigger">9+ indicators (higher risk, need stronger signal)</td>
+            </tr>
+            <tr class="detail-row" id="detail-LMN" style="display: none;">
+                <td colspan="4" class="detail-cell">
+                    <div class="pos-detail">
+                        <div class="detail-section">
+                            <div class="detail-label">Investment Thesis</div>
+                            <div class="detail-content">CSU spinoff focused on communication/media VMS. Smaller than TOI, higher risk. Portfolio diversification play.</div>
+                        </div>
+                        <div class="detail-metrics">
+                            <div class="detail-metric">
+                                <div class="metric-label">Fisher Score</div>
+                                <div class="metric-value">12/15</div>
+                            </div>
+                            <div class="detail-metric">
+                                <div class="metric-label">Lindy Test</div>
+                                <div class="metric-value">3 years</div>
+                            </div>
+                            <div class="detail-metric">
+                                <div class="metric-label">Target Weight</div>
+                                <div class="metric-value">5%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="pos-notes">📝 Already at target weight. Monitor only.</div>
+                    </div>
+                </td>
+            </tr>
+            
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="category-section">
+            <div class="category-header">
+                <span class="category-title">Enduring Luxury</span>
+                <span class="category-allocation">20% target allocation</span>
+            </div>
+            <div class="category-rationale">Lindy effect: survived centuries. Pricing power, brand moats, generational wealth preservation. Anti-fragile to inflation.</div>
+            
+            <table class="watchlist-table">
+                <thead>
+                    <tr>
+                        <th>Ticker</th>
+                        <th>Company</th>
+                        <th>Allocation</th>
+                        <th>Entry Trigger</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+            <tr class="position-row clickable-row" onclick="togglePositionDetail('RMS.PA')">
+                <td class="pos-ticker">
+                    <strong>RMS.PA</strong>
+                    <div class="status-owned">Currently Owned</div>
+                </td>
+                <td class="pos-name">
+                    Hermès International
+                    <div class="pos-geo">France</div>
+                </td>
+                <td class="pos-alloc">7.2% → 10%</td>
+                <td class="pos-trigger">8+ indicators or RMS down >20%</td>
+            </tr>
+            <tr class="detail-row" id="detail-RMS.PA" style="display: none;">
+                <td colspan="4" class="detail-cell">
+                    <div class="pos-detail">
+                        <div class="detail-section">
+                            <div class="detail-label">Investment Thesis</div>
+                            <div class="detail-content">300+ year family business. Birkin bags, silk scarves. Supply-constrained luxury (artisan bottleneck = pricing power). 30%+ ROIC, no debt. Lindy king.</div>
+                        </div>
+                        <div class="detail-metrics">
+                            <div class="detail-metric">
+                                <div class="metric-label">Fisher Score</div>
+                                <div class="metric-value">14/15</div>
+                            </div>
+                            <div class="detail-metric">
+                                <div class="metric-label">Lindy Test</div>
+                                <div class="metric-value">188 years</div>
+                            </div>
+                            <div class="detail-metric">
+                                <div class="metric-label">Target Weight</div>
+                                <div class="metric-value">10%</div>
+                            </div>
+                        </div>
+                        <span class="add-flag">✓ Add on dip</span>
+                        
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="position-row clickable-row" onclick="togglePositionDetail('RACE')">
+                <td class="pos-ticker">
+                    <strong>RACE</strong>
+                    <div class="status-owned">Currently Owned</div>
+                </td>
+                <td class="pos-name">
+                    Ferrari
+                    <div class="pos-geo">Italy</div>
+                </td>
+                <td class="pos-alloc">4.7% → 5%</td>
+                <td class="pos-trigger">8+ indicators</td>
+            </tr>
+            <tr class="detail-row" id="detail-RACE" style="display: none;">
+                <td colspan="4" class="detail-cell">
+                    <div class="pos-detail">
+                        <div class="detail-section">
+                            <div class="detail-label">Investment Thesis</div>
+                            <div class="detail-content">Luxury automaker (not car company). Artificial scarcity, 2-year waitlists. 35%+ EBIT margins. Pricing power > volume growth. Survived 75+ years.</div>
+                        </div>
+                        <div class="detail-metrics">
+                            <div class="detail-metric">
+                                <div class="metric-label">Fisher Score</div>
+                                <div class="metric-value">13/15</div>
+                            </div>
+                            <div class="detail-metric">
+                                <div class="metric-label">Lindy Test</div>
+                                <div class="metric-value">77 years</div>
+                            </div>
+                            <div class="detail-metric">
+                                <div class="metric-label">Target Weight</div>
+                                <div class="metric-value">5%</div>
+                            </div>
+                        </div>
+                        <span class="add-flag">✓ Add on dip</span>
+                        
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="position-row clickable-row" onclick="togglePositionDetail('EXO.MI')">
+                <td class="pos-ticker">
+                    <strong>EXO.MI</strong>
+                    <div class="status-owned">Currently Owned</div>
+                </td>
+                <td class="pos-name">
+                    Exor N.V.
+                    <div class="pos-geo">Netherlands (Agnelli family)</div>
+                </td>
+                <td class="pos-alloc">6.8% → 5%</td>
+                <td class="pos-trigger">9+ indicators (holding company discount needs stronger signal)</td>
+            </tr>
+            <tr class="detail-row" id="detail-EXO.MI" style="display: none;">
+                <td colspan="4" class="detail-cell">
+                    <div class="pos-detail">
+                        <div class="detail-section">
+                            <div class="detail-label">Investment Thesis</div>
+                            <div class="detail-content">Holding company: Ferrari, Stellantis, Iveco, CNH, Juventus, The Economist, PartnerRe. Discount to NAV (~20-30%). Agnelli family skin in game.</div>
+                        </div>
+                        <div class="detail-metrics">
+                            <div class="detail-metric">
+                                <div class="metric-label">Fisher Score</div>
+                                <div class="metric-value">11/15</div>
+                            </div>
+                            <div class="detail-metric">
+                                <div class="metric-label">Lindy Test</div>
+                                <div class="metric-value">123 years</div>
+                            </div>
+                            <div class="detail-metric">
+                                <div class="metric-label">Target Weight</div>
+                                <div class="metric-value">5%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="pos-notes">📝 Already above target. Monitor discount to NAV.</div>
+                    </div>
+                </td>
+            </tr>
+            
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="category-section">
+            <div class="category-header">
+                <span class="category-title">Technology Compounders</span>
+                <span class="category-allocation">20% target allocation</span>
+            </div>
+            <div class="category-rationale">Wide moats, network effects, high ROIC. Dominant platforms with pricing power.</div>
+            
+            <table class="watchlist-table">
+                <thead>
+                    <tr>
+                        <th>Ticker</th>
+                        <th>Company</th>
+                        <th>Allocation</th>
+                        <th>Entry Trigger</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+            <tr class="position-row clickable-row" onclick="togglePositionDetail('GOOGL')">
+                <td class="pos-ticker">
+                    <strong>GOOGL</strong>
+                    <div class="status-owned">Currently Owned</div>
+                </td>
+                <td class="pos-name">
+                    Alphabet Inc.
+                    <div class="pos-geo">USA</div>
+                </td>
+                <td class="pos-alloc">3.9% → 8%</td>
+                <td class="pos-trigger">8+ indicators or GOOGL down >30%</td>
+            </tr>
+            <tr class="detail-row" id="detail-GOOGL" style="display: none;">
+                <td colspan="4" class="detail-cell">
+                    <div class="pos-detail">
+                        <div class="detail-section">
+                            <div class="detail-label">Investment Thesis</div>
+                            <div class="detail-content">Search monopoly (90% market share). YouTube moat. Cloud #3. AI positioning. 30%+ ROIC, fortress balance sheet. Survived 25+ years.</div>
+                        </div>
+                        <div class="detail-metrics">
+                            <div class="detail-metric">
+                                <div class="metric-label">Fisher Score</div>
+                                <div class="metric-value">13/15</div>
+                            </div>
+                            <div class="detail-metric">
+                                <div class="metric-label">Lindy Test</div>
+                                <div class="metric-value">26 years</div>
+                            </div>
+                            <div class="detail-metric">
+                                <div class="metric-label">Target Weight</div>
+                                <div class="metric-value">8%</div>
+                            </div>
+                        </div>
+                        <span class="add-flag">✓ Add on dip</span>
+                        
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="position-row clickable-row" onclick="togglePositionDetail('ADBE')">
+                <td class="pos-ticker">
+                    <strong>ADBE</strong>
+                    <div class="status-owned">Currently Owned</div>
+                </td>
+                <td class="pos-name">
+                    Adobe Inc.
+                    <div class="pos-geo">USA</div>
+                </td>
+                <td class="pos-alloc">3.3% → 4%</td>
+                <td class="pos-trigger">8+ indicators</td>
+            </tr>
+            <tr class="detail-row" id="detail-ADBE" style="display: none;">
+                <td colspan="4" class="detail-cell">
+                    <div class="pos-detail">
+                        <div class="detail-section">
+                            <div class="detail-label">Investment Thesis</div>
+                            <div class="detail-content">Creative software monopoly. Subscription model lock-in. 35%+ ROIC. Photoshop/Illustrator = industry standard for 30+ years.</div>
+                        </div>
+                        <div class="detail-metrics">
+                            <div class="detail-metric">
+                                <div class="metric-label">Fisher Score</div>
+                                <div class="metric-value">12/15</div>
+                            </div>
+                            <div class="detail-metric">
+                                <div class="metric-label">Lindy Test</div>
+                                <div class="metric-value">42 years</div>
+                            </div>
+                            <div class="detail-metric">
+                                <div class="metric-label">Target Weight</div>
+                                <div class="metric-value">4%</div>
+                            </div>
+                        </div>
+                        <span class="add-flag">✓ Add on dip</span>
+                        
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="position-row clickable-row" onclick="togglePositionDetail('MSFT')">
+                <td class="pos-ticker">
+                    <strong>MSFT</strong>
+                    <div class="status-watch">Watchlist</div>
+                </td>
+                <td class="pos-name">
+                    Microsoft
+                    <div class="pos-geo">USA</div>
+                </td>
+                <td class="pos-alloc">6%</td>
+                <td class="pos-trigger">8+ indicators</td>
+            </tr>
+            <tr class="detail-row" id="detail-MSFT" style="display: none;">
+                <td colspan="4" class="detail-cell">
+                    <div class="pos-detail">
+                        <div class="detail-section">
+                            <div class="detail-label">Investment Thesis</div>
+                            <div class="detail-content">Enterprise moat (Office, Azure, Windows). 40%+ ROIC. OpenAI partnership. Survived 50+ years, still compounding.</div>
+                        </div>
+                        <div class="detail-metrics">
+                            <div class="detail-metric">
+                                <div class="metric-label">Fisher Score</div>
+                                <div class="metric-value">14/15</div>
+                            </div>
+                            <div class="detail-metric">
+                                <div class="metric-label">Lindy Test</div>
+                                <div class="metric-value">51 years</div>
+                            </div>
+                            <div class="detail-metric">
+                                <div class="metric-label">Target Weight</div>
+                                <div class="metric-value">6%</div>
+                            </div>
+                        </div>
+                        <span class="add-flag">✓ Add on dip</span>
+                        
+                    </div>
+                </td>
+            </tr>
+            
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="category-section">
+            <div class="category-header">
+                <span class="category-title">Broad Market Exposure</span>
+                <span class="category-allocation">30% target allocation</span>
+            </div>
+            <div class="category-rationale">Core recovery plays. Get the beta, reduce single-stock risk. Safe deployment when signals fire.</div>
+            
+            <table class="watchlist-table">
+                <thead>
+                    <tr>
+                        <th>Ticker</th>
+                        <th>Company</th>
+                        <th>Allocation</th>
+                        <th>Entry Trigger</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+            <tr class="position-row clickable-row" onclick="togglePositionDetail('VWRA')">
+                <td class="pos-ticker">
+                    <strong>VWRA</strong>
+                    <div class="status-owned">Currently Owned</div>
+                </td>
+                <td class="pos-name">
+                    Vanguard FTSE All-World ETF
+                    <div class="pos-geo">Global</div>
+                </td>
+                <td class="pos-alloc">21.7% → 20%</td>
+                <td class="pos-trigger">7+ indicators (safe early deployment)</td>
+            </tr>
+            <tr class="detail-row" id="detail-VWRA" style="display: none;">
+                <td colspan="4" class="detail-cell">
+                    <div class="pos-detail">
+                        <div class="detail-section">
+                            <div class="detail-label">Investment Thesis</div>
+                            <div class="detail-content">Global market cap weighted. Lowest cost, broadest diversification. US + ex-US exposure. Mean reversion to long-term growth.</div>
+                        </div>
+                        <div class="detail-metrics">
+                            <div class="detail-metric">
+                                <div class="metric-label">Fisher Score</div>
+                                <div class="metric-value">N/A (ETF)</div>
+                            </div>
+                            <div class="detail-metric">
+                                <div class="metric-label">Lindy Test</div>
+                                <div class="metric-value">50 years</div>
+                            </div>
+                            <div class="detail-metric">
+                                <div class="metric-label">Target Weight</div>
+                                <div class="metric-value">20%</div>
+                            </div>
+                        </div>
+                        <span class="add-flag">✓ Add on dip</span>
+                        
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="position-row clickable-row" onclick="togglePositionDetail('SPY')">
+                <td class="pos-ticker">
+                    <strong>SPY</strong>
+                    <div class="status-watch">Watchlist</div>
+                </td>
+                <td class="pos-name">
+                    SPDR S&P 500 ETF
+                    <div class="pos-geo">USA</div>
+                </td>
+                <td class="pos-alloc">5%</td>
+                <td class="pos-trigger">8+ indicators</td>
+            </tr>
+            <tr class="detail-row" id="detail-SPY" style="display: none;">
+                <td colspan="4" class="detail-cell">
+                    <div class="pos-detail">
+                        <div class="detail-section">
+                            <div class="detail-label">Investment Thesis</div>
+                            <div class="detail-content">US large-cap exposure. Complement to VWRA. Mean reversion play when market oversold.</div>
+                        </div>
+                        <div class="detail-metrics">
+                            <div class="detail-metric">
+                                <div class="metric-label">Fisher Score</div>
+                                <div class="metric-value">N/A (ETF)</div>
+                            </div>
+                            <div class="detail-metric">
+                                <div class="metric-label">Lindy Test</div>
+                                <div class="metric-value">30 years</div>
+                            </div>
+                            <div class="detail-metric">
+                                <div class="metric-label">Target Weight</div>
+                                <div class="metric-value">5%</div>
+                            </div>
+                        </div>
+                        <span class="add-flag">✓ Add on dip</span>
+                        
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="position-row clickable-row" onclick="togglePositionDetail('QQQ')">
+                <td class="pos-ticker">
+                    <strong>QQQ</strong>
+                    <div class="status-watch">Watchlist</div>
+                </td>
+                <td class="pos-name">
+                    Invesco QQQ Trust
+                    <div class="pos-geo">USA</div>
+                </td>
+                <td class="pos-alloc">5%</td>
+                <td class="pos-trigger">9+ indicators (higher risk, need stronger signal)</td>
+            </tr>
+            <tr class="detail-row" id="detail-QQQ" style="display: none;">
+                <td colspan="4" class="detail-cell">
+                    <div class="pos-detail">
+                        <div class="detail-section">
+                            <div class="detail-label">Investment Thesis</div>
+                            <div class="detail-content">Tech-heavy Nasdaq 100. Higher beta, bigger recoveries. Buy during panic for outsized gains.</div>
+                        </div>
+                        <div class="detail-metrics">
+                            <div class="detail-metric">
+                                <div class="metric-label">Fisher Score</div>
+                                <div class="metric-value">N/A (ETF)</div>
+                            </div>
+                            <div class="detail-metric">
+                                <div class="metric-label">Lindy Test</div>
+                                <div class="metric-value">25 years</div>
+                            </div>
+                            <div class="detail-metric">
+                                <div class="metric-label">Target Weight</div>
+                                <div class="metric-value">5%</div>
+                            </div>
+                        </div>
+                        <span class="add-flag">✓ Add on dip</span>
+                        
+                    </div>
+                </td>
+            </tr>
+            
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="category-section">
+            <div class="category-header">
+                <span class="category-title">Other Compounders</span>
+                <span class="category-allocation">5% target allocation</span>
+            </div>
+            <div class="category-rationale">Opportunistic high-quality names. Add when thesis + signals align.</div>
+            
+            <table class="watchlist-table">
+                <thead>
+                    <tr>
+                        <th>Ticker</th>
+                        <th>Company</th>
+                        <th>Allocation</th>
+                        <th>Entry Trigger</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+            <tr class="position-row clickable-row" onclick="togglePositionDetail('BRK.B')">
+                <td class="pos-ticker">
+                    <strong>BRK.B</strong>
+                    <div class="status-watch">Watchlist</div>
+                </td>
+                <td class="pos-name">
+                    Berkshire Hathaway
+                    <div class="pos-geo">USA</div>
+                </td>
+                <td class="pos-alloc">3%</td>
+                <td class="pos-trigger">8+ indicators + price/book < 1.3</td>
+            </tr>
+            <tr class="detail-row" id="detail-BRK.B" style="display: none;">
+                <td colspan="4" class="detail-cell">
+                    <div class="pos-detail">
+                        <div class="detail-section">
+                            <div class="detail-label">Investment Thesis</div>
+                            <div class="detail-content">Buffett fortress. Insurance float, diversified holdings. Survives everything. Buy when trading at discount to intrinsic value.</div>
+                        </div>
+                        <div class="detail-metrics">
+                            <div class="detail-metric">
+                                <div class="metric-label">Fisher Score</div>
+                                <div class="metric-value">15/15</div>
+                            </div>
+                            <div class="detail-metric">
+                                <div class="metric-label">Lindy Test</div>
+                                <div class="metric-value">60 years</div>
+                            </div>
+                            <div class="detail-metric">
+                                <div class="metric-label">Target Weight</div>
+                                <div class="metric-value">3%</div>
+                            </div>
+                        </div>
+                        <span class="add-flag">✓ Add on dip</span>
+                        
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="position-row clickable-row" onclick="togglePositionDetail('COST')">
+                <td class="pos-ticker">
+                    <strong>COST</strong>
+                    <div class="status-watch">Watchlist</div>
+                </td>
+                <td class="pos-name">
+                    Costco Wholesale
+                    <div class="pos-geo">USA</div>
+                </td>
+                <td class="pos-alloc">2%</td>
+                <td class="pos-trigger">9+ indicators (premium valuation, need big dip)</td>
+            </tr>
+            <tr class="detail-row" id="detail-COST" style="display: none;">
+                <td colspan="4" class="detail-cell">
+                    <div class="pos-detail">
+                        <div class="detail-section">
+                            <div class="detail-label">Investment Thesis</div>
+                            <div class="detail-content">Membership moat. 90%+ renewal rates. Low-margin, high-volume model = pricing power during inflation. 40-year track record.</div>
+                        </div>
+                        <div class="detail-metrics">
+                            <div class="detail-metric">
+                                <div class="metric-label">Fisher Score</div>
+                                <div class="metric-value">13/15</div>
+                            </div>
+                            <div class="detail-metric">
+                                <div class="metric-label">Lindy Test</div>
+                                <div class="metric-value">42 years</div>
+                            </div>
+                            <div class="detail-metric">
+                                <div class="metric-label">Target Weight</div>
+                                <div class="metric-value">2%</div>
+                            </div>
+                        </div>
+                        <span class="add-flag">✓ Add on dip</span>
+                        
+                    </div>
+                </td>
+            </tr>
+            
+                </tbody>
+            </table>
+        </div>
+        
+        
+        <div class="deployment-notes">
+            <h2>Deployment Notes</h2>
+            <ul>
+                <li>Total target allocation: 100% when fully deployed</li>
+<li>Current allocation: ~66% (existing positions)</li>
+<li>Dry powder target: Deploy when 8+ bear market indicators trigger</li>
+<li>Deployment style: Heavy, concentrated buys. Not DCA.</li>
+<li>Rebalancing: No. This is additive deployment of new cash only.</li>
+<li>Exit strategy: Hold forever (or until thesis breaks). Not selling during bear markets.</li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <p>Last updated: 2026-03-03</p>
+            <p><a href="https://enhaq.com">enhaq.com</a></p>
+        </div>
+    </div>
+    
+    <script>
+        function togglePositionDetail(ticker) {
+            const detailRow = document.getElementById('detail-' + ticker);
+            const positionRow = detailRow.previousElementSibling;
+            
+            if (detailRow.style.display === 'none') {
+                // Close all other details
+                document.querySelectorAll('.detail-row').forEach(row => {
+                    row.style.display = 'none';
+                });
+                document.querySelectorAll('.position-row').forEach(row => {
+                    row.classList.remove('expanded');
+                });
+                
+                // Open this one
+                detailRow.style.display = 'table-row';
+                positionRow.classList.add('expanded');
+            } else {
+                // Close this one
+                detailRow.style.display = 'none';
+                positionRow.classList.remove('expanded');
+            }
+        }
+    </script>
+</body>
+</html>

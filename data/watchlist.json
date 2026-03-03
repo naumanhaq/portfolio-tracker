@@ -1,0 +1,234 @@
+{
+  "last_updated": "2026-03-03",
+  "description": "Pre-selected quality compounders for bear market deployment",
+  "deployment_philosophy": "Select during bull markets, buy during bear markets when 8+ indicators trigger. Heavy deployment, not DCA.",
+  "categories": [
+    {
+      "name": "Vertical Market Software",
+      "allocation_target_pct": 25,
+      "rationale": "High switching costs, recurring revenue, capital-light compounding. Fisher quality + Lindy durability.",
+      "positions": [
+        {
+          "ticker": "CSU",
+          "name": "Constellation Software",
+          "geography": "Canada",
+          "status": "owned",
+          "current_allocation_pct": 7.8,
+          "target_allocation_pct": 12,
+          "thesis": "VMS roll-up pioneer. 30-year track record of disciplined M&A at 25%+ ROIC. Burgiss, Lerro leadership. Decentralized operating model. Quality compounds forever.",
+          "fisher_score": "14/15",
+          "lindy_years": 30,
+          "entry_trigger": "8+ indicators or CSU down >25% from peak",
+          "add_on_dip": true
+        },
+        {
+          "ticker": "TOI",
+          "name": "Topicus.com",
+          "geography": "Europe",
+          "status": "owned",
+          "current_allocation_pct": 6.4,
+          "target_allocation_pct": 8,
+          "thesis": "CSU spinoff focused on European VMS. Robin van Poelje leadership. Same playbook, earlier stage, smaller scale. Geographic diversification from CSU.",
+          "fisher_score": "13/15",
+          "lindy_years": 5,
+          "entry_trigger": "8+ indicators",
+          "add_on_dip": true
+        },
+        {
+          "ticker": "LMN",
+          "name": "Lumine Group",
+          "geography": "Canada",
+          "status": "owned",
+          "current_allocation_pct": 5.4,
+          "target_allocation_pct": 5,
+          "thesis": "CSU spinoff focused on communication/media VMS. Smaller than TOI, higher risk. Portfolio diversification play.",
+          "fisher_score": "12/15",
+          "lindy_years": 3,
+          "entry_trigger": "9+ indicators (higher risk, need stronger signal)",
+          "add_on_dip": false,
+          "notes": "Already at target weight. Monitor only."
+        }
+      ]
+    },
+    {
+      "name": "Enduring Luxury",
+      "allocation_target_pct": 20,
+      "rationale": "Lindy effect: survived centuries. Pricing power, brand moats, generational wealth preservation. Anti-fragile to inflation.",
+      "positions": [
+        {
+          "ticker": "RMS.PA",
+          "name": "Hermès International",
+          "geography": "France",
+          "status": "owned",
+          "current_allocation_pct": 7.2,
+          "target_allocation_pct": 10,
+          "thesis": "300+ year family business. Birkin bags, silk scarves. Supply-constrained luxury (artisan bottleneck = pricing power). 30%+ ROIC, no debt. Lindy king.",
+          "fisher_score": "14/15",
+          "lindy_years": 188,
+          "entry_trigger": "8+ indicators or RMS down >20%",
+          "add_on_dip": true
+        },
+        {
+          "ticker": "RACE",
+          "name": "Ferrari",
+          "geography": "Italy",
+          "status": "owned",
+          "current_allocation_pct": 4.7,
+          "target_allocation_pct": 5,
+          "thesis": "Luxury automaker (not car company). Artificial scarcity, 2-year waitlists. 35%+ EBIT margins. Pricing power > volume growth. Survived 75+ years.",
+          "fisher_score": "13/15",
+          "lindy_years": 77,
+          "entry_trigger": "8+ indicators",
+          "add_on_dip": true
+        },
+        {
+          "ticker": "EXO.MI",
+          "name": "Exor N.V.",
+          "geography": "Netherlands (Agnelli family)",
+          "status": "owned",
+          "current_allocation_pct": 6.8,
+          "target_allocation_pct": 5,
+          "thesis": "Holding company: Ferrari, Stellantis, Iveco, CNH, Juventus, The Economist, PartnerRe. Discount to NAV (~20-30%). Agnelli family skin in game.",
+          "fisher_score": "11/15",
+          "lindy_years": 123,
+          "entry_trigger": "9+ indicators (holding company discount needs stronger signal)",
+          "add_on_dip": false,
+          "notes": "Already above target. Monitor discount to NAV."
+        }
+      ]
+    },
+    {
+      "name": "Technology Compounders",
+      "allocation_target_pct": 20,
+      "rationale": "Wide moats, network effects, high ROIC. Dominant platforms with pricing power.",
+      "positions": [
+        {
+          "ticker": "GOOGL",
+          "name": "Alphabet Inc.",
+          "geography": "USA",
+          "status": "owned",
+          "current_allocation_pct": 3.9,
+          "target_allocation_pct": 8,
+          "thesis": "Search monopoly (90% market share). YouTube moat. Cloud #3. AI positioning. 30%+ ROIC, fortress balance sheet. Survived 25+ years.",
+          "fisher_score": "13/15",
+          "lindy_years": 26,
+          "entry_trigger": "8+ indicators or GOOGL down >30%",
+          "add_on_dip": true
+        },
+        {
+          "ticker": "ADBE",
+          "name": "Adobe Inc.",
+          "geography": "USA",
+          "status": "owned",
+          "current_allocation_pct": 3.3,
+          "target_allocation_pct": 4,
+          "thesis": "Creative software monopoly. Subscription model lock-in. 35%+ ROIC. Photoshop/Illustrator = industry standard for 30+ years.",
+          "fisher_score": "12/15",
+          "lindy_years": 42,
+          "entry_trigger": "8+ indicators",
+          "add_on_dip": true
+        },
+        {
+          "ticker": "MSFT",
+          "name": "Microsoft",
+          "geography": "USA",
+          "status": "watchlist",
+          "current_allocation_pct": 0,
+          "target_allocation_pct": 6,
+          "thesis": "Enterprise moat (Office, Azure, Windows). 40%+ ROIC. OpenAI partnership. Survived 50+ years, still compounding.",
+          "fisher_score": "14/15",
+          "lindy_years": 51,
+          "entry_trigger": "8+ indicators",
+          "add_on_dip": true
+        }
+      ]
+    },
+    {
+      "name": "Broad Market Exposure",
+      "allocation_target_pct": 30,
+      "rationale": "Core recovery plays. Get the beta, reduce single-stock risk. Safe deployment when signals fire.",
+      "positions": [
+        {
+          "ticker": "VWRA",
+          "name": "Vanguard FTSE All-World ETF",
+          "geography": "Global",
+          "status": "owned",
+          "current_allocation_pct": 21.7,
+          "target_allocation_pct": 20,
+          "thesis": "Global market cap weighted. Lowest cost, broadest diversification. US + ex-US exposure. Mean reversion to long-term growth.",
+          "fisher_score": "N/A (ETF)",
+          "lindy_years": 50,
+          "entry_trigger": "7+ indicators (safe early deployment)",
+          "add_on_dip": true
+        },
+        {
+          "ticker": "SPY",
+          "name": "SPDR S&P 500 ETF",
+          "geography": "USA",
+          "status": "watchlist",
+          "current_allocation_pct": 0,
+          "target_allocation_pct": 5,
+          "thesis": "US large-cap exposure. Complement to VWRA. Mean reversion play when market oversold.",
+          "fisher_score": "N/A (ETF)",
+          "lindy_years": 30,
+          "entry_trigger": "8+ indicators",
+          "add_on_dip": true
+        },
+        {
+          "ticker": "QQQ",
+          "name": "Invesco QQQ Trust",
+          "geography": "USA",
+          "status": "watchlist",
+          "current_allocation_pct": 0,
+          "target_allocation_pct": 5,
+          "thesis": "Tech-heavy Nasdaq 100. Higher beta, bigger recoveries. Buy during panic for outsized gains.",
+          "fisher_score": "N/A (ETF)",
+          "lindy_years": 25,
+          "entry_trigger": "9+ indicators (higher risk, need stronger signal)",
+          "add_on_dip": true
+        }
+      ]
+    },
+    {
+      "name": "Other Compounders",
+      "allocation_target_pct": 5,
+      "rationale": "Opportunistic high-quality names. Add when thesis + signals align.",
+      "positions": [
+        {
+          "ticker": "BRK.B",
+          "name": "Berkshire Hathaway",
+          "geography": "USA",
+          "status": "watchlist",
+          "current_allocation_pct": 0,
+          "target_allocation_pct": 3,
+          "thesis": "Buffett fortress. Insurance float, diversified holdings. Survives everything. Buy when trading at discount to intrinsic value.",
+          "fisher_score": "15/15",
+          "lindy_years": 60,
+          "entry_trigger": "8+ indicators + price/book < 1.3",
+          "add_on_dip": true
+        },
+        {
+          "ticker": "COST",
+          "name": "Costco Wholesale",
+          "geography": "USA",
+          "status": "watchlist",
+          "current_allocation_pct": 0,
+          "target_allocation_pct": 2,
+          "thesis": "Membership moat. 90%+ renewal rates. Low-margin, high-volume model = pricing power during inflation. 40-year track record.",
+          "fisher_score": "13/15",
+          "lindy_years": 42,
+          "entry_trigger": "9+ indicators (premium valuation, need big dip)",
+          "add_on_dip": true
+        }
+      ]
+    }
+  ],
+  "deployment_notes": [
+    "Total target allocation: 100% when fully deployed",
+    "Current allocation: ~66% (existing positions)",
+    "Dry powder target: Deploy when 8+ bear market indicators trigger",
+    "Deployment style: Heavy, concentrated buys. Not DCA.",
+    "Rebalancing: No. This is additive deployment of new cash only.",
+    "Exit strategy: Hold forever (or until thesis breaks). Not selling during bear markets."
+  ]
+}
