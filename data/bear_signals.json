@@ -1,8 +1,8 @@
 {
-  "last_updated": "2026-03-03T18:32:17.076849",
+  "last_updated": "2026-03-03T18:54:09.799078",
   "market_summary": {
     "sp500": 6881.62,
-    "vix": 24.89,
+    "vix": 25.18,
     "drawdown_from_52w_high": -1.39
   },
   "indicators": [
@@ -11,21 +11,24 @@
       "value": -0.03,
       "threshold": "\u2264 -10%",
       "met": false,
-      "description": "Current S&P 500 vs 10-day MA"
+      "description": "Current S&P 500 vs 10-day MA",
+      "explanation": "Measures how far the S&P 500 has fallen below its 10-day moving average. When the index trades 10% or more below this short-term average, it signals extreme short-term oversold conditions. This indicator captures panic selling and helps identify when the market has fallen too far, too fast."
     },
     {
       "name": "Dow Jones Death Cross",
       "value": "50-DMA: 49110, 200-DMA: 46218",
       "threshold": "50-DMA below 200-DMA",
       "met": false,
-      "description": "Death cross formation"
+      "description": "Death cross formation",
+      "explanation": "A 'death cross' occurs when the 50-day moving average crosses below the 200-day moving average, signaling a shift from bull to bear market. This is a widely-watched technical indicator that confirms a sustained downtrend. When met, it typically means we're well into a bear market decline."
     },
     {
       "name": "VIX Golden Cross",
       "value": "50-DMA: 17.3",
       "threshold": "50-DMA above 150/200/250-DMA",
       "met": false,
-      "description": "Fear index elevated"
+      "description": "Fear index elevated",
+      "explanation": "The VIX (volatility index) measures market fear and uncertainty. When its 50-day average rises above longer-term averages (150/200/250-day), it signals sustained elevated fear\u2014characteristic of bear market bottoms. High VIX during a selloff often precedes the end of panic selling."
     },
     {
       "name": "% Stocks Above 200-DMA",
@@ -33,42 +36,48 @@
       "threshold": "< 15% (approx)",
       "met": false,
       "description": "Breadth indicator (proxy)",
-      "note": "Simplified: using S&P index as proxy"
+      "note": "Simplified: using S&P index as proxy",
+      "explanation": "Market breadth measures how many stocks are in uptrends vs. downtrends. When fewer than 15% of stocks trade above their 200-day moving averages, it signals widespread damage across the market\u2014a characteristic of bear market capitulation. (Note: This simplified version uses the S&P 500 index itself as a proxy; the full indicator would calculate actual constituent percentages.)"
     },
     {
       "name": "S&P 500 Intraday Price",
       "value": "6882 (150-WMA: 6724, 200-WMA: 6565)",
       "threshold": "Within 5% of 150-WMA or 200-WMA",
       "met": true,
-      "description": "Price near key support"
+      "description": "Price near key support",
+      "explanation": "The 150-week and 200-week moving averages act as major long-term support levels. When the S&P 500 trades within 5% of these levels during a bear market, it suggests the index is near historically significant support zones where buyers have previously stepped in. This is a mean-reversion signal."
     },
     {
       "name": "S&P 500 Weekly RSI",
       "value": 52.6,
       "threshold": "< 35",
       "met": false,
-      "description": "Weekly oversold condition"
+      "description": "Weekly oversold condition",
+      "explanation": "RSI (Relative Strength Index) measures momentum on a 0-100 scale. Weekly RSI below 35 indicates the S&P 500 is oversold on a medium-term timeframe (weeks, not days). This captures sustained selling pressure that typically precedes exhaustion and reversal. Readings this low are rare and historically significant."
     },
     {
       "name": "Nasdaq Weekly RSI",
       "value": 41.3,
       "threshold": "< 35",
       "met": false,
-      "description": "Tech index oversold"
+      "description": "Tech index oversold",
+      "explanation": "The Nasdaq (tech-heavy index) weekly RSI below 35 confirms that high-growth stocks are also deeply oversold. Since tech typically leads both rallies and selloffs, extreme Nasdaq oversold conditions often signal the final stages of a bear market. When both S&P and Nasdaq RSIs are low simultaneously, it's a strong confirmation signal."
     },
     {
       "name": "S&P 500 Monthly RSI",
       "value": 72.0,
       "threshold": "< 45",
       "met": false,
-      "description": "Monthly oversold"
+      "description": "Monthly oversold",
+      "explanation": "Monthly RSI captures the longest timeframe momentum\u2014measured in months, not weeks or days. When monthly RSI drops below 45, it indicates a multi-month downtrend has reached oversold territory. This is a very slow-moving indicator that confirms we're in a sustained bear market, not just a correction. Monthly RSI extremes are rare and powerful."
     },
     {
       "name": "VIX 1-Year RSI",
-      "value": 50.3,
+      "value": 50.4,
       "threshold": "> 60",
       "met": false,
-      "description": "Fear index elevated long-term"
+      "description": "Fear index elevated long-term",
+      "explanation": "VIX RSI above 60 on a 1-year lookback means fear has been persistently elevated for an extended period\u2014characteristic of bear markets where waves of panic selling occur over many months. When the VIX's momentum indicator reaches these levels, it often signals fear exhaustion is near. This is a contrarian indicator: extreme fear \u2192 eventual reversal."
     },
     {
       "name": "Fibonacci Retracement",
@@ -76,7 +85,8 @@
       "threshold": "Around 50% retracement",
       "met": false,
       "description": "Low: 4967, High: 6979",
-      "note": "Simplified: using 2-year range"
+      "note": "Simplified: using 2-year range",
+      "explanation": "Fibonacci retracement levels identify natural support zones based on the mathematical golden ratio. The 50% retracement (halfway between the previous low and the recent high) is a psychologically significant level where markets often find support during bear markets. When the S&P retraces to this level, it suggests the market has 'given back' half of its prior gains\u2014a common bottoming pattern. (This simplified version uses a 2-year range; ideally it would measure from the prior bear market low to the bull market peak.)"
     },
     {
       "name": "Morningstar Fair Value",
@@ -84,7 +94,8 @@
       "threshold": "\u2265 20% undervalued",
       "met": false,
       "description": "Requires manual input",
-      "note": "Update quarterly from Morningstar"
+      "note": "Update quarterly from Morningstar",
+      "explanation": "Morningstar calculates the intrinsic fair value of the entire US stock market based on discounted cash flow analysis of all publicly traded companies. When the market trades at 20% or more below this fair value estimate, it signals significant undervaluation\u2014a fundamental (not just technical) signal. This requires manual quarterly updates from Morningstar's market fair value tool, as they don't provide a public API for this data."
     }
   ],
   "summary": {

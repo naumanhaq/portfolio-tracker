@@ -181,6 +181,43 @@
             color: #666;
             font-size: 0.9rem;
         }
+        .ind-details {
+            margin-top: 0.75rem;
+            padding: 0;
+        }
+        .ind-expand {
+            cursor: pointer;
+            color: #0066cc;
+            font-size: 0.85rem;
+            padding: 0.5rem 0;
+            user-select: none;
+            list-style: none;
+        }
+        .ind-expand::-webkit-details-marker {
+            display: none;
+        }
+        .ind-expand::before {
+            content: "▸ ";
+            display: inline-block;
+            margin-right: 0.25rem;
+            transition: transform 0.2s;
+        }
+        details[open] .ind-expand::before {
+            transform: rotate(90deg);
+        }
+        .ind-expand:hover {
+            color: #2c2c2c;
+            text-decoration: underline;
+        }
+        .ind-explanation {
+            background: #f8f9fa;
+            padding: 1rem;
+            margin-top: 0.5rem;
+            border-left: 3px solid #e0e0e0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #444;
+        }
         
         .methodology {
             margin: 3rem 0;
@@ -254,7 +291,7 @@
             </div>
             <div class="market-card">
                 <div class="market-label">VIX</div>
-                <div class="market-value">24.89</div>
+                <div class="market-value">25.18</div>
             </div>
             <div class="market-card">
                 <div class="market-label">Drawdown</div>
@@ -279,7 +316,12 @@
         <tr class="">
             <td class="ind-num">1</td>
             <td class="ind-check">—</td>
-            <td class="ind-name"><strong>S&P Oscillator Oversold</strong><br><span class="ind-desc">Current S&P 500 vs 10-day MA</span></td>
+            <td class="ind-name"><strong>S&P Oscillator Oversold</strong><br><span class="ind-desc">Current S&P 500 vs 10-day MA</span>
+            <details class="ind-details">
+                <summary class="ind-expand">What does this mean?</summary>
+                <div class="ind-explanation">Measures how far the S&P 500 has fallen below its 10-day moving average. When the index trades 10% or more below this short-term average, it signals extreme short-term oversold conditions. This indicator captures panic selling and helps identify when the market has fallen too far, too fast.</div>
+            </details>
+            </td>
             <td class="ind-val">-0.03</td>
             <td class="ind-thresh">≤ -10%</td>
         </tr>
@@ -287,7 +329,12 @@
         <tr class="">
             <td class="ind-num">2</td>
             <td class="ind-check">—</td>
-            <td class="ind-name"><strong>Dow Jones Death Cross</strong><br><span class="ind-desc">Death cross formation</span></td>
+            <td class="ind-name"><strong>Dow Jones Death Cross</strong><br><span class="ind-desc">Death cross formation</span>
+            <details class="ind-details">
+                <summary class="ind-expand">What does this mean?</summary>
+                <div class="ind-explanation">A 'death cross' occurs when the 50-day moving average crosses below the 200-day moving average, signaling a shift from bull to bear market. This is a widely-watched technical indicator that confirms a sustained downtrend. When met, it typically means we're well into a bear market decline.</div>
+            </details>
+            </td>
             <td class="ind-val">50-DMA: 49110, 200-DMA: 46218</td>
             <td class="ind-thresh">50-DMA below 200-DMA</td>
         </tr>
@@ -295,7 +342,12 @@
         <tr class="">
             <td class="ind-num">3</td>
             <td class="ind-check">—</td>
-            <td class="ind-name"><strong>VIX Golden Cross</strong><br><span class="ind-desc">Fear index elevated</span></td>
+            <td class="ind-name"><strong>VIX Golden Cross</strong><br><span class="ind-desc">Fear index elevated</span>
+            <details class="ind-details">
+                <summary class="ind-expand">What does this mean?</summary>
+                <div class="ind-explanation">The VIX (volatility index) measures market fear and uncertainty. When its 50-day average rises above longer-term averages (150/200/250-day), it signals sustained elevated fear—characteristic of bear market bottoms. High VIX during a selloff often precedes the end of panic selling.</div>
+            </details>
+            </td>
             <td class="ind-val">50-DMA: 17.3</td>
             <td class="ind-thresh">50-DMA above 150/200/250-DMA</td>
         </tr>
@@ -303,7 +355,12 @@
         <tr class="">
             <td class="ind-num">4</td>
             <td class="ind-check">—</td>
-            <td class="ind-name"><strong>% Stocks Above 200-DMA</strong><br><span class="ind-desc">Breadth indicator (proxy)</span><div class="ind-note">Simplified: using S&P index as proxy</div></td>
+            <td class="ind-name"><strong>% Stocks Above 200-DMA</strong><br><span class="ind-desc">Breadth indicator (proxy)</span><div class="ind-note">Simplified: using S&P index as proxy</div>
+            <details class="ind-details">
+                <summary class="ind-expand">What does this mean?</summary>
+                <div class="ind-explanation">Market breadth measures how many stocks are in uptrends vs. downtrends. When fewer than 15% of stocks trade above their 200-day moving averages, it signals widespread damage across the market—a characteristic of bear market capitulation. (Note: This simplified version uses the S&P 500 index itself as a proxy; the full indicator would calculate actual constituent percentages.)</div>
+            </details>
+            </td>
             <td class="ind-val">S&P vs 200-DMA: 4.8%</td>
             <td class="ind-thresh">< 15% (approx)</td>
         </tr>
@@ -311,7 +368,12 @@
         <tr class="row-met">
             <td class="ind-num">5</td>
             <td class="ind-check">✓</td>
-            <td class="ind-name"><strong>S&P 500 Intraday Price</strong><br><span class="ind-desc">Price near key support</span></td>
+            <td class="ind-name"><strong>S&P 500 Intraday Price</strong><br><span class="ind-desc">Price near key support</span>
+            <details class="ind-details">
+                <summary class="ind-expand">What does this mean?</summary>
+                <div class="ind-explanation">The 150-week and 200-week moving averages act as major long-term support levels. When the S&P 500 trades within 5% of these levels during a bear market, it suggests the index is near historically significant support zones where buyers have previously stepped in. This is a mean-reversion signal.</div>
+            </details>
+            </td>
             <td class="ind-val">6882 (150-WMA: 6724, 200-WMA: 6565)</td>
             <td class="ind-thresh">Within 5% of 150-WMA or 200-WMA</td>
         </tr>
@@ -319,7 +381,12 @@
         <tr class="">
             <td class="ind-num">6</td>
             <td class="ind-check">—</td>
-            <td class="ind-name"><strong>S&P 500 Weekly RSI</strong><br><span class="ind-desc">Weekly oversold condition</span></td>
+            <td class="ind-name"><strong>S&P 500 Weekly RSI</strong><br><span class="ind-desc">Weekly oversold condition</span>
+            <details class="ind-details">
+                <summary class="ind-expand">What does this mean?</summary>
+                <div class="ind-explanation">RSI (Relative Strength Index) measures momentum on a 0-100 scale. Weekly RSI below 35 indicates the S&P 500 is oversold on a medium-term timeframe (weeks, not days). This captures sustained selling pressure that typically precedes exhaustion and reversal. Readings this low are rare and historically significant.</div>
+            </details>
+            </td>
             <td class="ind-val">52.6</td>
             <td class="ind-thresh">< 35</td>
         </tr>
@@ -327,7 +394,12 @@
         <tr class="">
             <td class="ind-num">7</td>
             <td class="ind-check">—</td>
-            <td class="ind-name"><strong>Nasdaq Weekly RSI</strong><br><span class="ind-desc">Tech index oversold</span></td>
+            <td class="ind-name"><strong>Nasdaq Weekly RSI</strong><br><span class="ind-desc">Tech index oversold</span>
+            <details class="ind-details">
+                <summary class="ind-expand">What does this mean?</summary>
+                <div class="ind-explanation">The Nasdaq (tech-heavy index) weekly RSI below 35 confirms that high-growth stocks are also deeply oversold. Since tech typically leads both rallies and selloffs, extreme Nasdaq oversold conditions often signal the final stages of a bear market. When both S&P and Nasdaq RSIs are low simultaneously, it's a strong confirmation signal.</div>
+            </details>
+            </td>
             <td class="ind-val">41.3</td>
             <td class="ind-thresh">< 35</td>
         </tr>
@@ -335,7 +407,12 @@
         <tr class="">
             <td class="ind-num">8</td>
             <td class="ind-check">—</td>
-            <td class="ind-name"><strong>S&P 500 Monthly RSI</strong><br><span class="ind-desc">Monthly oversold</span></td>
+            <td class="ind-name"><strong>S&P 500 Monthly RSI</strong><br><span class="ind-desc">Monthly oversold</span>
+            <details class="ind-details">
+                <summary class="ind-expand">What does this mean?</summary>
+                <div class="ind-explanation">Monthly RSI captures the longest timeframe momentum—measured in months, not weeks or days. When monthly RSI drops below 45, it indicates a multi-month downtrend has reached oversold territory. This is a very slow-moving indicator that confirms we're in a sustained bear market, not just a correction. Monthly RSI extremes are rare and powerful.</div>
+            </details>
+            </td>
             <td class="ind-val">72.0</td>
             <td class="ind-thresh">< 45</td>
         </tr>
@@ -343,15 +420,25 @@
         <tr class="">
             <td class="ind-num">9</td>
             <td class="ind-check">—</td>
-            <td class="ind-name"><strong>VIX 1-Year RSI</strong><br><span class="ind-desc">Fear index elevated long-term</span></td>
-            <td class="ind-val">50.3</td>
+            <td class="ind-name"><strong>VIX 1-Year RSI</strong><br><span class="ind-desc">Fear index elevated long-term</span>
+            <details class="ind-details">
+                <summary class="ind-expand">What does this mean?</summary>
+                <div class="ind-explanation">VIX RSI above 60 on a 1-year lookback means fear has been persistently elevated for an extended period—characteristic of bear markets where waves of panic selling occur over many months. When the VIX's momentum indicator reaches these levels, it often signals fear exhaustion is near. This is a contrarian indicator: extreme fear → eventual reversal.</div>
+            </details>
+            </td>
+            <td class="ind-val">50.4</td>
             <td class="ind-thresh">> 60</td>
         </tr>
         
         <tr class="">
             <td class="ind-num">10</td>
             <td class="ind-check">—</td>
-            <td class="ind-name"><strong>Fibonacci Retracement</strong><br><span class="ind-desc">Low: 4967, High: 6979</span><div class="ind-note">Simplified: using 2-year range</div></td>
+            <td class="ind-name"><strong>Fibonacci Retracement</strong><br><span class="ind-desc">Low: 4967, High: 6979</span><div class="ind-note">Simplified: using 2-year range</div>
+            <details class="ind-details">
+                <summary class="ind-expand">What does this mean?</summary>
+                <div class="ind-explanation">Fibonacci retracement levels identify natural support zones based on the mathematical golden ratio. The 50% retracement (halfway between the previous low and the recent high) is a psychologically significant level where markets often find support during bear markets. When the S&P retraces to this level, it suggests the market has 'given back' half of its prior gains—a common bottoming pattern. (This simplified version uses a 2-year range; ideally it would measure from the prior bear market low to the bull market peak.)</div>
+            </details>
+            </td>
             <td class="ind-val">Current: 6882, 50% Fib: 5973</td>
             <td class="ind-thresh">Around 50% retracement</td>
         </tr>
@@ -359,7 +446,12 @@
         <tr class="">
             <td class="ind-num">11</td>
             <td class="ind-check">—</td>
-            <td class="ind-name"><strong>Morningstar Fair Value</strong><br><span class="ind-desc">Requires manual input</span><div class="ind-note">Update quarterly from Morningstar</div></td>
+            <td class="ind-name"><strong>Morningstar Fair Value</strong><br><span class="ind-desc">Requires manual input</span><div class="ind-note">Update quarterly from Morningstar</div>
+            <details class="ind-details">
+                <summary class="ind-expand">What does this mean?</summary>
+                <div class="ind-explanation">Morningstar calculates the intrinsic fair value of the entire US stock market based on discounted cash flow analysis of all publicly traded companies. When the market trades at 20% or more below this fair value estimate, it signals significant undervaluation—a fundamental (not just technical) signal. This requires manual quarterly updates from Morningstar's market fair value tool, as they don't provide a public API for this data.</div>
+            </details>
+            </td>
             <td class="ind-val">Manual update required</td>
             <td class="ind-thresh">≥ 20% undervalued</td>
         </tr>
@@ -380,7 +472,7 @@
         </div>
         
         <div class="footer">
-            <p>Last updated: March 03, 2026 at 06:32 PM UTC</p>
+            <p>Last updated: March 03, 2026 at 06:54 PM UTC</p>
             <p>Data sources: Yahoo Finance (S&P 500, Nasdaq, Dow Jones, VIX)</p>
             <p><a href="https://enhaq.com">enhaq.com</a></p>
         </div>
