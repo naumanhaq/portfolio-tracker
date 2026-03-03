@@ -1,4 +1,53 @@
-<!DOCTYPE html>
+#!/usr/bin/env python3
+"""
+Generate bear-signals.html from bear_signals.json
+"""
+
+import json
+from datetime import datetime
+
+def load_data():
+    with open('/data/.openclaw/workspace/bear-signals-repo/data/bear_signals.json', 'r') as f:
+        return json.load(f)
+
+def generate_html(data):
+    last_updated = datetime.fromisoformat(data['last_updated']).strftime('%B %d, %Y at %I:%M %p UTC')
+    
+    market = data['market_summary']
+    summary = data['summary']
+    indicators = data['indicators']
+    
+    # Determine status
+    pct = summary['percentage']
+    if pct >= 70:
+        status_text = "BEAR MARKET BOTTOM LIKELY"
+        status_class = "signal-strong"
+    elif pct >= 50:
+        status_text = "Moderate signals detected"
+        status_class = "signal-moderate"
+    else:
+        status_text = "Bull market (normal)"
+        status_class = "signal-normal"
+    
+    # Generate indicator rows
+    indicator_rows = ""
+    for i, ind in enumerate(indicators, 1):
+        status_icon = "✓" if ind['met'] else "—"
+        row_class = "row-met" if ind['met'] else ""
+        
+        note_html = f'<div class="ind-note">{ind.get("note", "")}</div>' if ind.get("note") else ""
+        
+        indicator_rows += f"""
+        <tr class="{row_class}">
+            <td class="ind-num">{i}</td>
+            <td class="ind-check">{status_icon}</td>
+            <td class="ind-name"><strong>{ind['name']}</strong><br><span class="ind-desc">{ind['description']}</span>{note_html}</td>
+            <td class="ind-val">{ind['value']}</td>
+            <td class="ind-thresh">{ind['threshold']}</td>
+        </tr>
+        """
+    
+    html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,36 +57,36 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
+        * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+        body {{
             font-family: 'EB Garamond', serif;
             background: #ffffff;
             color: #1a1a1a;
             line-height: 1.7;
             padding: 40px 20px;
-        }
-        .container { max-width: 1000px; margin: 0 auto; }
-        .site-header { margin-bottom: 1.5rem; }
-        h1 {
+        }}
+        .container {{ max-width: 1000px; margin: 0 auto; }}
+        .site-header {{ margin-bottom: 1.5rem; }}
+        h1 {{
             font-family: 'Caveat', cursive;
             font-size: 4rem;
             font-weight: 700;
             margin-bottom: 0;
-        }
-        h2 {
+        }}
+        h2 {{
             font-family: 'Crimson Text', serif;
             font-size: 1.5rem;
             font-weight: 600;
             margin: 2rem 0 1rem 0;
             border-bottom: 2px solid #2c2c2c;
             padding-bottom: 0.5rem;
-        }
-        nav {
+        }}
+        nav {{
             margin: 1.5rem 0;
             border-bottom: 1px solid #ccc;
             padding-bottom: 1rem;
-        }
-        nav a {
+        }}
+        nav a {{
             font-family: 'Crimson Text', serif;
             text-decoration: none;
             color: #2c2c2c;
@@ -45,10 +94,10 @@
             font-size: 1.1rem;
             border-bottom: 2px solid transparent;
             padding-bottom: 2px;
-        }
-        nav a:hover { border-bottom: 2px solid #2c2c2c; }
-        nav a.active { border-bottom: 2px solid #2c2c2c; font-weight: 600; }
-        .page-tagline {
+        }}
+        nav a:hover {{ border-bottom: 2px solid #2c2c2c; }}
+        nav a.active {{ border-bottom: 2px solid #2c2c2c; font-weight: 600; }}
+        .page-tagline {{
             font-family: 'Crimson Text', serif;
             font-size: 1.1rem;
             color: #666;
@@ -56,9 +105,9 @@
             margin: 0 0 2rem 0;
             padding: 1.5rem 0;
             border-bottom: 1px solid #e5e5e5;
-        }
+        }}
         
-        .signal-banner {
+        .signal-banner {{
             text-align: center;
             padding: 2rem;
             margin: 2rem 0;
@@ -66,31 +115,31 @@
             font-family: 'Crimson Text', serif;
             font-size: 1.8rem;
             font-weight: 600;
-        }
-        .signal-strong { background: #ffe5e5; border-color: #cc0000; color: #cc0000; }
-        .signal-moderate { background: #fff4e5; border-color: #cc8800; color: #cc8800; }
-        .signal-normal { background: #f0f0f0; border-color: #666; color: #666; }
+        }}
+        .signal-strong {{ background: #ffe5e5; border-color: #cc0000; color: #cc0000; }}
+        .signal-moderate {{ background: #fff4e5; border-color: #cc8800; color: #cc8800; }}
+        .signal-normal {{ background: #f0f0f0; border-color: #666; color: #666; }}
         
-        .progress-section {
+        .progress-section {{
             margin: 2rem 0;
             padding: 2rem;
             border: 1px solid #e5e5e5;
-        }
-        .progress-label {
+        }}
+        .progress-label {{
             font-family: 'Crimson Text', serif;
             font-size: 1.2rem;
             font-weight: 600;
             margin-bottom: 1rem;
-        }
-        .progress-bar {
+        }}
+        .progress-bar {{
             width: 100%;
             height: 30px;
             background: #f0f0f0;
             border: 1px solid #ccc;
             position: relative;
             overflow: hidden;
-        }
-        .progress-fill {
+        }}
+        .progress-fill {{
             height: 100%;
             background: #2c2c2c;
             display: flex;
@@ -99,122 +148,122 @@
             color: white;
             font-weight: 500;
             font-size: 0.9rem;
-        }
+        }}
         
-        .market-summary {
+        .market-summary {{
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 1rem;
             margin: 2rem 0;
             padding: 2rem;
             border: 1px solid #e5e5e5;
-        }
-        .market-card {
+        }}
+        .market-card {{
             text-align: center;
-        }
-        .market-label {
+        }}
+        .market-label {{
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             color: #666;
             margin-bottom: 0.5rem;
-        }
-        .market-value {
+        }}
+        .market-value {{
             font-size: 1.8rem;
             font-weight: 500;
-        }
+        }}
         
-        table {
+        table {{
             width: 100%;
             border-collapse: collapse;
             margin: 2rem 0;
             font-size: 0.95rem;
-        }
-        thead {
+        }}
+        thead {{
             border-bottom: 2px solid #2c2c2c;
-        }
-        th {
+        }}
+        th {{
             font-family: 'Crimson Text', serif;
             font-weight: 600;
             padding: 0.75rem 0.5rem;
             text-align: left;
-        }
-        td {
+        }}
+        td {{
             padding: 1rem 0.5rem;
             border-bottom: 1px solid #e5e5e5;
             vertical-align: top;
-        }
-        .row-met {
+        }}
+        .row-met {{
             background: #f9f9f9;
-        }
-        .ind-num {
+        }}
+        .ind-num {{
             width: 40px;
             text-align: center;
             color: #999;
-        }
-        .ind-check {
+        }}
+        .ind-check {{
             width: 40px;
             text-align: center;
             font-size: 1.2rem;
             font-weight: bold;
-        }
-        .row-met .ind-check {
+        }}
+        .row-met .ind-check {{
             color: #2c2c2c;
-        }
-        .ind-name {
+        }}
+        .ind-name {{
             min-width: 200px;
-        }
-        .ind-desc {
+        }}
+        .ind-desc {{
             font-size: 0.85rem;
             color: #666;
-        }
-        .ind-note {
+        }}
+        .ind-note {{
             font-size: 0.8rem;
             color: #999;
             font-style: italic;
             margin-top: 0.25rem;
-        }
-        .ind-val {
+        }}
+        .ind-val {{
             color: #2c2c2c;
-        }
-        .ind-thresh {
+        }}
+        .ind-thresh {{
             color: #666;
             font-size: 0.9rem;
-        }
+        }}
         
-        .methodology {
+        .methodology {{
             margin: 3rem 0;
             padding: 2rem;
             border: 1px solid #e5e5e5;
             background: #fafafa;
-        }
-        .methodology h2 {
+        }}
+        .methodology h2 {{
             margin-top: 0;
-        }
-        .methodology ul {
+        }}
+        .methodology ul {{
             margin: 1rem 0 1rem 1.5rem;
             line-height: 1.9;
-        }
-        .methodology li {
+        }}
+        .methodology li {{
             margin-bottom: 0.5rem;
-        }
+        }}
         
-        .footer {
+        .footer {{
             margin-top: 4rem;
             padding-top: 2rem;
             border-top: 1px solid #e5e5e5;
             text-align: center;
             color: #999;
             font-size: 0.9rem;
-        }
-        .footer a {
+        }}
+        .footer a {{
             color: #666;
             text-decoration: none;
             border-bottom: 1px solid #ccc;
-        }
-        .footer a:hover {
+        }}
+        .footer a:hover {{
             border-bottom: 1px solid #2c2c2c;
-        }
+        }}
     </style>
 </head>
 <body>
@@ -234,15 +283,15 @@
             Real-time bear market bottom indicators – market-wide technical oversold signals
         </div>
         
-        <div class="signal-banner signal-normal">
-            Bull market (normal)
+        <div class="signal-banner {status_class}">
+            {status_text}
         </div>
         
         <div class="progress-section">
-            <div class="progress-label">Indicators Met: 1 of 11</div>
+            <div class="progress-label">Indicators Met: {summary['met_count']} of {summary['total_count']}</div>
             <div class="progress-bar">
-                <div class="progress-fill" style="width: 9.1%;">
-                    9.1%
+                <div class="progress-fill" style="width: {pct}%;">
+                    {pct}%
                 </div>
             </div>
         </div>
@@ -250,15 +299,15 @@
         <div class="market-summary">
             <div class="market-card">
                 <div class="market-label">S&P 500</div>
-                <div class="market-value">6881.62</div>
+                <div class="market-value">{market['sp500']}</div>
             </div>
             <div class="market-card">
                 <div class="market-label">VIX</div>
-                <div class="market-value">24.89</div>
+                <div class="market-value">{market['vix']}</div>
             </div>
             <div class="market-card">
                 <div class="market-label">Drawdown</div>
-                <div class="market-value">-1.39%</div>
+                <div class="market-value">{market['drawdown_from_52w_high']}%</div>
             </div>
         </div>
         
@@ -275,95 +324,7 @@
                 </tr>
             </thead>
             <tbody>
-                
-        <tr class="">
-            <td class="ind-num">1</td>
-            <td class="ind-check">—</td>
-            <td class="ind-name"><strong>S&P Oscillator Oversold</strong><br><span class="ind-desc">Current S&P 500 vs 10-day MA</span></td>
-            <td class="ind-val">-0.03</td>
-            <td class="ind-thresh">≤ -10%</td>
-        </tr>
-        
-        <tr class="">
-            <td class="ind-num">2</td>
-            <td class="ind-check">—</td>
-            <td class="ind-name"><strong>Dow Jones Death Cross</strong><br><span class="ind-desc">Death cross formation</span></td>
-            <td class="ind-val">50-DMA: 49110, 200-DMA: 46218</td>
-            <td class="ind-thresh">50-DMA below 200-DMA</td>
-        </tr>
-        
-        <tr class="">
-            <td class="ind-num">3</td>
-            <td class="ind-check">—</td>
-            <td class="ind-name"><strong>VIX Golden Cross</strong><br><span class="ind-desc">Fear index elevated</span></td>
-            <td class="ind-val">50-DMA: 17.3</td>
-            <td class="ind-thresh">50-DMA above 150/200/250-DMA</td>
-        </tr>
-        
-        <tr class="">
-            <td class="ind-num">4</td>
-            <td class="ind-check">—</td>
-            <td class="ind-name"><strong>% Stocks Above 200-DMA</strong><br><span class="ind-desc">Breadth indicator (proxy)</span><div class="ind-note">Simplified: using S&P index as proxy</div></td>
-            <td class="ind-val">S&P vs 200-DMA: 4.8%</td>
-            <td class="ind-thresh">< 15% (approx)</td>
-        </tr>
-        
-        <tr class="row-met">
-            <td class="ind-num">5</td>
-            <td class="ind-check">✓</td>
-            <td class="ind-name"><strong>S&P 500 Intraday Price</strong><br><span class="ind-desc">Price near key support</span></td>
-            <td class="ind-val">6882 (150-WMA: 6724, 200-WMA: 6565)</td>
-            <td class="ind-thresh">Within 5% of 150-WMA or 200-WMA</td>
-        </tr>
-        
-        <tr class="">
-            <td class="ind-num">6</td>
-            <td class="ind-check">—</td>
-            <td class="ind-name"><strong>S&P 500 Weekly RSI</strong><br><span class="ind-desc">Weekly oversold condition</span></td>
-            <td class="ind-val">52.6</td>
-            <td class="ind-thresh">< 35</td>
-        </tr>
-        
-        <tr class="">
-            <td class="ind-num">7</td>
-            <td class="ind-check">—</td>
-            <td class="ind-name"><strong>Nasdaq Weekly RSI</strong><br><span class="ind-desc">Tech index oversold</span></td>
-            <td class="ind-val">41.3</td>
-            <td class="ind-thresh">< 35</td>
-        </tr>
-        
-        <tr class="">
-            <td class="ind-num">8</td>
-            <td class="ind-check">—</td>
-            <td class="ind-name"><strong>S&P 500 Monthly RSI</strong><br><span class="ind-desc">Monthly oversold</span></td>
-            <td class="ind-val">72.0</td>
-            <td class="ind-thresh">< 45</td>
-        </tr>
-        
-        <tr class="">
-            <td class="ind-num">9</td>
-            <td class="ind-check">—</td>
-            <td class="ind-name"><strong>VIX 1-Year RSI</strong><br><span class="ind-desc">Fear index elevated long-term</span></td>
-            <td class="ind-val">50.3</td>
-            <td class="ind-thresh">> 60</td>
-        </tr>
-        
-        <tr class="">
-            <td class="ind-num">10</td>
-            <td class="ind-check">—</td>
-            <td class="ind-name"><strong>Fibonacci Retracement</strong><br><span class="ind-desc">Low: 4967, High: 6979</span><div class="ind-note">Simplified: using 2-year range</div></td>
-            <td class="ind-val">Current: 6882, 50% Fib: 5973</td>
-            <td class="ind-thresh">Around 50% retracement</td>
-        </tr>
-        
-        <tr class="">
-            <td class="ind-num">11</td>
-            <td class="ind-check">—</td>
-            <td class="ind-name"><strong>Morningstar Fair Value</strong><br><span class="ind-desc">Requires manual input</span><div class="ind-note">Update quarterly from Morningstar</div></td>
-            <td class="ind-val">Manual update required</td>
-            <td class="ind-thresh">≥ 20% undervalued</td>
-        </tr>
-        
+                {indicator_rows}
             </tbody>
         </table>
         
@@ -380,10 +341,28 @@
         </div>
         
         <div class="footer">
-            <p>Last updated: March 03, 2026 at 06:32 PM UTC</p>
+            <p>Last updated: {last_updated}</p>
             <p>Data sources: Yahoo Finance (S&P 500, Nasdaq, Dow Jones, VIX)</p>
             <p><a href="https://enhaq.com">enhaq.com</a></p>
         </div>
     </div>
 </body>
-</html>
+</html>"""
+    
+    return html
+
+def main():
+    print("Loading data...")
+    data = load_data()
+    
+    print("Generating HTML...")
+    html = generate_html(data)
+    
+    output_path = '/data/.openclaw/workspace/bear-signals-repo/bear-signals.html'
+    with open(output_path, 'w') as f:
+        f.write(html)
+    
+    print(f"✓ HTML generated: {output_path}")
+
+if __name__ == "__main__":
+    main()
