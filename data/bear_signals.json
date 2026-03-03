@@ -1,8 +1,8 @@
 {
-  "last_updated": "2026-03-03T18:54:09.799078",
+  "last_updated": "2026-03-03T18:57:02.484158",
   "market_summary": {
     "sp500": 6881.62,
-    "vix": 25.18,
+    "vix": 25.2,
     "drawdown_from_52w_high": -1.39
   },
   "indicators": [
