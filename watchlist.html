@@ -231,6 +231,171 @@
             color: #856404;
         }
         
+        .valuation-section {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: white;
+            border: 2px solid #2c2c2c;
+        }
+        .valuation-header {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #2c2c2c;
+        }
+        .valuation-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .val-box {
+            background: #f8f9fa;
+            padding: 1rem;
+            border: 1px solid #e5e5e5;
+            text-align: center;
+        }
+        .val-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        .val-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c2c2c;
+            margin-bottom: 0.25rem;
+        }
+        .val-sublabel {
+            font-size: 0.8rem;
+            color: #999;
+        }
+        .reverse-dcf-detail {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-left: 3px solid #666;
+        }
+        .detail-row-val {
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .three-ps-section {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border: 1px solid #e5e5e5;
+        }
+        .ps-title {
+            font-family: 'Crimson Text', serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        .ps-item {
+            margin: 0.75rem 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .ps-assessment {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            background: white;
+            border-left: 3px solid #2c2c2c;
+            font-weight: 500;
+        }
+        .entry-exit-triggers {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: #fafafa;
+            border: 1px solid #e5e5e5;
+        }
+        .trigger-title {
+            font-family: 'Crimson Text', serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        .trigger-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .trigger-item {
+            padding: 1rem;
+            border: 2px solid;
+            background: white;
+        }
+        .trigger-buy {
+            border-color: #2d5016;
+        }
+        .trigger-hold {
+            border-color: #666;
+        }
+        .trigger-sell {
+            border-color: #8b0000;
+        }
+        .trigger-label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+        .trigger-buy .trigger-label {
+            color: #2d5016;
+        }
+        .trigger-hold .trigger-label {
+            color: #666;
+        }
+        .trigger-sell .trigger-label {
+            color: #8b0000;
+        }
+        .trigger-value {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #444;
+        }
+        .current-signal {
+            padding: 1rem;
+            font-size: 1rem;
+            text-align: center;
+            border: 2px solid;
+            font-weight: 600;
+        }
+        .signal-buy {
+            background: #e8f5e9;
+            border-color: #2d5016;
+            color: #2d5016;
+        }
+        .signal-hold {
+            background: #f5f5f5;
+            border-color: #666;
+            color: #666;
+        }
+        .signal-sell {
+            background: #ffebee;
+            border-color: #8b0000;
+            color: #8b0000;
+        }
+        .signal-wait {
+            background: #fff3cd;
+            border-color: #856404;
+            color: #856404;
+        }
+        .val-updated {
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: #999;
+            text-align: right;
+        }
+        
         .deployment-notes {
             margin: 3rem 0;
             padding: 2rem;
@@ -341,6 +506,69 @@
                         </div>
                         <span class="add-flag">✓ Add on dip</span>
                         
+                        
+                <div class="valuation-section">
+                    <div class="valuation-header">Valuation Analysis (Reverse DCF + 3 Ps)</div>
+                    
+                    <div class="valuation-grid">
+                        <div class="val-box">
+                            <div class="val-label">Current Price</div>
+                            <div class="val-value">2520.66</div>
+                            <div class="val-sublabel">P/FCF ~35x</div>
+                        </div>
+                        <div class="val-box">
+                            <div class="val-label">Implied Growth (10Y)</div>
+                            <div class="val-value">12-14%</div>
+                            <div class="val-sublabel">Market expectation</div>
+                        </div>
+                        <div class="val-box">
+                            <div class="val-label">Probable Growth</div>
+                            <div class="val-value">15-18% FCF CAGR. Bas</div>
+                            <div class="val-sublabel">Base case estimate</div>
+                        </div>
+                    </div>
+                    
+                    <div class="reverse-dcf-detail">
+                        <div class="detail-row-val">
+                            <strong>Reverse DCF:</strong> Market expects CSU to grow FCF at 12-14% annually for 10 years, then 3% perpetually.
+                        </div>
+                        <div class="detail-row-val">
+                            <strong>Multiple Compression:</strong> If multiple compresses from 35x to 25x over 10 years, need 16-18% FCF growth just to break even.
+                        </div>
+                    </div>
+                    
+                    <div class="three-ps-section">
+                        <div class="ps-title">The 3 Ps Framework</div>
+                        <div class="ps-item"><strong>Possible:</strong> Yes. VMS TAM expanding (cloud migration, vertical deepening). $50B+ addressable.</div>
+                        <div class="ps-item"><strong>Plausible:</strong> Yes. Historical 20%+ FCF growth (2010-2020). M&A pipeline remains robust. Pricing power intact.</div>
+                        <div class="ps-item"><strong>Probable:</strong> 15-18% FCF CAGR. Base case: 15%. Bull case: 18%. Track record supports this.</div>
+                        <div class="ps-assessment">Probable (15-18%) > Implied (12-14%). Stock is reasonably priced, not expensive.</div>
+                    </div>
+                    
+                    <div class="entry-exit-triggers">
+                        <div class="trigger-title">Entry / Exit Triggers</div>
+                        <div class="trigger-grid">
+                            <div class="trigger-item trigger-buy">
+                                <div class="trigger-label">BUY</div>
+                                <div class="trigger-value">Price < CAD 2,200 (Probable growth 20%+ above Implied) OR 8+ bear signals</div>
+                            </div>
+                            <div class="trigger-item trigger-hold">
+                                <div class="trigger-label">HOLD</div>
+                                <div class="trigger-value">CAD 2,200 - 3,000 (Probable ≈ Implied)</div>
+                            </div>
+                            <div class="trigger-item trigger-sell">
+                                <div class="trigger-label">SELL</div>
+                                <div class="trigger-value">Price > CAD 3,500 (Implied > 20%, multiple >40x) AND Probable cannot support it</div>
+                            </div>
+                        </div>
+                        <div class="current-signal signal-hold">
+                            <strong>Current Signal:</strong> HOLD (slightly undervalued, wait for 8+ bear signals or deeper dip)
+                        </div>
+                    </div>
+                    
+                    <div class="val-updated">Last updated: 2026-03-03</div>
+                </div>
+                
                     </div>
                 </td>
             </tr>
@@ -379,6 +607,7 @@
                             </div>
                         </div>
                         <span class="add-flag">✓ Add on dip</span>
+                        
                         
                     </div>
                 </td>
@@ -419,6 +648,7 @@
                         </div>
                         
                         <div class="pos-notes">📝 Already at target weight. Monitor only.</div>
+                        
                     </div>
                 </td>
             </tr>
@@ -480,6 +710,69 @@
                         </div>
                         <span class="add-flag">✓ Add on dip</span>
                         
+                        
+                <div class="valuation-section">
+                    <div class="valuation-header">Valuation Analysis (Reverse DCF + 3 Ps)</div>
+                    
+                    <div class="valuation-grid">
+                        <div class="val-box">
+                            <div class="val-label">Current Price</div>
+                            <div class="val-value">2350</div>
+                            <div class="val-sublabel">P/E ~55x</div>
+                        </div>
+                        <div class="val-box">
+                            <div class="val-label">Implied Growth (10Y)</div>
+                            <div class="val-value">8-10%</div>
+                            <div class="val-sublabel">Market expectation</div>
+                        </div>
+                        <div class="val-box">
+                            <div class="val-label">Probable Growth</div>
+                            <div class="val-value">10-12% EPS CAGR. Pri</div>
+                            <div class="val-sublabel">Base case estimate</div>
+                        </div>
+                    </div>
+                    
+                    <div class="reverse-dcf-detail">
+                        <div class="detail-row-val">
+                            <strong>Reverse DCF:</strong> Market expects 8-10% EPS growth for 10 years at premium multiple (luxury scarcity premium).
+                        </div>
+                        <div class="detail-row-val">
+                            <strong>Multiple Compression:</strong> If multiple compresses from 55x to 40x, need 12-14% EPS growth to break even.
+                        </div>
+                    </div>
+                    
+                    <div class="three-ps-section">
+                        <div class="ps-title">The 3 Ps Framework</div>
+                        <div class="ps-item"><strong>Possible:</strong> Yes. Ultra-high-net-worth (UHNW) wealth growing 6-8% annually. China/Asia demand underpenetrated.</div>
+                        <div class="ps-item"><strong>Plausible:</strong> Yes. Historical 10-12% revenue growth, margin expansion from pricing power. Artisan constraint limits volume.</div>
+                        <div class="ps-item"><strong>Probable:</strong> 10-12% EPS CAGR. Pricing power + slow volume expansion. Track record: 11% revenue CAGR (2010-2020).</div>
+                        <div class="ps-assessment">Probable (10-12%) ≈ Implied (8-10%). Fairly valued at current multiple.</div>
+                    </div>
+                    
+                    <div class="entry-exit-triggers">
+                        <div class="trigger-title">Entry / Exit Triggers</div>
+                        <div class="trigger-grid">
+                            <div class="trigger-item trigger-buy">
+                                <div class="trigger-label">BUY</div>
+                                <div class="trigger-value">Price < EUR 2,000 (Probable > Implied by 20%+) OR 8+ bear signals + price < EUR 2,200</div>
+                            </div>
+                            <div class="trigger-item trigger-hold">
+                                <div class="trigger-label">HOLD</div>
+                                <div class="trigger-value">EUR 2,000 - 2,600 (Probable ≈ Implied, luxury premium justified)</div>
+                            </div>
+                            <div class="trigger-item trigger-sell">
+                                <div class="trigger-label">SELL</div>
+                                <div class="trigger-value">Price > EUR 3,000 (P/E >65x, Implied >12%, unsustainable for slow-growth luxury)</div>
+                            </div>
+                        </div>
+                        <div class="current-signal signal-hold">
+                            <strong>Current Signal:</strong> HOLD (fairly valued, wait for 8+ bear signals for entry)
+                        </div>
+                    </div>
+                    
+                    <div class="val-updated">Last updated: 2026-03-03</div>
+                </div>
+                
                     </div>
                 </td>
             </tr>
@@ -518,6 +811,7 @@
                             </div>
                         </div>
                         <span class="add-flag">✓ Add on dip</span>
+                        
                         
                     </div>
                 </td>
@@ -558,6 +852,7 @@
                         </div>
                         
                         <div class="pos-notes">📝 Already above target. Monitor discount to NAV.</div>
+                        
                     </div>
                 </td>
             </tr>
@@ -619,6 +914,7 @@
                         </div>
                         <span class="add-flag">✓ Add on dip</span>
                         
+                        
                     </div>
                 </td>
             </tr>
@@ -657,6 +953,7 @@
                             </div>
                         </div>
                         <span class="add-flag">✓ Add on dip</span>
+                        
                         
                     </div>
                 </td>
@@ -697,6 +994,69 @@
                         </div>
                         <span class="add-flag">✓ Add on dip</span>
                         
+                        
+                <div class="valuation-section">
+                    <div class="valuation-header">Valuation Analysis (Reverse DCF + 3 Ps)</div>
+                    
+                    <div class="valuation-grid">
+                        <div class="val-box">
+                            <div class="val-label">Current Price</div>
+                            <div class="val-value">445</div>
+                            <div class="val-sublabel">P/E ~38x</div>
+                        </div>
+                        <div class="val-box">
+                            <div class="val-label">Implied Growth (10Y)</div>
+                            <div class="val-value">12-14%</div>
+                            <div class="val-sublabel">Market expectation</div>
+                        </div>
+                        <div class="val-box">
+                            <div class="val-label">Probable Growth</div>
+                            <div class="val-value">14-16% EPS CAGR. Bas</div>
+                            <div class="val-sublabel">Base case estimate</div>
+                        </div>
+                    </div>
+                    
+                    <div class="reverse-dcf-detail">
+                        <div class="detail-row-val">
+                            <strong>Reverse DCF:</strong> Market expects 12-14% EPS growth for 10 years, driven by Azure + AI monetization.
+                        </div>
+                        <div class="detail-row-val">
+                            <strong>Multiple Compression:</strong> If multiple compresses from 38x to 28x (mature tech), need 16-18% EPS growth to break even.
+                        </div>
+                    </div>
+                    
+                    <div class="three-ps-section">
+                        <div class="ps-title">The 3 Ps Framework</div>
+                        <div class="ps-item"><strong>Possible:</strong> Yes. Cloud TAM $1T+. Enterprise software moat defensible. AI tailwinds real.</div>
+                        <div class="ps-item"><strong>Plausible:</strong> Yes. Azure growing 25-30%. Office/Windows stable cash cows. AI integration across product suite.</div>
+                        <div class="ps-item"><strong>Probable:</strong> 14-16% EPS CAGR. Base case: 14% (Azure moderates, margin expansion). Bull case: 16% (AI accelerates).</div>
+                        <div class="ps-assessment">Probable (14-16%) ≈ Implied (12-14%). Fairly to slightly overvalued at current multiple.</div>
+                    </div>
+                    
+                    <div class="entry-exit-triggers">
+                        <div class="trigger-title">Entry / Exit Triggers</div>
+                        <div class="trigger-grid">
+                            <div class="trigger-item trigger-buy">
+                                <div class="trigger-label">BUY</div>
+                                <div class="trigger-value">Price < USD 380 (Probable >20% above Implied) OR 8+ bear signals + price < USD 420</div>
+                            </div>
+                            <div class="trigger-item trigger-hold">
+                                <div class="trigger-label">HOLD</div>
+                                <div class="trigger-value">USD 380 - 480 (Probable ≈ Implied, quality premium)</div>
+                            </div>
+                            <div class="trigger-item trigger-sell">
+                                <div class="trigger-label">SELL</div>
+                                <div class="trigger-value">Price > USD 550 (P/E >45x, Implied >18%, difficult to sustain for mega-cap)</div>
+                            </div>
+                        </div>
+                        <div class="current-signal signal-buy">
+                            <strong>Current Signal:</strong> WAIT (fairly valued, not a buy unless 8+ bear signals trigger)
+                        </div>
+                    </div>
+                    
+                    <div class="val-updated">Last updated: 2026-03-03</div>
+                </div>
+                
                     </div>
                 </td>
             </tr>
@@ -758,6 +1118,7 @@
                         </div>
                         <span class="add-flag">✓ Add on dip</span>
                         
+                        
                     </div>
                 </td>
             </tr>
@@ -797,6 +1158,7 @@
                         </div>
                         <span class="add-flag">✓ Add on dip</span>
                         
+                        
                     </div>
                 </td>
             </tr>
@@ -835,6 +1197,7 @@
                             </div>
                         </div>
                         <span class="add-flag">✓ Add on dip</span>
+                        
                         
                     </div>
                 </td>
@@ -897,6 +1260,7 @@
                         </div>
                         <span class="add-flag">✓ Add on dip</span>
                         
+                        
                     </div>
                 </td>
             </tr>
@@ -935,6 +1299,7 @@
                             </div>
                         </div>
                         <span class="add-flag">✓ Add on dip</span>
+                        
                         
                     </div>
                 </td>

@@ -43,6 +43,91 @@ def generate_html(data):
             if pos.get('add_on_dip'):
                 add_on_dip_html = '<span class="add-flag">✓ Add on dip</span>'
             
+            # Valuation section (if present)
+            valuation_html = ""
+            if pos.get('valuation'):
+                val = pos['valuation']
+                
+                # Determine signal color
+                signal = val.get('entry_exit_trigger', {}).get('current_signal', '')
+                if 'BUY' in signal.upper():
+                    signal_class = 'signal-buy'
+                elif 'SELL' in signal.upper():
+                    signal_class = 'signal-sell'
+                elif 'HOLD' in signal.upper():
+                    signal_class = 'signal-hold'
+                else:
+                    signal_class = 'signal-wait'
+                
+                reverse_dcf = val.get('reverse_dcf', {})
+                compression = val.get('multiple_compression_scenario', {})
+                three_ps = val.get('three_ps', {})
+                triggers = val.get('entry_exit_trigger', {})
+                
+                valuation_html = f'''
+                <div class="valuation-section">
+                    <div class="valuation-header">Valuation Analysis (Reverse DCF + 3 Ps)</div>
+                    
+                    <div class="valuation-grid">
+                        <div class="val-box">
+                            <div class="val-label">Current Price</div>
+                            <div class="val-value">{val.get('current_price_cad') or val.get('current_price_usd') or val.get('current_price_eur', 'N/A')}</div>
+                            <div class="val-sublabel">{val.get('current_multiple', '')}</div>
+                        </div>
+                        <div class="val-box">
+                            <div class="val-label">Implied Growth (10Y)</div>
+                            <div class="val-value">{reverse_dcf.get('implied_fcf_cagr_10y') or reverse_dcf.get('implied_eps_cagr_10y', 'N/A')}</div>
+                            <div class="val-sublabel">Market expectation</div>
+                        </div>
+                        <div class="val-box">
+                            <div class="val-label">Probable Growth</div>
+                            <div class="val-value">{three_ps.get('probable', 'N/A')[:20]}</div>
+                            <div class="val-sublabel">Base case estimate</div>
+                        </div>
+                    </div>
+                    
+                    <div class="reverse-dcf-detail">
+                        <div class="detail-row-val">
+                            <strong>Reverse DCF:</strong> {reverse_dcf.get('interpretation', '')}
+                        </div>
+                        <div class="detail-row-val">
+                            <strong>Multiple Compression:</strong> {compression.get('interpretation', '')}
+                        </div>
+                    </div>
+                    
+                    <div class="three-ps-section">
+                        <div class="ps-title">The 3 Ps Framework</div>
+                        <div class="ps-item"><strong>Possible:</strong> {three_ps.get('possible', '')}</div>
+                        <div class="ps-item"><strong>Plausible:</strong> {three_ps.get('plausible', '')}</div>
+                        <div class="ps-item"><strong>Probable:</strong> {three_ps.get('probable', '')}</div>
+                        <div class="ps-assessment">{three_ps.get('assessment', '')}</div>
+                    </div>
+                    
+                    <div class="entry-exit-triggers">
+                        <div class="trigger-title">Entry / Exit Triggers</div>
+                        <div class="trigger-grid">
+                            <div class="trigger-item trigger-buy">
+                                <div class="trigger-label">BUY</div>
+                                <div class="trigger-value">{triggers.get('buy', 'N/A')}</div>
+                            </div>
+                            <div class="trigger-item trigger-hold">
+                                <div class="trigger-label">HOLD</div>
+                                <div class="trigger-value">{triggers.get('hold', 'N/A')}</div>
+                            </div>
+                            <div class="trigger-item trigger-sell">
+                                <div class="trigger-label">SELL</div>
+                                <div class="trigger-value">{triggers.get('sell', 'N/A')}</div>
+                            </div>
+                        </div>
+                        <div class="current-signal {signal_class}">
+                            <strong>Current Signal:</strong> {triggers.get('current_signal', 'N/A')}
+                        </div>
+                    </div>
+                    
+                    <div class="val-updated">Last updated: {val.get('last_updated', 'N/A')}</div>
+                </div>
+                '''
+            
             position_rows += f'''
             <tr class="position-row clickable-row" onclick="togglePositionDetail('{pos['ticker']}')">
                 <td class="pos-ticker">
@@ -79,6 +164,7 @@ def generate_html(data):
                         </div>
                         {add_on_dip_html}
                         {notes_html}
+                        {valuation_html}
                     </div>
                 </td>
             </tr>
@@ -342,6 +428,171 @@ def generate_html(data):
             border-left: 3px solid #856404;
             font-size: 0.9rem;
             color: #856404;
+        }}
+        
+        .valuation-section {{
+            margin-top: 2rem;
+            padding: 2rem;
+            background: white;
+            border: 2px solid #2c2c2c;
+        }}
+        .valuation-header {{
+            font-family: 'Crimson Text', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #2c2c2c;
+        }}
+        .valuation-grid {{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }}
+        .val-box {{
+            background: #f8f9fa;
+            padding: 1rem;
+            border: 1px solid #e5e5e5;
+            text-align: center;
+        }}
+        .val-label {{
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }}
+        .val-value {{
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c2c2c;
+            margin-bottom: 0.25rem;
+        }}
+        .val-sublabel {{
+            font-size: 0.8rem;
+            color: #999;
+        }}
+        .reverse-dcf-detail {{
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-left: 3px solid #666;
+        }}
+        .detail-row-val {{
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }}
+        .three-ps-section {{
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border: 1px solid #e5e5e5;
+        }}
+        .ps-title {{
+            font-family: 'Crimson Text', serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }}
+        .ps-item {{
+            margin: 0.75rem 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }}
+        .ps-assessment {{
+            margin-top: 1rem;
+            padding: 0.75rem;
+            background: white;
+            border-left: 3px solid #2c2c2c;
+            font-weight: 500;
+        }}
+        .entry-exit-triggers {{
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: #fafafa;
+            border: 1px solid #e5e5e5;
+        }}
+        .trigger-title {{
+            font-family: 'Crimson Text', serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }}
+        .trigger-grid {{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }}
+        .trigger-item {{
+            padding: 1rem;
+            border: 2px solid;
+            background: white;
+        }}
+        .trigger-buy {{
+            border-color: #2d5016;
+        }}
+        .trigger-hold {{
+            border-color: #666;
+        }}
+        .trigger-sell {{
+            border-color: #8b0000;
+        }}
+        .trigger-label {{
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }}
+        .trigger-buy .trigger-label {{
+            color: #2d5016;
+        }}
+        .trigger-hold .trigger-label {{
+            color: #666;
+        }}
+        .trigger-sell .trigger-label {{
+            color: #8b0000;
+        }}
+        .trigger-value {{
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #444;
+        }}
+        .current-signal {{
+            padding: 1rem;
+            font-size: 1rem;
+            text-align: center;
+            border: 2px solid;
+            font-weight: 600;
+        }}
+        .signal-buy {{
+            background: #e8f5e9;
+            border-color: #2d5016;
+            color: #2d5016;
+        }}
+        .signal-hold {{
+            background: #f5f5f5;
+            border-color: #666;
+            color: #666;
+        }}
+        .signal-sell {{
+            background: #ffebee;
+            border-color: #8b0000;
+            color: #8b0000;
+        }}
+        .signal-wait {{
+            background: #fff3cd;
+            border-color: #856404;
+            color: #856404;
+        }}
+        .val-updated {{
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: #999;
+            text-align: right;
         }}
         
         .deployment-notes {{
