@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bear Market Signals | Nauman ul Haq</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        header {
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        nav {
+            margin: 20px 0;
+        }
+        
+        nav a {
+            margin-right: 20px;
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        nav a:hover {
+            text-decoration: underline;
+        }
+        
+        .status-banner {
+            padding: 20px;
+            border-radius: 6px;
+            margin: 30px 0;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        
+        .status-alert {
+            background: #ff4444;
+            color: white;
+        }
+        
+        .status-warning {
+            background: #ffaa00;
+            color: white;
+        }
+        
+        .status-normal {
+            background: #00cc66;
+            color: white;
+        }
+        
+        .market-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .market-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid #0066cc;
+        }
+        
+        .market-card h3 {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .market-card .value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #1a1a1a;
+        }
+        
+        .progress-container {
+            margin: 30px 0;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 40px;
+            background: #e0e0e0;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00cc66, #ffaa00, #ff4444);
+            transition: width 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+        
+        th {
+            background: #1a1a1a;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr.indicator-met {
+            background: #f0fff4;
+        }
+        
+        tr.indicator-not-met {
+            background: white;
+        }
+        
+        .indicator-note {
+            font-size: 0.85em;
+            color: #999;
+            font-style: italic;
+            margin-top: 5px;
+        }
+        
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .methodology {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 30px 0;
+            border-left: 4px solid #0066cc;
+        }
+        
+        .methodology h2 {
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .methodology ul {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚖️ Bear Market Bottom Indicators</h1>
+            <p class="subtitle">Real-time market-wide technical oversold signals</p>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="holdings.html">Holdings</a>
+                <a href="trades.html">Trades</a>
+                <a href="bear-signals.html">Bear Signals</a>
+            </nav>
+        </header>
+        
+        <div class="status-banner status-normal">
+            BULL MARKET
+        </div>
+        
+        <div class="progress-container">
+            <h2>Indicators Met: 1/11</h2>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 9.1%;">
+                    9.1%
+                </div>
+            </div>
+        </div>
+        
+        <div class="market-summary">
+            <div class="market-card">
+                <h3>S&P 500</h3>
+                <div class="value">6881.62</div>
+            </div>
+            <div class="market-card">
+                <h3>VIX</h3>
+                <div class="value">24.89</div>
+            </div>
+            <div class="market-card">
+                <h3>Drawdown from 52W High</h3>
+                <div class="value">-1.39%</div>
+            </div>
+        </div>
+        
+        <h2>Indicator Breakdown</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Status</th>
+                    <th>Indicator</th>
+                    <th>Current Value</th>
+                    <th>Threshold</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+        <tr class="indicator-not-met">
+            <td>1</td>
+            <td>❌</td>
+            <td><strong>S&P Oscillator Oversold</strong><br><small>Current S&P 500 vs 10-day MA</small></td>
+            <td>-0.03</td>
+            <td>≤ -10%</td>
+        </tr>
+        
+        <tr class="indicator-not-met">
+            <td>2</td>
+            <td>❌</td>
+            <td><strong>Dow Jones Death Cross</strong><br><small>Death cross formation</small></td>
+            <td>50-DMA: 49110, 200-DMA: 46218</td>
+            <td>50-DMA below 200-DMA</td>
+        </tr>
+        
+        <tr class="indicator-not-met">
+            <td>3</td>
+            <td>❌</td>
+            <td><strong>VIX Golden Cross</strong><br><small>Fear index elevated</small></td>
+            <td>50-DMA: 17.3</td>
+            <td>50-DMA above 150/200/250-DMA</td>
+        </tr>
+        
+        <tr class="indicator-not-met">
+            <td>4</td>
+            <td>❌</td>
+            <td><strong>% Stocks Above 200-DMA</strong><br><small>Breadth indicator (proxy)</small><div class="indicator-note">Simplified: using S&P index as proxy</div></td>
+            <td>S&P vs 200-DMA: 4.8%</td>
+            <td>< 15% (approx)</td>
+        </tr>
+        
+        <tr class="indicator-met">
+            <td>5</td>
+            <td>✅</td>
+            <td><strong>S&P 500 Intraday Price</strong><br><small>Price near key support</small></td>
+            <td>6882 (150-WMA: 6724, 200-WMA: 6565)</td>
+            <td>Within 5% of 150-WMA or 200-WMA</td>
+        </tr>
+        
+        <tr class="indicator-not-met">
+            <td>6</td>
+            <td>❌</td>
+            <td><strong>S&P 500 Weekly RSI</strong><br><small>Weekly oversold condition</small></td>
+            <td>52.6</td>
+            <td>< 35</td>
+        </tr>
+        
+        <tr class="indicator-not-met">
+            <td>7</td>
+            <td>❌</td>
+            <td><strong>Nasdaq Weekly RSI</strong><br><small>Tech index oversold</small></td>
+            <td>41.3</td>
+            <td>< 35</td>
+        </tr>
+        
+        <tr class="indicator-not-met">
+            <td>8</td>
+            <td>❌</td>
+            <td><strong>S&P 500 Monthly RSI</strong><br><small>Monthly oversold</small></td>
+            <td>72.0</td>
+            <td>< 45</td>
+        </tr>
+        
+        <tr class="indicator-not-met">
+            <td>9</td>
+            <td>❌</td>
+            <td><strong>VIX 1-Year RSI</strong><br><small>Fear index elevated long-term</small></td>
+            <td>50.3</td>
+            <td>> 60</td>
+        </tr>
+        
+        <tr class="indicator-not-met">
+            <td>10</td>
+            <td>❌</td>
+            <td><strong>Fibonacci Retracement</strong><br><small>Low: 4967, High: 6979</small><div class="indicator-note">Simplified: using 2-year range</div></td>
+            <td>Current: 6882, 50% Fib: 5973</td>
+            <td>Around 50% retracement</td>
+        </tr>
+        
+        <tr class="indicator-not-met">
+            <td>11</td>
+            <td>❌</td>
+            <td><strong>Morningstar Fair Value</strong><br><small>Requires manual input</small><div class="indicator-note">Update quarterly from Morningstar</div></td>
+            <td>Manual update required</td>
+            <td>≥ 20% undervalued</td>
+        </tr>
+        
+            </tbody>
+        </table>
+        
+        <div class="methodology">
+            <h2>Methodology</h2>
+            <ul>
+                <li><strong>Purpose:</strong> Identify high-probability bear market bottoms for deploying cash into quality compounders</li>
+                <li><strong>Not predictive:</strong> Only tracks oversold conditions after a bear market has started (S&P -10% or more)</li>
+                <li><strong>Buy signal:</strong> When 8-10 indicators are met simultaneously</li>
+                <li><strong>Strategy:</strong> Pre-select quality stocks/ETFs during bull markets, buy heavily when signals trigger</li>
+                <li><strong>Risk:</strong> Lost decade scenarios (prolonged secular bear markets) are not covered by these indicators</li>
+            </ul>
+        </div>
+        
+        <footer>
+            <p>Last updated: March 03, 2026 at 06:32 PM UTC</p>
+            <p>Data sources: Yahoo Finance (S&P 500, Nasdaq, Dow Jones, VIX)</p>
+            <p><a href="https://enhaq.com" target="_blank">enhaq.com</a> | Built by Erasmus</p>
+        </footer>
+    </div>
+</body>
+</html>
